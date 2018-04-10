@@ -1,0 +1,11 @@
+using my8.Api.Models.Sql;
+using System.Threading.Tasks;
+
+namespace my8.Api.Interfaces.Sql
+{
+    public interface I{ModelName}Repository
+    {
+        Task<bool> Create({ModelName} {modelname});
+        Task<{ModelName}> Get(string id);
+    }
+}

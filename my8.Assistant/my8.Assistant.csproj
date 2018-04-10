@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D8514F08-9C21-401E-A3F6-57E9BD0519AA}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>my8.Assistant</RootNamespace>
+    <AssemblyName>my8.Assistant</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Circle Thin_48px.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoControl">
+      <HintPath>D:\Development\Utility\Utility\Generate Sql\The Generator\bin\Debug\AutoControl.dll</HintPath>
+    </Reference>
+    <Reference Include="Dapper">
+      <HintPath>D:\Development\Utility\Utility\Generate Sql\The Generator\bin\Debug\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="DnsClient, Version=1.0.7.0, Culture=neutral, PublicKeyToken=4574bb5573c51424, processorArchitecture=MSIL">
+      <HintPath>..\packages\DnsClient.1.0.7\lib\net45\DnsClient.dll</HintPath>
+    </Reference>
+    <Reference Include="FlatMessageBox">
+      <HintPath>D:\Development\Utility\Utility\Generate Sql\The Generator\bin\Debug\FlatMessageBox.dll</HintPath>
+    </Reference>
+    <Reference Include="Material">
+      <HintPath>D:\Development\Utility\Utility\Generate Sql\The Generator\bin\Debug\Material.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.ConnectionInfo, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Development\Utility\Utility\Generate Sql\The Generator\bin\Debug\Microsoft.SqlServer.ConnectionInfo.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Dmf, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Development\Utility\Utility\Generate Sql\The Generator\bin\Debug\Microsoft.SqlServer.Dmf.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Management.Sdk.Sfc, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Development\Utility\Utility\Generate Sql\The Generator\bin\Debug\Microsoft.SqlServer.Management.Sdk.Sfc.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.ServiceBrokerEnum, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Development\Utility\Utility\Generate Sql\The Generator\bin\Debug\Microsoft.SqlServer.ServiceBrokerEnum.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Smo, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Development\Utility\Utility\Generate Sql\The Generator\bin\Debug\Microsoft.SqlServer.Smo.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.SqlEnum, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Development\Utility\Utility\Generate Sql\The Generator\bin\Debug\Microsoft.SqlServer.SqlEnum.dll</HintPath>
+    </Reference>
+    <Reference Include="ModernUI">
+      <HintPath>D:\Development\Utility\Utility\Generate Sql\The Generator\bin\Debug\ModernUI.dll</HintPath>
+    </Reference>
+    <Reference Include="ModernUI.Design">
+      <HintPath>D:\Development\Utility\Utility\Generate Sql\The Generator\bin\Debug\ModernUI.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="ModernUI.Fonts">
+      <HintPath>D:\Development\Utility\Utility\Generate Sql\The Generator\bin\Debug\ModernUI.Fonts.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Bson, Version=2.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Bson.2.5.0\lib\net45\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver, Version=2.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Driver.2.5.0\lib\net45\MongoDB.Driver.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver.Core, Version=2.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Driver.Core.2.5.0\lib\net45\MongoDB.Driver.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Neo4jClient, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Neo4jClient.1.1.0.1\lib\net45\Neo4jClient.dll</HintPath>
+    </Reference>
+    <Reference Include="Neo4jClient.Extension, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Neo4jClient.Extension.1.0.2\lib\net45\Neo4jClient.Extension.dll</HintPath>
+    </Reference>
+    <Reference Include="Neo4jClient.Extension.Attributes, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Neo4jClient.Extension.Attributes.1.0.1\lib\net45\Neo4jClient.Extension.Attributes.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.3.0\lib\netstandard1.1\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http">
+      <HintPath>..\packages\Microsoft.Net.Http.2.0.20505.0\lib\net40\System.Net.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+      <HintPath>..\packages\Microsoft.Net.Http.2.0.20505.0\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.0.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DeepClone.cs" />
+    <Compile Include="frmGenerateMongoUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGenerateMongoUpdate.Designer.cs">
+      <DependentUpon>frmGenerateMongoUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmGenerateReactModel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGenerateReactModel.Designer.cs">
+      <DependentUpon>frmGenerateReactModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPrimary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPrimary.designer.cs">
+      <DependentUpon>frmPrimary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSelectProject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSelectProject.Designer.cs">
+      <DependentUpon>frmSelectProject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSetupApplication.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSetupApplication.designer.cs">
+      <DependentUpon>frmSetupApplication.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Generator.cs" />
+    <Compile Include="Model\ApplicationSession.cs" />
+    <Compile Include="Model\ApplicationSetting.cs" />
+    <Compile Include="Model\DatabaseHelper.cs" />
+    <Compile Include="Model\DatabaseInfo.cs" />
+    <Compile Include="Model\MongoConnection.cs" />
+    <Compile Include="Model\Neo4jConnection.cs" />
+    <Compile Include="Model\Project.cs" />
+    <Compile Include="Model\SqlServerConnection.cs" />
+    <Compile Include="Model\Table.cs" />
+    <Compile Include="Model\ThisApp.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SetupConnection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SetupConnection.designer.cs">
+      <DependentUpon>SetupConnection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TheText1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TheText.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Utility.cs" />
+    <EmbeddedResource Include="frmGenerateMongoUpdate.resx">
+      <DependentUpon>frmGenerateMongoUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGenerateReactModel.resx">
+      <DependentUpon>frmGenerateReactModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPrimary.resx">
+      <DependentUpon>frmPrimary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSelectProject.resx">
+      <DependentUpon>frmSelectProject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSetupApplication.resx">
+      <DependentUpon>frmSetupApplication.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="SetupConnection.resx">
+      <DependentUpon>SetupConnection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TheText.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>TheText1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\react-3142765c593bf909-512x512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Circle Thin_48px.ico" />
+    <None Include="Resources\mongodb.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
