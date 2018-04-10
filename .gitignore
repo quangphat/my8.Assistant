@@ -1,3 +1,5 @@
 /packages
 /my8.Assistant.sln
 /.vs
+/my8.Assistant/obj
+/my8.Assistant/bin
