@@ -31,6 +31,7 @@ namespace my8.Assistant
                 stringBuilder.Append($".Set(s => s.{col.Name}, {columnFromCsharpClass.ClassName.ToLower()}.{col.Name})");
                 stringBuilder.Append(Environment.NewLine);
             }
+
             txtBuilder.Text = stringBuilder.ToString();
             if(ThisApp.currentSession.AutoCopy)
             {
