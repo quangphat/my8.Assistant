@@ -196,6 +196,11 @@ namespace my8.Assistant
             {
                 m_Generator.CreateDependencyInjection();
             }
+            if (ThisApp.currentSession.CreateBusiness)
+            {
+                m_Generator.CreateBusinessClass();
+                m_Generator.CreateBusinessInterface();
+            }
             lblNotify.SetText("Thành công", LabelNotify.EnumStatus.Success);
             //rdRepository.PerformClick();
         }

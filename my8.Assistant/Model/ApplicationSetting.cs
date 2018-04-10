@@ -49,6 +49,10 @@ namespace my8.Assistant.Model
         public string SqlModelTemplateFile { get; set; }
         public string MongoModelTemplateFile { get; set; }
         public string NeoModelTemplateFile { get; set; }
+        public string BusinessFolder { get; set; }
+        public string BusinessTemplate { get; set; }
+        public string IBusinessFolder { get; set; }
+        public string IBusinessTemplate { get; set; }
         public string SubFolderName { get; set; } //Tên subfolder của sql, mongo,neo
         public string[] getSubFolferName()
         {

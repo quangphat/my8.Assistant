@@ -42,8 +42,11 @@
             this.btnRepositorytemplate = new System.Windows.Forms.Button();
             this.label19 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.rdNeo = new ModernUI.Controls.MetroRadioButton();
             this.autoMetroCheckBox4 = new AutoControl.AutoMetroCheckBox();
+            this.rdSql = new ModernUI.Controls.MetroRadioButton();
             this.autoMetroCheckBox15 = new AutoControl.AutoMetroCheckBox();
+            this.rdMongo = new ModernUI.Controls.MetroRadioButton();
             this.autoMetroCheckBox13 = new AutoControl.AutoMetroCheckBox();
             this.autoMetroCheckBox14 = new AutoControl.AutoMetroCheckBox();
             this.autoMetroCheckBox11 = new AutoControl.AutoMetroCheckBox();
@@ -120,15 +123,26 @@
             this.button8 = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.autoTextBox14 = new AutoControl.AutoTextBox();
-            this.rdNeo = new ModernUI.Controls.MetroRadioButton();
-            this.rdSql = new ModernUI.Controls.MetroRadioButton();
-            this.rdMongo = new ModernUI.Controls.MetroRadioButton();
+            this.label9 = new System.Windows.Forms.Label();
+            this.autoTextBox15 = new AutoControl.AutoTextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.autoTextBox16 = new AutoControl.AutoTextBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.autoTextBox17 = new AutoControl.AutoTextBox();
+            this.label32 = new System.Windows.Forms.Label();
+            this.autoTextBox18 = new AutoControl.AutoTextBox();
+            this.autoMetroCheckBox16 = new AutoControl.AutoMetroCheckBox();
+            this.button9 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
+            this.button11 = new System.Windows.Forms.Button();
+            this.button12 = new System.Windows.Forms.Button();
+            this.autoMetroCheckBox17 = new AutoControl.AutoMetroCheckBox();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(860, 512);
+            this.btnSave.Location = new System.Drawing.Point(860, 547);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 23;
@@ -138,7 +152,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(941, 512);
+            this.btnCancel.Location = new System.Drawing.Point(941, 547);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 24;
@@ -262,6 +276,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.autoMetroCheckBox17);
+            this.groupBox2.Controls.Add(this.autoMetroCheckBox16);
             this.groupBox2.Controls.Add(this.rdNeo);
             this.groupBox2.Controls.Add(this.autoMetroCheckBox4);
             this.groupBox2.Controls.Add(this.rdSql);
@@ -280,12 +296,24 @@
             this.groupBox2.Controls.Add(this.autoMetroCheckBox3);
             this.groupBox2.Controls.Add(this.autoMetroCheckBox2);
             this.groupBox2.Controls.Add(this.autoMetroCheckBox1);
-            this.groupBox2.Location = new System.Drawing.Point(19, 388);
+            this.groupBox2.Location = new System.Drawing.Point(19, 423);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(998, 114);
             this.groupBox2.TabIndex = 57;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "User session";
+            // 
+            // rdNeo
+            // 
+            this.rdNeo.AutoSize = true;
+            this.rdNeo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.rdNeo.Location = new System.Drawing.Point(942, 19);
+            this.rdNeo.Name = "rdNeo";
+            this.rdNeo.Size = new System.Drawing.Size(45, 15);
+            this.rdNeo.TabIndex = 159;
+            this.rdNeo.Text = "Neo";
+            this.rdNeo.UseSelectable = true;
+            this.rdNeo.Click += new System.EventHandler(this.rdNeo_Click);
             // 
             // autoMetroCheckBox4
             // 
@@ -299,6 +327,20 @@
             this.autoMetroCheckBox4.Text = "Ghi đè DI";
             this.autoMetroCheckBox4.UseSelectable = true;
             // 
+            // rdSql
+            // 
+            this.rdSql.AutoSize = true;
+            this.rdSql.Checked = true;
+            this.rdSql.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.rdSql.Location = new System.Drawing.Point(788, 18);
+            this.rdSql.Name = "rdSql";
+            this.rdSql.Size = new System.Drawing.Size(39, 15);
+            this.rdSql.TabIndex = 158;
+            this.rdSql.TabStop = true;
+            this.rdSql.Text = "Sql";
+            this.rdSql.UseSelectable = true;
+            this.rdSql.Click += new System.EventHandler(this.rdSql_Click);
+            // 
             // autoMetroCheckBox15
             // 
             this.autoMetroCheckBox15.AutoSize = true;
@@ -310,6 +352,18 @@
             this.autoMetroCheckBox15.TabIndex = 35;
             this.autoMetroCheckBox15.Text = "Thêm DI vào startup";
             this.autoMetroCheckBox15.UseSelectable = true;
+            // 
+            // rdMongo
+            // 
+            this.rdMongo.AutoSize = true;
+            this.rdMongo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.rdMongo.Location = new System.Drawing.Point(854, 19);
+            this.rdMongo.Name = "rdMongo";
+            this.rdMongo.Size = new System.Drawing.Size(62, 15);
+            this.rdMongo.TabIndex = 157;
+            this.rdMongo.Text = "Mongo";
+            this.rdMongo.UseSelectable = true;
+            this.rdMongo.Click += new System.EventHandler(this.rdMongo_Click);
             // 
             // autoMetroCheckBox13
             // 
@@ -555,7 +609,7 @@
             this.cbGenSqlScript.AutoSize = true;
             this.cbGenSqlScript.BindingFor = "ApplicationSetting";
             this.cbGenSqlScript.BindingName = "GenSqlScript";
-            this.cbGenSqlScript.Location = new System.Drawing.Point(195, 355);
+            this.cbGenSqlScript.Location = new System.Drawing.Point(195, 390);
             this.cbGenSqlScript.Name = "cbGenSqlScript";
             this.cbGenSqlScript.Size = new System.Drawing.Size(172, 15);
             this.cbGenSqlScript.TabIndex = 56;
@@ -598,7 +652,7 @@
             this.cbDapperMapping.AutoSize = true;
             this.cbDapperMapping.BindingFor = "ApplicationSetting";
             this.cbDapperMapping.BindingName = "DapperMapping";
-            this.cbDapperMapping.Location = new System.Drawing.Point(19, 355);
+            this.cbDapperMapping.Location = new System.Drawing.Point(19, 390);
             this.cbDapperMapping.Name = "cbDapperMapping";
             this.cbDapperMapping.Size = new System.Drawing.Size(131, 15);
             this.cbDapperMapping.TabIndex = 36;
@@ -630,7 +684,7 @@
             this.cbAutoCreateFile.AutoSize = true;
             this.cbAutoCreateFile.BindingFor = "ApplicationSetting";
             this.cbAutoCreateFile.BindingName = "AutoCreateFile";
-            this.cbAutoCreateFile.Location = new System.Drawing.Point(195, 322);
+            this.cbAutoCreateFile.Location = new System.Drawing.Point(195, 357);
             this.cbAutoCreateFile.Name = "cbAutoCreateFile";
             this.cbAutoCreateFile.Size = new System.Drawing.Size(105, 15);
             this.cbAutoCreateFile.TabIndex = 26;
@@ -642,7 +696,7 @@
             this.cbUseInterface.AutoSize = true;
             this.cbUseInterface.BindingFor = "ApplicationSetting";
             this.cbUseInterface.BindingName = "UseInterface";
-            this.cbUseInterface.Location = new System.Drawing.Point(19, 322);
+            this.cbUseInterface.Location = new System.Drawing.Point(19, 357);
             this.cbUseInterface.Name = "cbUseInterface";
             this.cbUseInterface.Size = new System.Drawing.Size(157, 15);
             this.cbUseInterface.TabIndex = 15;
@@ -789,7 +843,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(964, 319);
+            this.button1.Location = new System.Drawing.Point(964, 377);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(30, 23);
             this.button1.TabIndex = 125;
@@ -801,7 +855,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(549, 324);
+            this.label10.Location = new System.Drawing.Point(549, 381);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(62, 13);
             this.label10.TabIndex = 124;
@@ -812,7 +866,7 @@
             // 
             this.autoTextBox3.BindingFor = "ApplicationSetting";
             this.autoTextBox3.BindingName = "StartUpFile";
-            this.autoTextBox3.Location = new System.Drawing.Point(667, 321);
+            this.autoTextBox3.Location = new System.Drawing.Point(667, 378);
             this.autoTextBox3.Name = "autoTextBox3";
             this.autoTextBox3.Size = new System.Drawing.Size(291, 20);
             this.autoTextBox3.TabIndex = 123;
@@ -1137,49 +1191,171 @@
             this.autoTextBox14.TabIndex = 154;
             this.autoTextBox14.Tag = "Api";
             // 
-            // rdNeo
+            // label9
             // 
-            this.rdNeo.AutoSize = true;
-            this.rdNeo.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.rdNeo.Location = new System.Drawing.Point(942, 19);
-            this.rdNeo.Name = "rdNeo";
-            this.rdNeo.Size = new System.Drawing.Size(45, 15);
-            this.rdNeo.TabIndex = 159;
-            this.rdNeo.Text = "Neo";
-            this.rdNeo.UseSelectable = true;
-            this.rdNeo.Click += new System.EventHandler(this.rdNeo_Click);
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(549, 355);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(99, 13);
+            this.label9.TabIndex = 164;
+            this.label9.Tag = "Api";
+            this.label9.Text = "IBusiness Template";
             // 
-            // rdSql
+            // autoTextBox15
             // 
-            this.rdSql.AutoSize = true;
-            this.rdSql.Checked = true;
-            this.rdSql.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.rdSql.Location = new System.Drawing.Point(788, 18);
-            this.rdSql.Name = "rdSql";
-            this.rdSql.Size = new System.Drawing.Size(39, 15);
-            this.rdSql.TabIndex = 158;
-            this.rdSql.TabStop = true;
-            this.rdSql.Text = "Sql";
-            this.rdSql.UseSelectable = true;
-            this.rdSql.Click += new System.EventHandler(this.rdSql_Click);
+            this.autoTextBox15.BindingFor = "ApplicationSetting";
+            this.autoTextBox15.BindingName = "IBusinessTemplate";
+            this.autoTextBox15.Location = new System.Drawing.Point(667, 352);
+            this.autoTextBox15.Name = "autoTextBox15";
+            this.autoTextBox15.Size = new System.Drawing.Size(291, 20);
+            this.autoTextBox15.TabIndex = 163;
+            this.autoTextBox15.Tag = "Api";
             // 
-            // rdMongo
+            // label11
             // 
-            this.rdMongo.AutoSize = true;
-            this.rdMongo.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.rdMongo.Location = new System.Drawing.Point(854, 19);
-            this.rdMongo.Name = "rdMongo";
-            this.rdMongo.Size = new System.Drawing.Size(62, 15);
-            this.rdMongo.TabIndex = 157;
-            this.rdMongo.Text = "Mongo";
-            this.rdMongo.UseSelectable = true;
-            this.rdMongo.Click += new System.EventHandler(this.rdMongo_Click);
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(549, 328);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(84, 13);
+            this.label11.TabIndex = 162;
+            this.label11.Tag = "Api";
+            this.label11.Text = "IBusiness Folder";
+            // 
+            // autoTextBox16
+            // 
+            this.autoTextBox16.BindingFor = "ApplicationSetting";
+            this.autoTextBox16.BindingName = "IBusinessFolder";
+            this.autoTextBox16.Location = new System.Drawing.Point(667, 325);
+            this.autoTextBox16.Name = "autoTextBox16";
+            this.autoTextBox16.Size = new System.Drawing.Size(291, 20);
+            this.autoTextBox16.TabIndex = 161;
+            this.autoTextBox16.Tag = "Api";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(549, 274);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(78, 13);
+            this.label20.TabIndex = 160;
+            this.label20.Tag = "Api";
+            this.label20.Text = "Business folder";
+            // 
+            // autoTextBox17
+            // 
+            this.autoTextBox17.BindingFor = "ApplicationSetting";
+            this.autoTextBox17.BindingName = "BusinessFolder";
+            this.autoTextBox17.Location = new System.Drawing.Point(667, 271);
+            this.autoTextBox17.Name = "autoTextBox17";
+            this.autoTextBox17.Size = new System.Drawing.Size(291, 20);
+            this.autoTextBox17.TabIndex = 159;
+            this.autoTextBox17.Tag = "Api";
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(549, 302);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(96, 13);
+            this.label32.TabIndex = 158;
+            this.label32.Tag = "Api";
+            this.label32.Text = "Business Template";
+            // 
+            // autoTextBox18
+            // 
+            this.autoTextBox18.BindingFor = "ApplicationSetting";
+            this.autoTextBox18.BindingName = "BusinessTemplate";
+            this.autoTextBox18.Location = new System.Drawing.Point(667, 299);
+            this.autoTextBox18.Name = "autoTextBox18";
+            this.autoTextBox18.Size = new System.Drawing.Size(291, 20);
+            this.autoTextBox18.TabIndex = 157;
+            this.autoTextBox18.Tag = "Api";
+            // 
+            // autoMetroCheckBox16
+            // 
+            this.autoMetroCheckBox16.AutoSize = true;
+            this.autoMetroCheckBox16.BindingFor = "ApplicationSession";
+            this.autoMetroCheckBox16.BindingName = "CreateBusiness";
+            this.autoMetroCheckBox16.Location = new System.Drawing.Point(802, 50);
+            this.autoMetroCheckBox16.Name = "autoMetroCheckBox16";
+            this.autoMetroCheckBox16.Size = new System.Drawing.Size(105, 15);
+            this.autoMetroCheckBox16.TabIndex = 160;
+            this.autoMetroCheckBox16.Text = "Create Business";
+            this.autoMetroCheckBox16.UseSelectable = true;
+            // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(964, 269);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(30, 23);
+            this.button9.TabIndex = 165;
+            this.button9.Tag = "Api";
+            this.button9.Text = "...";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
+            // button10
+            // 
+            this.button10.Location = new System.Drawing.Point(964, 297);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(30, 23);
+            this.button10.TabIndex = 166;
+            this.button10.Tag = "Api";
+            this.button10.Text = "...";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
+            // button11
+            // 
+            this.button11.Location = new System.Drawing.Point(964, 323);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(30, 23);
+            this.button11.TabIndex = 167;
+            this.button11.Tag = "Api";
+            this.button11.Text = "...";
+            this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
+            // 
+            // button12
+            // 
+            this.button12.Location = new System.Drawing.Point(964, 350);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(30, 23);
+            this.button12.TabIndex = 168;
+            this.button12.Tag = "Api";
+            this.button12.Text = "...";
+            this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
+            // 
+            // autoMetroCheckBox17
+            // 
+            this.autoMetroCheckBox17.AutoSize = true;
+            this.autoMetroCheckBox17.BindingFor = "ApplicationSession";
+            this.autoMetroCheckBox17.BindingName = "OverWriteBusiness";
+            this.autoMetroCheckBox17.Location = new System.Drawing.Point(802, 82);
+            this.autoMetroCheckBox17.Name = "autoMetroCheckBox17";
+            this.autoMetroCheckBox17.Size = new System.Drawing.Size(105, 15);
+            this.autoMetroCheckBox17.TabIndex = 161;
+            this.autoMetroCheckBox17.Text = "Ghi đè Business";
+            this.autoMetroCheckBox17.UseSelectable = true;
             // 
             // frmSetupApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1020, 538);
+            this.ClientSize = new System.Drawing.Size(1020, 573);
+            this.Controls.Add(this.button12);
+            this.Controls.Add(this.button11);
+            this.Controls.Add(this.button10);
+            this.Controls.Add(this.button9);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.autoTextBox15);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.autoTextBox16);
+            this.Controls.Add(this.label20);
+            this.Controls.Add(this.autoTextBox17);
+            this.Controls.Add(this.label32);
+            this.Controls.Add(this.autoTextBox18);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.autoTextBox14);
@@ -1366,5 +1542,19 @@
         private ModernUI.Controls.MetroRadioButton rdNeo;
         private ModernUI.Controls.MetroRadioButton rdSql;
         private ModernUI.Controls.MetroRadioButton rdMongo;
+        private System.Windows.Forms.Label label9;
+        private AutoControl.AutoTextBox autoTextBox15;
+        private System.Windows.Forms.Label label11;
+        private AutoControl.AutoTextBox autoTextBox16;
+        private System.Windows.Forms.Label label20;
+        private AutoControl.AutoTextBox autoTextBox17;
+        private System.Windows.Forms.Label label32;
+        private AutoControl.AutoTextBox autoTextBox18;
+        private AutoControl.AutoMetroCheckBox autoMetroCheckBox16;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.Button button12;
+        private AutoControl.AutoMetroCheckBox autoMetroCheckBox17;
     }
 }

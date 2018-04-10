@@ -282,5 +282,25 @@ namespace my8.Assistant
             ThisApp.currentSession = ThisApp.getSessionByDbType(m_dbType);
             groupBox2.ToForm(ThisApp.currentSession);
         }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            autoTextBox17.Text = Utility.GetFolderPath();
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            autoTextBox18.Text = Utility.GetFilePath();
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            autoTextBox16.Text = Utility.GetFolderPath();
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            autoTextBox15.Text = Utility.GetFilePath();
+        }
     }
 }

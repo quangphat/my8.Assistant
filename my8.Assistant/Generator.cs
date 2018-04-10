@@ -629,7 +629,58 @@ namespace my8.Assistant
             return m_templateContent;
         }
         #endregion
-
+        #region Business
+        public string CreateBusinessClass()
+        {
+            string filepath = $"{ThisApp.AppSetting.BusinessFolder}\\{m_table.CustomName}Business.cs";
+            m_strBuilder = new StringBuilder();
+            m_templateContent = Utility.ReadFile(ThisApp.AppSetting.BusinessTemplate);
+            if (string.IsNullOrWhiteSpace(m_templateContent))
+                return string.Empty;
+            m_templateContent = m_templateContent.Replace(TheText.ModelName, m_table.CustomName);
+            m_templateContent = m_templateContent.Replace(TheText.modelnameLowerCase, m_table.CustomName.ToLower());
+            if (ThisApp.AppSetting.AutoCreateFile == true)
+            {
+                if (File.Exists(filepath))
+                {
+                    if (ThisApp.currentSession.OverWriteBusiness)
+                    {
+                        Utility.WriteToFile(filepath, m_templateContent);
+                    }
+                }
+                else
+                {
+                    Utility.WriteToFile(filepath, m_templateContent);
+                }
+            }
+            return m_templateContent;
+        }
+        public string CreateBusinessInterface()
+        {
+            string filepath = $"{ThisApp.AppSetting.IBusinessFolder}\\I{m_table.CustomName}Business.cs";
+            m_strBuilder = new StringBuilder();
+            m_templateContent = Utility.ReadFile(ThisApp.AppSetting.IBusinessTemplate);
+            if (string.IsNullOrWhiteSpace(m_templateContent))
+                return string.Empty;
+            m_templateContent = m_templateContent.Replace(TheText.ModelName, m_table.CustomName);
+            m_templateContent = m_templateContent.Replace(TheText.modelnameLowerCase, m_table.CustomName.ToLower());
+            if (ThisApp.AppSetting.AutoCreateFile == true)
+            {
+                if (File.Exists(filepath))
+                {
+                    if (ThisApp.currentSession.OverWriteBusiness)
+                    {
+                        Utility.WriteToFile(filepath, m_templateContent);
+                    }
+                }
+                else
+                {
+                    Utility.WriteToFile(filepath, m_templateContent);
+                }
+            }
+            return m_templateContent;
+        }
+        #endregion
         #region Dependency Injection
         public string CreateDependencyInjection()
         {

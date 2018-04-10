@@ -32,5 +32,7 @@ namespace my8.Assistant.Model
         public bool OverWriteUnitTest { get; set; }
         public bool CreateDependencyInjection { get; set; }
         public bool OverWriteDependencyInjection { get; set; }
+        public bool CreateBusiness { get; set; }
+        public bool OverWriteBusiness { get; set; }
     }
 }
