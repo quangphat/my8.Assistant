@@ -5,9 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using MongoI = my8.Api.Interfaces.Mongo;
 using NeoI = my8.Api.Interfaces.Neo4j;
-using Model = my8.Api.Models;
-using ModeM = my8.Api.Models.Mongo;
-using ModeN = my8.Api.Models.Neo4j;
+using my8.Api.Models;
 using AutoMapper;
 namespace my8.Api.Business
 {

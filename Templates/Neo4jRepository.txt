@@ -1,7 +1,7 @@
 using Microsoft.Extensions.Options;
 using my8.Api.Infrastructures;
 using my8.Api.Interfaces.Neo4j;
-using my8.Api.Models.Neo4j;
+using my8.Api.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
