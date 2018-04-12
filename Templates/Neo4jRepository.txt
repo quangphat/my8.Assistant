@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace my8.Api.Repository.Neo4j
 {
-    public class {ModelName}Repository:SqlRepositoryBase,I{ModelName}Repository
+    public class {ModelName}Repository:Neo4jRepositoryBase,I{ModelName}Repository
     {
         public {ModelName}Repository(IOptions<Neo4jConnection> setting) : base(setting) { }
 

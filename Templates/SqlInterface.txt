@@ -1,5 +1,7 @@
 using my8.Api.Models.Sql;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+
 
 namespace my8.Api.Interfaces.Sql
 {
@@ -7,5 +9,6 @@ namespace my8.Api.Interfaces.Sql
     {
         Task<bool> Create({ModelName} {modelname});
         Task<{ModelName}> Get(string id);
+        Task<bool> Update({ModelName} {modelname});
     }
 }

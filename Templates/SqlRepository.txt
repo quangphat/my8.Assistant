@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+using Dapper;
 namespace my8.Api.Repository.Sql
 {
     public class {ModelName}Repository:SqlRepositoryBase,I{ModelName}Repository
@@ -15,12 +15,39 @@ namespace my8.Api.Repository.Sql
 
         public async Task<bool> Create({ModelName} {modelname})
         {
-            throw new NotImplementedException();
+			//<SqlCreate>
+            try
+            {
+                await connection.ExecuteAsync(insert, {modelname});
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public async Task<{ModelName}> Get(string id)
         {
-            throw new NotImplementedException();
+            //<SqlFindById>
+            IEnumerable<{ModelName}> {modelname}s = await connection.QueryAsync<{ModelName}>(select);
+            return {modelname}s.FirstOrDefault();
+        }
+        public async Task<IEnumerable<{ModelName}>> Search(string searchStr,int skip, int limit)
+        {
+            IEnumerable<{ModelName}> {modelname}s = await connection.QueryAsync<{ModelName}>("LookFor{ModelName}", new { @searchStr = searchStr, @skip = skip, @limit = limit }, commandType: System.Data.CommandType.StoredProcedure);
+            return {modelname}s;
+        }
+        public async Task<bool> Update({ModelName} {modelname})
+        {
+            //<SqlUpdate>
+            try
+            {
+                connection.Execute(update, {modelname});
+                return true;
+            }
+            catch { return false; }
         }
     }
 }
+

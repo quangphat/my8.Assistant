@@ -1,0 +1,28 @@
+using my8.Api.IBusiness;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using MongoI = my8.Api.Interfaces.Mongo;
+using NeoI = my8.Api.Interfaces.Neo4j;
+using Model = my8.Api.Models;
+using ModeM = my8.Api.Models.Mongo;
+using ModeN = my8.Api.Models.Neo4j;
+using AutoMapper;
+namespace my8.Api.Business
+{
+    public class {ModelName}Business : I{ModelName}Business
+    {
+        MongoI.I{ModelName}Repository {modelname}RepositoryM;
+        NeoI.I{ModelName}Repository {modelname}RepositoryN;
+        public {ModelName}Business(MongoI.I{ModelName}Repository {modelname}RepoM, NeoI.I{ModelName}Repository {modelname}RepoN)
+        {
+            {modelname}RepositoryM = {modelname}RepoM;
+            {modelname}RepositoryN = {modelname}RepoN;
+        }
+        public async Task<bool> Create()
+        {
+            throw new NotImplementedException();
+        }
+    }
+}
