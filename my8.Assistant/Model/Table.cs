@@ -20,7 +20,13 @@ namespace my8.Assistant.Model
                 return RealName.ToPascalCase();
             }
         }
-        public string PrimaryKeyCol { get; set; }
+        public string PrimaryKeyCol
+        {
+            get
+            {
+                return RealName + "Id";
+            }
+        }
         public string KeyType { get; set; }
         public TableType TableType { get; set; }
     }

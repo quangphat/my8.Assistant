@@ -42,6 +42,8 @@
             this.btnRepositorytemplate = new System.Windows.Forms.Button();
             this.label19 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.autoMetroCheckBox17 = new AutoControl.AutoMetroCheckBox();
+            this.autoMetroCheckBox16 = new AutoControl.AutoMetroCheckBox();
             this.rdNeo = new ModernUI.Controls.MetroRadioButton();
             this.autoMetroCheckBox4 = new AutoControl.AutoMetroCheckBox();
             this.rdSql = new ModernUI.Controls.MetroRadioButton();
@@ -131,18 +133,20 @@
             this.autoTextBox17 = new AutoControl.AutoTextBox();
             this.label32 = new System.Windows.Forms.Label();
             this.autoTextBox18 = new AutoControl.AutoTextBox();
-            this.autoMetroCheckBox16 = new AutoControl.AutoMetroCheckBox();
             this.button9 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
-            this.autoMetroCheckBox17 = new AutoControl.AutoMetroCheckBox();
+            this.button13 = new System.Windows.Forms.Button();
+            this.label36 = new System.Windows.Forms.Label();
+            this.autoTextBox19 = new AutoControl.AutoTextBox();
+            this.autoMetroCheckBox18 = new AutoControl.AutoMetroCheckBox();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(860, 547);
+            this.btnSave.Location = new System.Drawing.Point(860, 581);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 23;
@@ -152,7 +156,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(941, 547);
+            this.btnCancel.Location = new System.Drawing.Point(941, 581);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 24;
@@ -276,6 +280,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.autoMetroCheckBox18);
             this.groupBox2.Controls.Add(this.autoMetroCheckBox17);
             this.groupBox2.Controls.Add(this.autoMetroCheckBox16);
             this.groupBox2.Controls.Add(this.rdNeo);
@@ -296,12 +301,36 @@
             this.groupBox2.Controls.Add(this.autoMetroCheckBox3);
             this.groupBox2.Controls.Add(this.autoMetroCheckBox2);
             this.groupBox2.Controls.Add(this.autoMetroCheckBox1);
-            this.groupBox2.Location = new System.Drawing.Point(19, 423);
+            this.groupBox2.Location = new System.Drawing.Point(2, 423);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(998, 114);
+            this.groupBox2.Size = new System.Drawing.Size(1015, 152);
             this.groupBox2.TabIndex = 57;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "User session";
+            // 
+            // autoMetroCheckBox17
+            // 
+            this.autoMetroCheckBox17.AutoSize = true;
+            this.autoMetroCheckBox17.BindingFor = "ApplicationSession";
+            this.autoMetroCheckBox17.BindingName = "OverWriteBusiness";
+            this.autoMetroCheckBox17.Location = new System.Drawing.Point(802, 82);
+            this.autoMetroCheckBox17.Name = "autoMetroCheckBox17";
+            this.autoMetroCheckBox17.Size = new System.Drawing.Size(105, 15);
+            this.autoMetroCheckBox17.TabIndex = 161;
+            this.autoMetroCheckBox17.Text = "Ghi đè Business";
+            this.autoMetroCheckBox17.UseSelectable = true;
+            // 
+            // autoMetroCheckBox16
+            // 
+            this.autoMetroCheckBox16.AutoSize = true;
+            this.autoMetroCheckBox16.BindingFor = "ApplicationSession";
+            this.autoMetroCheckBox16.BindingName = "CreateBusiness";
+            this.autoMetroCheckBox16.Location = new System.Drawing.Point(802, 50);
+            this.autoMetroCheckBox16.Name = "autoMetroCheckBox16";
+            this.autoMetroCheckBox16.Size = new System.Drawing.Size(105, 15);
+            this.autoMetroCheckBox16.TabIndex = 160;
+            this.autoMetroCheckBox16.Text = "Create Business";
+            this.autoMetroCheckBox16.UseSelectable = true;
             // 
             // rdNeo
             // 
@@ -1271,18 +1300,6 @@
             this.autoTextBox18.TabIndex = 157;
             this.autoTextBox18.Tag = "Api";
             // 
-            // autoMetroCheckBox16
-            // 
-            this.autoMetroCheckBox16.AutoSize = true;
-            this.autoMetroCheckBox16.BindingFor = "ApplicationSession";
-            this.autoMetroCheckBox16.BindingName = "CreateBusiness";
-            this.autoMetroCheckBox16.Location = new System.Drawing.Point(802, 50);
-            this.autoMetroCheckBox16.Name = "autoMetroCheckBox16";
-            this.autoMetroCheckBox16.Size = new System.Drawing.Size(105, 15);
-            this.autoMetroCheckBox16.TabIndex = 160;
-            this.autoMetroCheckBox16.Text = "Create Business";
-            this.autoMetroCheckBox16.UseSelectable = true;
-            // 
             // button9
             // 
             this.button9.Location = new System.Drawing.Point(964, 269);
@@ -1327,23 +1344,57 @@
             this.button12.UseVisualStyleBackColor = true;
             this.button12.Click += new System.EventHandler(this.button12_Click);
             // 
-            // autoMetroCheckBox17
+            // button13
             // 
-            this.autoMetroCheckBox17.AutoSize = true;
-            this.autoMetroCheckBox17.BindingFor = "ApplicationSession";
-            this.autoMetroCheckBox17.BindingName = "OverWriteBusiness";
-            this.autoMetroCheckBox17.Location = new System.Drawing.Point(802, 82);
-            this.autoMetroCheckBox17.Name = "autoMetroCheckBox17";
-            this.autoMetroCheckBox17.Size = new System.Drawing.Size(105, 15);
-            this.autoMetroCheckBox17.TabIndex = 161;
-            this.autoMetroCheckBox17.Text = "Ghi đè Business";
-            this.autoMetroCheckBox17.UseSelectable = true;
+            this.button13.Location = new System.Drawing.Point(444, 292);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(30, 23);
+            this.button13.TabIndex = 171;
+            this.button13.Tag = "";
+            this.button13.Text = "...";
+            this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.button13_Click);
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(20, 297);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(76, 13);
+            this.label36.TabIndex = 170;
+            this.label36.Tag = "Api";
+            this.label36.Text = "Create mapper";
+            // 
+            // autoTextBox19
+            // 
+            this.autoTextBox19.BindingFor = "ApplicationSetting";
+            this.autoTextBox19.BindingName = "MapperFile";
+            this.autoTextBox19.Location = new System.Drawing.Point(147, 294);
+            this.autoTextBox19.Name = "autoTextBox19";
+            this.autoTextBox19.Size = new System.Drawing.Size(291, 20);
+            this.autoTextBox19.TabIndex = 169;
+            this.autoTextBox19.Tag = "";
+            // 
+            // autoMetroCheckBox18
+            // 
+            this.autoMetroCheckBox18.AutoSize = true;
+            this.autoMetroCheckBox18.BindingFor = "ApplicationSession";
+            this.autoMetroCheckBox18.BindingName = "CreateMapper";
+            this.autoMetroCheckBox18.Location = new System.Drawing.Point(7, 115);
+            this.autoMetroCheckBox18.Name = "autoMetroCheckBox18";
+            this.autoMetroCheckBox18.Size = new System.Drawing.Size(87, 15);
+            this.autoMetroCheckBox18.TabIndex = 162;
+            this.autoMetroCheckBox18.Text = "Tạo mapper";
+            this.autoMetroCheckBox18.UseSelectable = true;
             // 
             // frmSetupApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1020, 573);
+            this.ClientSize = new System.Drawing.Size(1020, 608);
+            this.Controls.Add(this.button13);
+            this.Controls.Add(this.label36);
+            this.Controls.Add(this.autoTextBox19);
             this.Controls.Add(this.button12);
             this.Controls.Add(this.button11);
             this.Controls.Add(this.button10);
@@ -1556,5 +1607,9 @@
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Button button12;
         private AutoControl.AutoMetroCheckBox autoMetroCheckBox17;
+        private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.Label label36;
+        private AutoControl.AutoTextBox autoTextBox19;
+        private AutoControl.AutoMetroCheckBox autoMetroCheckBox18;
     }
 }

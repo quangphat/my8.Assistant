@@ -34,5 +34,6 @@ namespace my8.Assistant.Model
         public bool OverWriteDependencyInjection { get; set; }
         public bool CreateBusiness { get; set; }
         public bool OverWriteBusiness { get; set; }
+        public bool CreateMapper { get; set; }
     }
 }

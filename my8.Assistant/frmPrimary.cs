@@ -201,6 +201,10 @@ namespace my8.Assistant
                 m_Generator.CreateBusinessClass();
                 m_Generator.CreateBusinessInterface();
             }
+            if (ThisApp.currentSession.CreateMapper)
+            {
+                m_Generator.CreateMapper();
+            }
             lblNotify.SetText("Thành công", LabelNotify.EnumStatus.Success);
             //rdRepository.PerformClick();
         }
@@ -338,6 +342,12 @@ namespace my8.Assistant
         private void btnCreateUpdateMongo_Click(object sender, EventArgs e)
         {
             frmGenerateMongoUpdate frm = new frmGenerateMongoUpdate();
+            frm.ShowDialog();
+        }
+
+        private void metroLink1_Click(object sender, EventArgs e)
+        {
+            frmGenerateNeoInsert frm = new frmGenerateNeoInsert();
             frm.ShowDialog();
         }
     }

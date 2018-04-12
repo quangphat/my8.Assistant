@@ -61,6 +61,15 @@ namespace my8.Assistant {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to //&lt;AppendBusinessDI&gt;.
+        /// </summary>
+        internal static string AppendBusinessDI {
+            get {
+                return ResourceManager.GetString("AppendBusinessDI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to //&lt;AppendDbSetHere&gt;.
         /// </summary>
         internal static string AppendDbSetHere {

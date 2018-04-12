@@ -142,16 +142,16 @@ namespace my8.Assistant
             if (!ThisApp.currentSession.CreateRepository) return null;
             string filepath = string.Empty;
             m_templateFilePath = string.Empty;
-            if (m_DbType== DatabaseType.SQL)
+            if (m_DbType == DatabaseType.SQL)
             {
-                filepath = ThisApp.AppSetting.RepositoryFolder +"\\" + ThisApp.AppSetting.getSubFolferName()[0] + "\\" + m_table.CustomName + "Repository.cs";
+                filepath = ThisApp.AppSetting.RepositoryFolder + "\\" + ThisApp.AppSetting.getSubFolferName()[0] + "\\" + m_table.CustomName + "Repository.cs";
                 m_templateFilePath = ThisApp.AppSetting.SqlRepositoryTemplate;
             }
             else if (m_DbType == DatabaseType.Mongo)
             {
 
-                    filepath = ThisApp.AppSetting.RepositoryFolder + "\\" + ThisApp.AppSetting.getSubFolferName()[1] + "\\" + m_table.CustomName + "Repository.cs";
-                    m_templateFilePath = ThisApp.AppSetting.MongoRepositoryTemplate;
+                filepath = ThisApp.AppSetting.RepositoryFolder + "\\" + ThisApp.AppSetting.getSubFolferName()[1] + "\\" + m_table.CustomName + "Repository.cs";
+                m_templateFilePath = ThisApp.AppSetting.MongoRepositoryTemplate;
             }
             else if (m_DbType == DatabaseType.Neo)
             {
@@ -159,8 +159,8 @@ namespace my8.Assistant
                 filepath = ThisApp.AppSetting.RepositoryFolder + "\\" + ThisApp.AppSetting.getSubFolferName()[2] + "\\" + m_table.CustomName + "Repository.cs";
                 m_templateFilePath = ThisApp.AppSetting.NeoRepositoryTemplate;
             }
-            
-            
+
+
             m_templateContent = string.Empty;
             m_templateContent = Utility.ReadFile(m_templateFilePath);
             m_templateContent = m_templateContent.Replace(TheText.ModelName, m_table.CustomName);
@@ -182,79 +182,67 @@ namespace my8.Assistant
                 }
             }
             //Nếu dùng dapper thuần( sql script)
-            if (ThisApp.AppSetting.GenSqlScript)
-            {
-                //insert
-                m_strBuilder = new StringBuilder();
-                m_strBuilder.Append("string insert = string.Format(@\"");
-                string sql = Insert();
-                m_strBuilder.Append(sql);
-                m_strBuilder.Append("\");");
-                m_strBuilder.Append(Environment.NewLine);
-                m_strBuilder.Append("\t\t\tConnection.Execute(insert, entity, Transaction);");
-                m_templateContent = m_templateContent.Replace(TheText.SqlCreate, m_strBuilder.ToString());
-                //select
-                m_strBuilder = new StringBuilder();
-                m_strBuilder.Append("string select = string.Format(@\"");
-                sql = Select();
-                m_strBuilder.Append(sql);
-                m_strBuilder.Append("\");");
-                m_strBuilder.Append(Environment.NewLine);
-                m_strBuilder.Append("\t\t\treturn Connection.Query<");
-                m_strBuilder.Append(m_table.CustomName);
-                m_strBuilder.Append(">(select, transaction: Transaction).ToList();");
-                m_strBuilder.Append(Environment.NewLine);
-                m_templateContent = m_templateContent.Replace(TheText.SqlGetAll, m_strBuilder.ToString());
-                //FindById
-                m_strBuilder = new StringBuilder();
-                m_strBuilder.Append("return Connection.Query<");
-                m_strBuilder.Append(m_table.CustomName);
-                m_strBuilder.Append(">(\"select * from");
-                m_strBuilder.Append(m_table.CustomName);
-                m_strBuilder.Append(" where ");
-                m_strBuilder.Append(m_table.PrimaryKeyCol);
-                m_strBuilder.Append(" = @Id)\"");
-                m_strBuilder.Append(", param: new { Id = id }, transaction: Transaction).FirstOrDefault();");
-                m_templateContent = m_templateContent.Replace(TheText.SqlFindById, m_strBuilder.ToString());
-                //Find by entity
-                m_strBuilder = new StringBuilder();
-                m_strBuilder.Append("return Connection.Query<");
-                m_strBuilder.Append(m_table.CustomName);
-                m_strBuilder.Append(">(\"select * from ");
-                m_strBuilder.Append(m_table.CustomName);
-                m_strBuilder.Append(" where ");
-                m_strBuilder.Append(m_table.PrimaryKeyCol);
-                m_strBuilder.Append(" = @Id)\"");
-                m_strBuilder.Append(", param: new { Id = ");
-                m_strBuilder.Append("entity.");
-                m_strBuilder.Append(m_table.PrimaryKeyCol);
-                m_strBuilder.Append(" }, transaction: Transaction).FirstOrDefault();");
-                m_templateContent = m_templateContent.Replace(TheText.SqlFind, m_strBuilder.ToString());
-                //remove by Id
-                m_strBuilder = new StringBuilder();
-                m_strBuilder.Append("Connection.Execute(\"delete from ");
-                m_strBuilder.Append(m_table.CustomName);
-                m_strBuilder.Append(" where ");
-                m_strBuilder.Append(m_table.PrimaryKeyCol);
-                m_strBuilder.Append(" = @Id\", param: new { Id = id }, transaction: Transaction);");
-                m_templateContent = m_templateContent.Replace(TheText.SqlRemoveById, m_strBuilder.ToString());
-                //remove by entity
-                m_strBuilder = new StringBuilder();
-                m_strBuilder.Append("Remove(entity.");
-                m_strBuilder.Append(m_table.PrimaryKeyCol);
-                m_strBuilder.Append(");");
-                m_templateContent = m_templateContent.Replace(TheText.SqlRemove, m_strBuilder.ToString());
-                //update 
-                m_strBuilder = new StringBuilder();
-                m_strBuilder.Append("string update = string.Format(@\"");
-                sql = Update();
-                m_strBuilder.Append(sql);
-                m_strBuilder.Append("\");");
-                m_strBuilder.Append(Environment.NewLine);
-                m_strBuilder.Append("\t\t\tConnection.Execute(update, entity, transaction: Transaction);");
-                m_templateContent = m_templateContent.Replace(TheText.SqlUpdate, m_strBuilder.ToString());
+            //insert
+            m_strBuilder = new StringBuilder();
+            m_strBuilder.Append("string insert = string.Format(@\"");
+            string sql = Insert();
+            m_strBuilder.Append(sql);
+            m_strBuilder.Append("\");");
+            m_strBuilder.Append(Environment.NewLine);
+            m_templateContent = m_templateContent.Replace(TheText.SqlCreate, m_strBuilder.ToString());
+            //select
+            m_strBuilder = new StringBuilder();
+            m_strBuilder.Append("string select = string.Format(@\"");
+            sql = Select();
+            m_strBuilder.Append(sql);
+            m_strBuilder.Append("\");");
+            m_strBuilder.Append(Environment.NewLine);
+            m_templateContent = m_templateContent.Replace(TheText.SqlGetAll, m_strBuilder.ToString());
+            //FindById
+            m_strBuilder = new StringBuilder();
+            m_strBuilder.Append("string select = $\"");
+            m_strBuilder.Append($"select * from {m_table.CustomName}  where {m_table.PrimaryKeyCol} = ");
+            m_strBuilder.Append("{id}\";");
+            m_templateContent = m_templateContent.Replace(TheText.SqlFindById, m_strBuilder.ToString());
+            //Find by entity
+            m_strBuilder = new StringBuilder();
+            m_strBuilder.Append("return Connection.Query<");
+            m_strBuilder.Append(m_table.CustomName);
+            m_strBuilder.Append(">(\"select * from ");
+            m_strBuilder.Append(m_table.CustomName);
+            m_strBuilder.Append(" where ");
+            m_strBuilder.Append(m_table.PrimaryKeyCol);
+            m_strBuilder.Append(" = @Id)\"");
+            m_strBuilder.Append(", param: new { Id = ");
+            m_strBuilder.Append("entity.");
+            m_strBuilder.Append(m_table.PrimaryKeyCol);
+            m_strBuilder.Append(" }, transaction: Transaction).FirstOrDefault();");
+            m_templateContent = m_templateContent.Replace(TheText.SqlFind, m_strBuilder.ToString());
+            //remove by Id
+            m_strBuilder = new StringBuilder();
+            m_strBuilder.Append("Connection.Execute(\"delete from ");
+            m_strBuilder.Append(m_table.CustomName);
+            m_strBuilder.Append(" where ");
+            m_strBuilder.Append(m_table.PrimaryKeyCol);
+            m_strBuilder.Append(" = @Id\", param: new { Id = id }, transaction: Transaction);");
+            m_templateContent = m_templateContent.Replace(TheText.SqlRemoveById, m_strBuilder.ToString());
+            //remove by entity
+            m_strBuilder = new StringBuilder();
+            m_strBuilder.Append("Remove(entity.");
+            m_strBuilder.Append(m_table.PrimaryKeyCol);
+            m_strBuilder.Append(");");
+            m_templateContent = m_templateContent.Replace(TheText.SqlRemove, m_strBuilder.ToString());
+            //update 
+            m_strBuilder = new StringBuilder();
+            m_strBuilder.Append("string update = string.Format(@\"");
+            sql = Update();
+            m_strBuilder.Append(sql);
+            m_strBuilder.Append("\");");
+            m_templateContent = m_templateContent.Replace(TheText.SqlUpdate, m_strBuilder.ToString());
+            //search by string
+            //m_strBuilder = new StringBuilder();
+            //m_strBuilder.Append("");
 
-            }
             if (ThisApp.currentSession.OverwriteRepository == false)
             {
                 if (File.Exists(filepath))
@@ -275,10 +263,10 @@ namespace my8.Assistant
             m_strBuilder = new StringBuilder();
             string temp = string.Empty;
             string filepath = string.Empty;
-            if (m_DbType== DatabaseType.SQL)
+            if (m_DbType == DatabaseType.SQL)
             {
                 temp = Utility.ReadFile(ThisApp.AppSetting.SqlInterfaceTemplate);
-                filepath = ThisApp.AppSetting.InterfaceFolder +"\\" + ThisApp.AppSetting.getSubFolferName()[0] + "\\I" + m_table.CustomName + "Repository.cs";
+                filepath = ThisApp.AppSetting.InterfaceFolder + "\\" + ThisApp.AppSetting.getSubFolferName()[0] + "\\I" + m_table.CustomName + "Repository.cs";
             }
             else if (m_DbType == DatabaseType.Mongo)
             {
@@ -400,7 +388,7 @@ namespace my8.Assistant
                 }
                 if (column.Datatype == "text" || column.Datatype == "ntext" || column.Datatype == "char" || column.Datatype == "nchar" || column.Datatype == "ntext" || column.Datatype == "nvarchar" || column.Datatype == "varchar")
                 {
-                    if(column.IsPrimary)
+                    if (column.IsPrimary)
                     {
                         m_strBuilder.Append("\tpublic string ");
                     }
@@ -454,12 +442,12 @@ namespace my8.Assistant
         public string CreateClass()
         {
             string filepath = string.Empty;
-            if (m_DbType== DatabaseType.SQL)
+            if (m_DbType == DatabaseType.SQL)
             {
                 m_templateFilePath = ThisApp.AppSetting.SqlModelTemplateFile;
                 filepath = ThisApp.AppSetting.ModelFolder + "\\" + ThisApp.AppSetting.getSubFolferName()[0] + "\\" + m_table.CustomName + ".cs";
             }
-            else if(m_DbType == DatabaseType.Mongo)
+            else if (m_DbType == DatabaseType.Mongo)
             {
                 m_templateFilePath = ThisApp.AppSetting.MongoModelTemplateFile;
                 filepath = ThisApp.AppSetting.ModelFolder + "\\" + ThisApp.AppSetting.getSubFolferName()[1] + "\\" + m_table.CustomName + ".cs";
@@ -475,7 +463,7 @@ namespace my8.Assistant
             m_templateContent = m_templateContent.Replace(TheText.modelnameLowerCase, m_table.CustomName.ToLower());
             m_templateContent = m_templateContent.Replace(TheText.TableName, m_table.RealName);
             m_templateContent = m_templateContent.Replace("[ModelClass]", Entityclass);
-            
+
             if (ThisApp.currentSession.OverwriteClass == false)
             {
                 if (File.Exists(filepath))
@@ -485,7 +473,7 @@ namespace my8.Assistant
             }
             if (ThisApp.AppSetting.AutoCreateFile)
             {
-                    Utility.WriteToCsFile(m_templateContent, filepath, FileType.Model);
+                Utility.WriteToCsFile(m_templateContent, filepath, FileType.Model);
             }
             return m_templateContent;
         }
@@ -521,7 +509,7 @@ namespace my8.Assistant
         #endregion
 
         #region ReactJs
-        public string CreateReactJsModel(List<Column> columns,string modelName)
+        public string CreateReactJsModel(List<Column> columns, string modelName)
         {
             string filepath = ThisApp.AppSetting.ReactJsModelFile;
             m_strBuilder = new StringBuilder();
@@ -529,7 +517,7 @@ namespace my8.Assistant
             if (string.IsNullOrWhiteSpace(m_templateContent))
                 return string.Empty;
             string className = string.Empty;
-            if(m_DbType== DatabaseType.SQL && string.IsNullOrEmpty(modelName))
+            if (m_DbType == DatabaseType.SQL && string.IsNullOrEmpty(modelName))
             {
                 className = m_table.CustomName;
             }
@@ -689,44 +677,65 @@ namespace my8.Assistant
             m_templateContent = Utility.ReadFile(ThisApp.AppSetting.StartUpFile);
             if (string.IsNullOrWhiteSpace(m_templateContent))
                 return string.Empty;
-            if (m_templateContent.Contains($"I{m_table.CustomName}Repository"))
-                return null;
+            //if (m_templateContent.Contains($"I{m_table.CustomName}Repository"))
+            //    return null;
             string line = string.Empty;
-            if(m_DbType== DatabaseType.SQL)
+            if (m_DbType == DatabaseType.SQL)
             {
-                if (m_templateContent.Contains($"SqlI.I{m_table.CustomName}Repository"))
-                    return null;
-                line = $"services.AddSingleton<SqlI.I{m_table.CustomName}Repository, SqlR.{m_table.CustomName}Repository>();";
-                m_strBuilder.Append(line);
-                m_strBuilder.Append(Environment.NewLine);
-                m_strBuilder.Append("\t\t\t");
-                m_strBuilder.Append(TheText.AppendSqlDI);
-                m_templateContent = m_templateContent.Replace(TheText.AppendSqlDI, m_strBuilder.ToString());
+                if (m_templateContent.Contains($"SqlI.I{m_table.CustomName}Repository") == false)
+                {
+                    m_strBuilder = new StringBuilder();
+                    line = $"services.AddSingleton<SqlI.I{m_table.CustomName}Repository, SqlR.{m_table.CustomName}Repository>();";
+                    m_strBuilder.Append(line);
+                    m_strBuilder.Append(Environment.NewLine);
+                    m_strBuilder.Append("\t\t\t");
+                    m_strBuilder.Append(TheText.AppendSqlDI);
+                    m_templateContent = m_templateContent.Replace(TheText.AppendSqlDI, m_strBuilder.ToString());
+                }
+
             }
             if (m_DbType == DatabaseType.Mongo)
             {
-                if (m_templateContent.Contains($"MongoI.I{m_table.CustomName}Repository"))
-                    return null;
-                line = $"services.AddSingleton<MongoI.I{m_table.CustomName}Repository, MongoR.{m_table.CustomName}Repository>();";
-                m_strBuilder.Append(line);
-                m_strBuilder.Append(Environment.NewLine);
-                m_strBuilder.Append("\t\t\t");
-                m_strBuilder.Append(TheText.AppendMongoDI);
-                m_templateContent = m_templateContent.Replace(TheText.AppendMongoDI, m_strBuilder.ToString());
+                if (!m_templateContent.Contains($"MongoI.I{m_table.CustomName}Repository"))
+                {
+                    m_strBuilder = new StringBuilder();
+                    line = $"services.AddSingleton<MongoI.I{m_table.CustomName}Repository, MongoR.{m_table.CustomName}Repository>();";
+                    m_strBuilder.Append(line);
+                    m_strBuilder.Append(Environment.NewLine);
+                    m_strBuilder.Append("\t\t\t");
+                    m_strBuilder.Append(TheText.AppendMongoDI);
+                    m_templateContent = m_templateContent.Replace(TheText.AppendMongoDI, m_strBuilder.ToString());
+                }
+
             }
             if (m_DbType == DatabaseType.Neo)
             {
-                if (m_templateContent.Contains($"NeoI.I{m_table.CustomName}Repository"))
-                    return null;
-                line = $"services.AddSingleton<NeoI.I{m_table.CustomName}Repository, NeoR.{m_table.CustomName}Repository>();";
-                m_strBuilder.Append(line);
-                m_strBuilder.Append(Environment.NewLine);
-                m_strBuilder.Append("\t\t\t");
-                m_strBuilder.Append(TheText.AppendNeoDI);
-                m_templateContent = m_templateContent.Replace(TheText.AppendNeoDI, m_strBuilder.ToString());
+                if (!m_templateContent.Contains($"NeoI.I{m_table.CustomName}Repository"))
+                {
+                    m_strBuilder = new StringBuilder();
+                    line = $"services.AddSingleton<NeoI.I{m_table.CustomName}Repository, NeoR.{m_table.CustomName}Repository>();";
+                    m_strBuilder.Append(line);
+                    m_strBuilder.Append(Environment.NewLine);
+                    m_strBuilder.Append("\t\t\t");
+                    m_strBuilder.Append(TheText.AppendNeoDI);
+                    m_templateContent = m_templateContent.Replace(TheText.AppendNeoDI, m_strBuilder.ToString());
+                }
+
             }
-            
-            
+            if (ThisApp.currentSession.CreateBusiness)
+            {
+                m_strBuilder = new StringBuilder();
+                if (m_templateContent.Contains($"I{m_table.CustomName}Business") == false)
+                {
+                    line = $"services.AddScoped<I{m_table.CustomName}Business, {m_table.CustomName}Business>();";
+                    m_strBuilder.Append(line);
+                    m_strBuilder.Append(Environment.NewLine);
+                    m_strBuilder.Append("\t\t\t");
+                    m_strBuilder.Append(TheText.AppendBusinessDI);
+                    m_templateContent = m_templateContent.Replace(TheText.AppendBusinessDI, m_strBuilder.ToString());
+                }
+            }
+
             if (ThisApp.AppSetting.AutoCreateFile == true)
             {
                 if (File.Exists(filepath))
@@ -743,6 +752,7 @@ namespace my8.Assistant
             }
             return m_templateContent;
         }
+
         public static ColumnFromCsharpClass GetColumnFromCSharpClass(RichTextBox richTextBox)
         {
             ColumnFromCsharpClass columnFromCsharpClass = new ColumnFromCsharpClass();
@@ -786,8 +796,53 @@ namespace my8.Assistant
             return columnFromCsharpClass;
         }
         #endregion
-        public readonly string[] NumberDataType = {"int","long","double","money","decimal","Double","bigint" };
-        public readonly string[] StringDataType = { "string", "datetime", "DateTime","char","nchar","varchar","nvarchar", "uniqueidentifier","text","time", "Guid" };
+
+        #region Mapper
+        public string CreateMapper()
+        {
+            string filepath = $"{ThisApp.AppSetting.MapperFile}";
+            m_strBuilder = new StringBuilder();
+            m_templateContent = Utility.ReadFile(ThisApp.AppSetting.MapperFile);
+            if (string.IsNullOrWhiteSpace(m_templateContent))
+                return string.Empty;
+            string[] exists = new string[] { $"mapper.CreateMap<Model.{TheText.ModelName}, ModelN.{TheText.ModelName}>()", $"mapper.CreateMap<Model.{TheText.ModelName}, ModelM.{TheText.ModelName}>(;", $"mapper.CreateMap<Model.{TheText.ModelName}, ModelS.{TheText.ModelName}>()" };
+            if (m_templateContent.Contains($"{TheText.ModelName}"))
+                return null;
+            string line = string.Empty;
+            m_strBuilder.Append($"mapper.CreateMap<ModelM.{m_table.CustomName}, Model.{m_table.CustomName}>();");
+            m_strBuilder.Append(Environment.NewLine);
+            m_strBuilder.Append($"\t\t\tmapper.CreateMap<Model.{m_table.CustomName}, ModelM.{m_table.CustomName}>();");
+            m_strBuilder.Append(Environment.NewLine);
+            m_strBuilder.Append($"\t\t\tmapper.CreateMap<Model.{m_table.CustomName}, ModelN.{m_table.CustomName}>();");
+            m_strBuilder.Append(Environment.NewLine);
+            m_strBuilder.Append($"\t\t\tmapper.CreateMap<ModelN.{m_table.CustomName}, Model.{m_table.CustomName}>();");
+            m_strBuilder.Append(Environment.NewLine);
+            m_strBuilder.Append($"\t\t\tmapper.CreateMap<ModelS.{m_table.CustomName}, Model.{m_table.CustomName}>();");
+            m_strBuilder.Append(Environment.NewLine);
+            m_strBuilder.Append($"\t\t\tmapper.CreateMap<Model.{m_table.CustomName}, ModelS.{m_table.CustomName}>();");
+            m_strBuilder.Append(Environment.NewLine);
+            m_strBuilder.Append($"\t\t\t{TheText.AppendNewHere}");
+            m_strBuilder.Append(Environment.NewLine);
+            m_templateContent = m_templateContent.Replace(TheText.AppendNewHere, m_strBuilder.ToString());
+            if (ThisApp.AppSetting.AutoCreateFile == true)
+            {
+                if (File.Exists(filepath))
+                {
+                    if (ThisApp.currentSession.CreateMapper)
+                    {
+                        Utility.WriteToFile(filepath, m_templateContent);
+                    }
+                }
+                else
+                {
+                    Utility.WriteToFile(filepath, m_templateContent);
+                }
+            }
+            return m_templateContent;
+        }
+        #endregion
+        public readonly string[] NumberDataType = { "int", "long", "double", "money", "decimal", "Double", "bigint" };
+        public readonly string[] StringDataType = { "string", "datetime", "DateTime", "char", "nchar", "varchar", "nvarchar", "uniqueidentifier", "text", "time", "Guid" };
         public readonly string[] BoolDataType = { "bit", "bool", "Boolean" };
     }
     public class ColumnFromCsharpClass

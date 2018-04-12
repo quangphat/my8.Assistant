@@ -31,6 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrimary));
             this.btnCreate = new ModernUI.Controls.BootstrapButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.autoMetroCheckBox19 = new AutoControl.AutoMetroCheckBox();
+            this.autoMetroCheckBox17 = new AutoControl.AutoMetroCheckBox();
+            this.autoMetroCheckBox18 = new AutoControl.AutoMetroCheckBox();
             this.autoMetroCheckBox15 = new AutoControl.AutoMetroCheckBox();
             this.autoMetroCheckBox16 = new AutoControl.AutoMetroCheckBox();
             this.autoMetroCheckBox13 = new AutoControl.AutoMetroCheckBox();
@@ -50,10 +53,10 @@
             this.cbbTable = new ModernUI.Controls.MetroSearchComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.rdDelete = new ModernUI.Controls.MetroRadioButton();
-            this.rdUpdate = new ModernUI.Controls.MetroRadioButton();
-            this.rdInsert = new ModernUI.Controls.MetroRadioButton();
             this.rdSSelect = new ModernUI.Controls.MetroRadioButton();
             this.rdIuow = new ModernUI.Controls.MetroRadioButton();
+            this.rdInsert = new ModernUI.Controls.MetroRadioButton();
+            this.rdUpdate = new ModernUI.Controls.MetroRadioButton();
             this.rduow = new ModernUI.Controls.MetroRadioButton();
             this.rdInterface = new ModernUI.Controls.MetroRadioButton();
             this.rdRepository = new ModernUI.Controls.MetroRadioButton();
@@ -82,14 +85,13 @@
             this.rdNeo = new ModernUI.Controls.MetroRadioButton();
             this.rdSql = new ModernUI.Controls.MetroRadioButton();
             this.rdMongo = new ModernUI.Controls.MetroRadioButton();
-            this.btnRefresh = new ModernUI.Controls.MetroLink();
+            this.metroLink1 = new ModernUI.Controls.MetroLink();
             this.btnCreateUpdateMongo = new ModernUI.Controls.MetroLink();
             this.btnGenReactClass = new ModernUI.Controls.MetroLink();
+            this.btnRefresh = new ModernUI.Controls.MetroLink();
             this.btnSignout = new ModernUI.Controls.MetroLink();
             this.btnTableName = new ModernUI.Controls.MetroLink();
             this.btnSettingApplication = new ModernUI.Controls.MetroLink();
-            this.autoMetroCheckBox17 = new AutoControl.AutoMetroCheckBox();
-            this.autoMetroCheckBox18 = new AutoControl.AutoMetroCheckBox();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tab.SuspendLayout();
@@ -126,6 +128,7 @@
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.autoMetroCheckBox19);
             this.groupBox2.Controls.Add(this.autoMetroCheckBox17);
             this.groupBox2.Controls.Add(this.autoMetroCheckBox18);
             this.groupBox2.Controls.Add(this.autoMetroCheckBox15);
@@ -151,12 +154,48 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "User session";
             // 
+            // autoMetroCheckBox19
+            // 
+            this.autoMetroCheckBox19.AutoSize = true;
+            this.autoMetroCheckBox19.BindingFor = "ApplicationSession";
+            this.autoMetroCheckBox19.BindingName = "CreateMapper";
+            this.autoMetroCheckBox19.Location = new System.Drawing.Point(912, 19);
+            this.autoMetroCheckBox19.Name = "autoMetroCheckBox19";
+            this.autoMetroCheckBox19.Size = new System.Drawing.Size(87, 15);
+            this.autoMetroCheckBox19.TabIndex = 164;
+            this.autoMetroCheckBox19.Text = "Tạo mapper";
+            this.autoMetroCheckBox19.UseSelectable = true;
+            // 
+            // autoMetroCheckBox17
+            // 
+            this.autoMetroCheckBox17.AutoSize = true;
+            this.autoMetroCheckBox17.BindingFor = "ApplicationSession";
+            this.autoMetroCheckBox17.BindingName = "OverWriteBusiness";
+            this.autoMetroCheckBox17.Location = new System.Drawing.Point(780, 51);
+            this.autoMetroCheckBox17.Name = "autoMetroCheckBox17";
+            this.autoMetroCheckBox17.Size = new System.Drawing.Size(105, 15);
+            this.autoMetroCheckBox17.TabIndex = 163;
+            this.autoMetroCheckBox17.Text = "Ghi đè Business";
+            this.autoMetroCheckBox17.UseSelectable = true;
+            // 
+            // autoMetroCheckBox18
+            // 
+            this.autoMetroCheckBox18.AutoSize = true;
+            this.autoMetroCheckBox18.BindingFor = "ApplicationSession";
+            this.autoMetroCheckBox18.BindingName = "CreateBusiness";
+            this.autoMetroCheckBox18.Location = new System.Drawing.Point(780, 19);
+            this.autoMetroCheckBox18.Name = "autoMetroCheckBox18";
+            this.autoMetroCheckBox18.Size = new System.Drawing.Size(105, 15);
+            this.autoMetroCheckBox18.TabIndex = 162;
+            this.autoMetroCheckBox18.Text = "Create Business";
+            this.autoMetroCheckBox18.UseSelectable = true;
+            // 
             // autoMetroCheckBox15
             // 
             this.autoMetroCheckBox15.AutoSize = true;
             this.autoMetroCheckBox15.BindingFor = "ApplicationSession";
             this.autoMetroCheckBox15.BindingName = "OverWriteDependencyInjection";
-            this.autoMetroCheckBox15.Location = new System.Drawing.Point(713, 82);
+            this.autoMetroCheckBox15.Location = new System.Drawing.Point(780, 82);
             this.autoMetroCheckBox15.Name = "autoMetroCheckBox15";
             this.autoMetroCheckBox15.Size = new System.Drawing.Size(71, 15);
             this.autoMetroCheckBox15.TabIndex = 38;
@@ -168,7 +207,7 @@
             this.autoMetroCheckBox16.AutoSize = true;
             this.autoMetroCheckBox16.BindingFor = "ApplicationSession";
             this.autoMetroCheckBox16.BindingName = "CreateDependencyInjection";
-            this.autoMetroCheckBox16.Location = new System.Drawing.Point(558, 82);
+            this.autoMetroCheckBox16.Location = new System.Drawing.Point(614, 82);
             this.autoMetroCheckBox16.Name = "autoMetroCheckBox16";
             this.autoMetroCheckBox16.Size = new System.Drawing.Size(130, 15);
             this.autoMetroCheckBox16.TabIndex = 37;
@@ -383,28 +422,6 @@
             this.rdDelete.Text = "Delete";
             this.rdDelete.UseSelectable = true;
             // 
-            // rdUpdate
-            // 
-            this.rdUpdate.AutoSize = true;
-            this.rdUpdate.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.rdUpdate.Location = new System.Drawing.Point(766, 20);
-            this.rdUpdate.Name = "rdUpdate";
-            this.rdUpdate.Size = new System.Drawing.Size(61, 15);
-            this.rdUpdate.TabIndex = 7;
-            this.rdUpdate.Text = "Update";
-            this.rdUpdate.UseSelectable = true;
-            // 
-            // rdInsert
-            // 
-            this.rdInsert.AutoSize = true;
-            this.rdInsert.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.rdInsert.Location = new System.Drawing.Point(605, 20);
-            this.rdInsert.Name = "rdInsert";
-            this.rdInsert.Size = new System.Drawing.Size(52, 15);
-            this.rdInsert.TabIndex = 6;
-            this.rdInsert.Text = "Insert";
-            this.rdInsert.UseSelectable = true;
-            // 
             // rdSSelect
             // 
             this.rdSSelect.AutoSize = true;
@@ -426,6 +443,28 @@
             this.rdIuow.TabIndex = 4;
             this.rdIuow.Text = "IUnit Of Work";
             this.rdIuow.UseSelectable = true;
+            // 
+            // rdInsert
+            // 
+            this.rdInsert.AutoSize = true;
+            this.rdInsert.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.rdInsert.Location = new System.Drawing.Point(605, 20);
+            this.rdInsert.Name = "rdInsert";
+            this.rdInsert.Size = new System.Drawing.Size(52, 15);
+            this.rdInsert.TabIndex = 6;
+            this.rdInsert.Text = "Insert";
+            this.rdInsert.UseSelectable = true;
+            // 
+            // rdUpdate
+            // 
+            this.rdUpdate.AutoSize = true;
+            this.rdUpdate.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.rdUpdate.Location = new System.Drawing.Point(766, 20);
+            this.rdUpdate.Name = "rdUpdate";
+            this.rdUpdate.Size = new System.Drawing.Size(61, 15);
+            this.rdUpdate.TabIndex = 7;
+            this.rdUpdate.Text = "Update";
+            this.rdUpdate.UseSelectable = true;
             // 
             // rduow
             // 
@@ -502,7 +541,7 @@
             this.tabRepository.HorizontalScrollbarSize = 10;
             this.tabRepository.Location = new System.Drawing.Point(4, 38);
             this.tabRepository.Name = "tabRepository";
-            this.tabRepository.Size = new System.Drawing.Size(1110, 319);
+            this.tabRepository.Size = new System.Drawing.Size(1110, 265);
             this.tabRepository.TabIndex = 0;
             this.tabRepository.Text = "Repository";
             this.tabRepository.VerticalScrollbarBarColor = true;
@@ -529,7 +568,7 @@
             this.tabClass.HorizontalScrollbarSize = 10;
             this.tabClass.Location = new System.Drawing.Point(4, 38);
             this.tabClass.Name = "tabClass";
-            this.tabClass.Size = new System.Drawing.Size(1110, 319);
+            this.tabClass.Size = new System.Drawing.Size(1110, 265);
             this.tabClass.TabIndex = 1;
             this.tabClass.Text = "Entity class";
             this.tabClass.VerticalScrollbarBarColor = true;
@@ -556,7 +595,7 @@
             this.tabInterface.HorizontalScrollbarSize = 10;
             this.tabInterface.Location = new System.Drawing.Point(4, 38);
             this.tabInterface.Name = "tabInterface";
-            this.tabInterface.Size = new System.Drawing.Size(1110, 319);
+            this.tabInterface.Size = new System.Drawing.Size(1110, 265);
             this.tabInterface.TabIndex = 2;
             this.tabInterface.Text = "Interface";
             this.tabInterface.VerticalScrollbarBarColor = true;
@@ -583,7 +622,7 @@
             this.tabUOW.HorizontalScrollbarSize = 10;
             this.tabUOW.Location = new System.Drawing.Point(4, 38);
             this.tabUOW.Name = "tabUOW";
-            this.tabUOW.Size = new System.Drawing.Size(1110, 319);
+            this.tabUOW.Size = new System.Drawing.Size(1110, 265);
             this.tabUOW.TabIndex = 3;
             this.tabUOW.Text = "Unit Of Work";
             this.tabUOW.VerticalScrollbarBarColor = true;
@@ -610,7 +649,7 @@
             this.tabIUOW.HorizontalScrollbarSize = 10;
             this.tabIUOW.Location = new System.Drawing.Point(4, 38);
             this.tabIUOW.Name = "tabIUOW";
-            this.tabIUOW.Size = new System.Drawing.Size(1110, 319);
+            this.tabIUOW.Size = new System.Drawing.Size(1110, 265);
             this.tabIUOW.TabIndex = 4;
             this.tabIUOW.Text = "IUnit Of Work";
             this.tabIUOW.VerticalScrollbarBarColor = true;
@@ -637,7 +676,7 @@
             this.tabSelect.HorizontalScrollbarSize = 10;
             this.tabSelect.Location = new System.Drawing.Point(4, 38);
             this.tabSelect.Name = "tabSelect";
-            this.tabSelect.Size = new System.Drawing.Size(1110, 319);
+            this.tabSelect.Size = new System.Drawing.Size(1110, 265);
             this.tabSelect.TabIndex = 5;
             this.tabSelect.Text = "Select";
             this.tabSelect.VerticalScrollbarBarColor = true;
@@ -664,7 +703,7 @@
             this.tabInsert.HorizontalScrollbarSize = 10;
             this.tabInsert.Location = new System.Drawing.Point(4, 38);
             this.tabInsert.Name = "tabInsert";
-            this.tabInsert.Size = new System.Drawing.Size(1110, 319);
+            this.tabInsert.Size = new System.Drawing.Size(1110, 265);
             this.tabInsert.TabIndex = 6;
             this.tabInsert.Text = "Insert";
             this.tabInsert.VerticalScrollbarBarColor = true;
@@ -691,7 +730,7 @@
             this.tabUpdate.HorizontalScrollbarSize = 10;
             this.tabUpdate.Location = new System.Drawing.Point(4, 38);
             this.tabUpdate.Name = "tabUpdate";
-            this.tabUpdate.Size = new System.Drawing.Size(1110, 319);
+            this.tabUpdate.Size = new System.Drawing.Size(1110, 265);
             this.tabUpdate.TabIndex = 7;
             this.tabUpdate.Text = "Update";
             this.tabUpdate.VerticalScrollbarBarColor = true;
@@ -803,17 +842,18 @@
             this.rdMongo.UseSelectable = true;
             this.rdMongo.Click += new System.EventHandler(this.metroRadioButton9_Click);
             // 
-            // btnRefresh
+            // metroLink1
             // 
-            this.btnRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRefresh.HighLight = ModernUI.Controls.MetroLink.highlight.Alway;
-            this.btnRefresh.Image = ((System.Drawing.Image)(resources.GetObject("btnRefresh.Image")));
-            this.btnRefresh.Location = new System.Drawing.Point(507, 13);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(36, 28);
-            this.btnRefresh.TabIndex = 82;
-            this.btnRefresh.UseSelectable = true;
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            this.metroLink1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.metroLink1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.metroLink1.HighLight = ModernUI.Controls.MetroLink.highlight.Alway;
+            this.metroLink1.Image = global::my8.Assistant.Properties.Resources._8863158;
+            this.metroLink1.Location = new System.Drawing.Point(916, 3);
+            this.metroLink1.Name = "metroLink1";
+            this.metroLink1.Size = new System.Drawing.Size(36, 23);
+            this.metroLink1.TabIndex = 90;
+            this.metroLink1.UseSelectable = true;
+            this.metroLink1.Click += new System.EventHandler(this.metroLink1_Click);
             // 
             // btnCreateUpdateMongo
             // 
@@ -840,6 +880,18 @@
             this.btnGenReactClass.TabIndex = 88;
             this.btnGenReactClass.UseSelectable = true;
             this.btnGenReactClass.Click += new System.EventHandler(this.btnGenReactClass_Click);
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRefresh.HighLight = ModernUI.Controls.MetroLink.highlight.Alway;
+            this.btnRefresh.Image = ((System.Drawing.Image)(resources.GetObject("btnRefresh.Image")));
+            this.btnRefresh.Location = new System.Drawing.Point(507, 13);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(36, 28);
+            this.btnRefresh.TabIndex = 82;
+            this.btnRefresh.UseSelectable = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // btnSignout
             // 
@@ -873,42 +925,19 @@
             this.btnSettingApplication.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSettingApplication.HighLight = ModernUI.Controls.MetroLink.highlight.Alway;
             this.btnSettingApplication.Image = ((System.Drawing.Image)(resources.GetObject("btnSettingApplication.Image")));
-            this.btnSettingApplication.Location = new System.Drawing.Point(916, 3);
+            this.btnSettingApplication.Location = new System.Drawing.Point(874, 3);
             this.btnSettingApplication.Name = "btnSettingApplication";
             this.btnSettingApplication.Size = new System.Drawing.Size(36, 23);
             this.btnSettingApplication.TabIndex = 72;
             this.btnSettingApplication.UseSelectable = true;
             this.btnSettingApplication.Click += new System.EventHandler(this.btnSettingApplication_Click_1);
             // 
-            // autoMetroCheckBox17
-            // 
-            this.autoMetroCheckBox17.AutoSize = true;
-            this.autoMetroCheckBox17.BindingFor = "ApplicationSession";
-            this.autoMetroCheckBox17.BindingName = "OverWriteBusiness";
-            this.autoMetroCheckBox17.Location = new System.Drawing.Point(780, 51);
-            this.autoMetroCheckBox17.Name = "autoMetroCheckBox17";
-            this.autoMetroCheckBox17.Size = new System.Drawing.Size(105, 15);
-            this.autoMetroCheckBox17.TabIndex = 163;
-            this.autoMetroCheckBox17.Text = "Ghi đè Business";
-            this.autoMetroCheckBox17.UseSelectable = true;
-            // 
-            // autoMetroCheckBox18
-            // 
-            this.autoMetroCheckBox18.AutoSize = true;
-            this.autoMetroCheckBox18.BindingFor = "ApplicationSession";
-            this.autoMetroCheckBox18.BindingName = "CreateBusiness";
-            this.autoMetroCheckBox18.Location = new System.Drawing.Point(780, 19);
-            this.autoMetroCheckBox18.Name = "autoMetroCheckBox18";
-            this.autoMetroCheckBox18.Size = new System.Drawing.Size(105, 15);
-            this.autoMetroCheckBox18.TabIndex = 162;
-            this.autoMetroCheckBox18.Text = "Create Business";
-            this.autoMetroCheckBox18.UseSelectable = true;
-            // 
             // frmPrimary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1123, 557);
+            this.Controls.Add(this.metroLink1);
             this.Controls.Add(this.btnCreateUpdateMongo);
             this.Controls.Add(this.btnGenReactClass);
             this.Controls.Add(this.groupBox3);
@@ -1008,5 +1037,7 @@
         private ModernUI.Controls.MetroLink btnCreateUpdateMongo;
         private AutoControl.AutoMetroCheckBox autoMetroCheckBox17;
         private AutoControl.AutoMetroCheckBox autoMetroCheckBox18;
+        private AutoControl.AutoMetroCheckBox autoMetroCheckBox19;
+        private ModernUI.Controls.MetroLink metroLink1;
     }
 }

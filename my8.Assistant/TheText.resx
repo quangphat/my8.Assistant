@@ -228,4 +228,7 @@
     <value>{TableName}</value>
     <comment>Thay thế bằng tên thực của bảng</comment>
   </data>
+  <data name="AppendBusinessDI" xml:space="preserve">
+    <value>//&lt;AppendBusinessDI&gt;</value>
+  </data>
 </root>

@@ -29,7 +29,7 @@ namespace my8.Assistant.Model
         public bool AutoCreateFile { get; set; }
         public EFType EfReturnType { get; set; }
         public string PrimaryColumnRule { get; set; }
-        public bool GenSqlScript { get; set; }
+        public bool GenSqlScript = true;
         public string ControllerTemplate { get; set; }
         public string ControllerFolder { get; set; }
         public string MongoFolder { get; set; }
@@ -54,6 +54,7 @@ namespace my8.Assistant.Model
         public string IBusinessFolder { get; set; }
         public string IBusinessTemplate { get; set; }
         public string SubFolderName { get; set; } //Tên subfolder của sql, mongo,neo
+        public string MapperFile { get; set; }
         public string[] getSubFolferName()
         {
                 return SubFolderName.Split(';');
