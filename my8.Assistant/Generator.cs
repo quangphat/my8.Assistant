@@ -442,21 +442,23 @@ namespace my8.Assistant
         public string CreateClass()
         {
             string filepath = string.Empty;
-            if (m_DbType == DatabaseType.SQL)
-            {
-                m_templateFilePath = ThisApp.AppSetting.SqlModelTemplateFile;
-                filepath = ThisApp.AppSetting.ModelFolder + "\\" + ThisApp.AppSetting.getSubFolferName()[0] + "\\" + m_table.CustomName + ".cs";
-            }
-            else if (m_DbType == DatabaseType.Mongo)
-            {
-                m_templateFilePath = ThisApp.AppSetting.MongoModelTemplateFile;
-                filepath = ThisApp.AppSetting.ModelFolder + "\\" + ThisApp.AppSetting.getSubFolferName()[1] + "\\" + m_table.CustomName + ".cs";
-            }
-            else if (m_DbType == DatabaseType.Neo)
-            {
-                m_templateFilePath = ThisApp.AppSetting.NeoModelTemplateFile;
-                filepath = ThisApp.AppSetting.ModelFolder + "\\" + ThisApp.AppSetting.getSubFolferName()[2] + "\\" + m_table.CustomName + ".cs";
-            }
+            //if (m_DbType == DatabaseType.SQL)
+            //{
+            //    m_templateFilePath = ThisApp.AppSetting.SqlModelTemplateFile;
+            //    filepath = ThisApp.AppSetting.ModelFolder + "\\" + ThisApp.AppSetting.getSubFolferName()[0] + "\\" + m_table.CustomName + ".cs";
+            //}
+            //else if (m_DbType == DatabaseType.Mongo)
+            //{
+            //    m_templateFilePath = ThisApp.AppSetting.MongoModelTemplateFile;
+            //    filepath = ThisApp.AppSetting.ModelFolder + "\\" + ThisApp.AppSetting.getSubFolferName()[1] + "\\" + m_table.CustomName + ".cs";
+            //}
+            //else if (m_DbType == DatabaseType.Neo)
+            //{
+            //    m_templateFilePath = ThisApp.AppSetting.NeoModelTemplateFile;
+            //    filepath = ThisApp.AppSetting.ModelFolder + "\\" + ThisApp.AppSetting.getSubFolferName()[2] + "\\" + m_table.CustomName + ".cs";
+            //}
+            m_templateFilePath = ThisApp.AppSetting.SqlModelTemplateFile;
+            filepath = ThisApp.AppSetting.ModelFolder + "\\" + m_table.CustomName + ".cs";
             m_templateContent = Utility.ReadFile(m_templateFilePath);
             string Entityclass = BuildEntitiesClass();
             m_templateContent = m_templateContent.Replace(TheText.ModelName, m_table.CustomName);
