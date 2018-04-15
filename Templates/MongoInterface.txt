@@ -6,7 +6,10 @@ namespace my8.Api.Interfaces.Mongo
 {
     public interface I{ModelName}Repository
     {
-        Task<bool> Create({ModelName} {modelname});
+        Task<string> Create({ModelName} {modelname});
         Task<{ModelName}> Get(string id);
+        Task<bool> Update({ModelName} {modelname});
+        Task<bool> Delete(string id);
+        Task<List<{ModelName}>> Search(string searchStr);
     }
 }

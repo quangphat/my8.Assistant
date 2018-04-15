@@ -9,6 +9,10 @@ namespace my8.Api.IBusiness
 {
     public interface I{ModelName}Business
     {
-        Task<bool> Create();
+        Task<{ModelName}> Create({ModelName} {modelname});
+        Task<{ModelName}> Get(string {modelname}Id);
+        Task<bool> Update({ModelName} {modelname});
+        Task<bool> Delete(string id);
+        Task<List<{ModelName}>> Search(string searchStr);
     }
 }

@@ -19,14 +19,52 @@ namespace my8.Api.Repository.Mongo
         {
             collection = _db.GetCollection<{ModelName}>("{ModelName}");
         }
-        public async Task<bool> Create({ModelName} {modelname})
+        public async Task<string> Create({ModelName} {modelname})
         {
-            throw new NotImplementedException();
+            try
+            {
+                await collection.InsertOneAsync({modelname});
+                return {modelname}.Id;
+            }
+            catch
+            {
+                return string.Empty;
+            }
         }
 
         public async Task<{ModelName}> Get(string id)
         {
-            throw new NotImplementedException();
+            filter = Builders<{ModelName}>.Filter.Eq(p => p.Id, id);
+            return await collection.Find(filter).FirstOrDefaultAsync();
+        }
+        public async Task<bool> Update({ModelName} {modelname})
+        {
+            var filter = Builders<{ModelName}>.Filter.Eq(p => p.Id, {modelname}.Id);
+            var update = Builders<{ModelName}>.Update
+                            .Set(s => s.Id, {modelname}.Id);
+            try
+            {
+                await collection.UpdateOneAsync(filter, update);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public async Task<bool> Delete(string id)
+        {
+            try
+            {
+                filter = Builders<{ModelName}>.Filter.Eq(p => p.Id, id);
+                await collection.DeleteOneAsync(filter);
+                return true;
+            }
+            catch { return false; }
+        }
+        public async Task<List<{ModelName}>> Search(string searchStr)
+        {
+            return null;
         }
     }
 }
