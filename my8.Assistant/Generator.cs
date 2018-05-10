@@ -513,11 +513,11 @@ namespace my8.Assistant
         #region ReactJs
         public string CreateReactJsModel(List<Column> columns, string modelName)
         {
-            string filepath = ThisApp.AppSetting.ReactJsModelFile;
+            string filepath = ThisApp.AppSetting.ReactJsModelFolder;
             m_strBuilder = new StringBuilder();
-            m_templateContent = Utility.ReadFile(filepath);
-            if (string.IsNullOrWhiteSpace(m_templateContent))
-                return string.Empty;
+            //m_templateContent = Utility.ReadFile(filepath);
+            //if (string.IsNullOrWhiteSpace(m_templateContent))
+            //    return string.Empty;
             string className = string.Empty;
             if (m_DbType == DatabaseType.SQL && string.IsNullOrEmpty(modelName))
             {
@@ -574,21 +574,21 @@ namespace my8.Assistant
             m_strBuilder.Append("}");
             m_strBuilder.Append(Environment.NewLine);
             m_strBuilder.Append(TheText.AppendNewHere);
-            m_templateContent = m_templateContent.Replace(TheText.AppendNewHere, m_strBuilder.ToString());
-
+            //m_templateContent = m_templateContent.Replace(TheText.AppendNewHere, m_strBuilder.ToString());
+            m_templateContent =  m_strBuilder.ToString();
             if (ThisApp.AppSetting.AutoCreateFile == true)
             {
-                if (File.Exists(filepath))
-                {
-                    if (ThisApp.currentSession.OverWriteReactModel)
-                    {
-                        Utility.WriteToFile(filepath, m_templateContent);
-                    }
-                }
-                else
-                {
-                    Utility.WriteToFile(filepath, m_templateContent);
-                }
+                //if (File.Exists(filepath))
+                //{
+                //    if (ThisApp.currentSession.OverWriteReactModel)
+                //    {
+                //        Utility.WriteToFile(filepath, m_templateContent);
+                //    }
+                //}
+                //else
+                //{
+                    Utility.WriteToFile($"{filepath}\\{className}.tsx", m_templateContent);
+                //}
             }
             return m_templateContent;
         }

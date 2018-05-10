@@ -209,7 +209,7 @@ namespace my8.Assistant
 
         private void btnReactModelFolder_Click(object sender, EventArgs e)
         {
-            txtReactFile.Text = Utility.GetFilePath();
+            txtReactFile.Text = Utility.GetFolderPath();
         }
 
         private void btnUnitTestFolder_Click(object sender, EventArgs e)

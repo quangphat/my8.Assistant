@@ -37,7 +37,7 @@ namespace my8.Assistant.Model
         public string SqlFolder { get; set; }
         public string UnitTestFolder { get; set; }
         public string UnitTestFileTemplate { get; set; }
-        public string ReactJsModelFile { get; set; }
+        public string ReactJsModelFolder { get; set; }
         public string ReactModelFilename { get; set; }
         public string StartUpFile { get; set; }
         public string SqlRepositoryTemplate { get; set; }

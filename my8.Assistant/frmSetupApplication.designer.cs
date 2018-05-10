@@ -42,6 +42,7 @@
             this.btnRepositorytemplate = new System.Windows.Forms.Button();
             this.label19 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.autoMetroCheckBox18 = new AutoControl.AutoMetroCheckBox();
             this.autoMetroCheckBox17 = new AutoControl.AutoMetroCheckBox();
             this.autoMetroCheckBox16 = new AutoControl.AutoMetroCheckBox();
             this.rdNeo = new ModernUI.Controls.MetroRadioButton();
@@ -140,7 +141,6 @@
             this.button13 = new System.Windows.Forms.Button();
             this.label36 = new System.Windows.Forms.Label();
             this.autoTextBox19 = new AutoControl.AutoTextBox();
-            this.autoMetroCheckBox18 = new AutoControl.AutoMetroCheckBox();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -171,7 +171,7 @@
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(78, 13);
             this.label12.TabIndex = 29;
-            this.label12.Tag = "Api";
+            this.label12.Tag = "";
             this.label12.Text = "Primarykey rule";
             // 
             // btnRepositoryFolder
@@ -180,7 +180,7 @@
             this.btnRepositoryFolder.Name = "btnRepositoryFolder";
             this.btnRepositoryFolder.Size = new System.Drawing.Size(30, 23);
             this.btnRepositoryFolder.TabIndex = 31;
-            this.btnRepositoryFolder.Tag = "Api";
+            this.btnRepositoryFolder.Tag = "";
             this.btnRepositoryFolder.Text = "...";
             this.btnRepositoryFolder.UseVisualStyleBackColor = true;
             this.btnRepositoryFolder.Click += new System.EventHandler(this.btnRepositoryFolder_Click);
@@ -191,7 +191,7 @@
             this.btnInterfaceFolder.Name = "btnInterfaceFolder";
             this.btnInterfaceFolder.Size = new System.Drawing.Size(30, 23);
             this.btnInterfaceFolder.TabIndex = 32;
-            this.btnInterfaceFolder.Tag = "Api";
+            this.btnInterfaceFolder.Tag = "";
             this.btnInterfaceFolder.Text = "...";
             this.btnInterfaceFolder.UseVisualStyleBackColor = true;
             this.btnInterfaceFolder.Click += new System.EventHandler(this.btnInterfaceFolder_Click);
@@ -222,7 +222,7 @@
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(96, 13);
             this.label14.TabIndex = 38;
-            this.label14.Tag = "Api";
+            this.label14.Tag = "";
             this.label14.Text = "Sql model template";
             // 
             // btnPOCOTemplateFile
@@ -231,7 +231,7 @@
             this.btnPOCOTemplateFile.Name = "btnPOCOTemplateFile";
             this.btnPOCOTemplateFile.Size = new System.Drawing.Size(30, 23);
             this.btnPOCOTemplateFile.TabIndex = 39;
-            this.btnPOCOTemplateFile.Tag = "Api";
+            this.btnPOCOTemplateFile.Tag = "";
             this.btnPOCOTemplateFile.Text = "...";
             this.btnPOCOTemplateFile.UseVisualStyleBackColor = true;
             this.btnPOCOTemplateFile.Click += new System.EventHandler(this.btnPOCOTemplateFile_Click);
@@ -242,7 +242,7 @@
             this.btnInterfaceTemplate.Name = "btnInterfaceTemplate";
             this.btnInterfaceTemplate.Size = new System.Drawing.Size(30, 23);
             this.btnInterfaceTemplate.TabIndex = 52;
-            this.btnInterfaceTemplate.Tag = "Api";
+            this.btnInterfaceTemplate.Tag = "";
             this.btnInterfaceTemplate.Text = "...";
             this.btnInterfaceTemplate.UseVisualStyleBackColor = true;
             this.btnInterfaceTemplate.Click += new System.EventHandler(this.btnInterfaceTemplate_Click);
@@ -254,7 +254,7 @@
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(110, 13);
             this.label18.TabIndex = 51;
-            this.label18.Tag = "Api";
+            this.label18.Tag = "";
             this.label18.Text = "Sql Interface template";
             // 
             // btnRepositorytemplate
@@ -263,7 +263,7 @@
             this.btnRepositorytemplate.Name = "btnRepositorytemplate";
             this.btnRepositorytemplate.Size = new System.Drawing.Size(30, 23);
             this.btnRepositorytemplate.TabIndex = 55;
-            this.btnRepositorytemplate.Tag = "Api";
+            this.btnRepositorytemplate.Tag = "";
             this.btnRepositorytemplate.Text = "...";
             this.btnRepositorytemplate.UseVisualStyleBackColor = true;
             this.btnRepositorytemplate.Click += new System.EventHandler(this.btnRepositorytemplate_Click);
@@ -275,7 +275,7 @@
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(75, 13);
             this.label19.TabIndex = 54;
-            this.label19.Tag = "Api";
+            this.label19.Tag = "";
             this.label19.Text = "Sql Repository";
             // 
             // groupBox2
@@ -307,6 +307,18 @@
             this.groupBox2.TabIndex = 57;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "User session";
+            // 
+            // autoMetroCheckBox18
+            // 
+            this.autoMetroCheckBox18.AutoSize = true;
+            this.autoMetroCheckBox18.BindingFor = "ApplicationSession";
+            this.autoMetroCheckBox18.BindingName = "CreateMapper";
+            this.autoMetroCheckBox18.Location = new System.Drawing.Point(7, 115);
+            this.autoMetroCheckBox18.Name = "autoMetroCheckBox18";
+            this.autoMetroCheckBox18.Size = new System.Drawing.Size(87, 15);
+            this.autoMetroCheckBox18.TabIndex = 162;
+            this.autoMetroCheckBox18.Text = "Tạo mapper";
+            this.autoMetroCheckBox18.UseSelectable = true;
             // 
             // autoMetroCheckBox17
             // 
@@ -559,7 +571,7 @@
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(17, 24);
             this.label21.TabIndex = 88;
-            this.label21.Tag = "Api";
+            this.label21.Tag = "";
             this.label21.Text = "*";
             // 
             // label23
@@ -571,7 +583,7 @@
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(17, 24);
             this.label23.TabIndex = 90;
-            this.label23.Tag = "Api";
+            this.label23.Tag = "";
             this.label23.Text = "*";
             // 
             // label24
@@ -583,7 +595,7 @@
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(17, 24);
             this.label24.TabIndex = 91;
-            this.label24.Tag = "Api";
+            this.label24.Tag = "";
             this.label24.Text = "*";
             // 
             // label25
@@ -595,7 +607,7 @@
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(17, 24);
             this.label25.TabIndex = 92;
-            this.label25.Tag = "Api";
+            this.label25.Tag = "";
             this.label25.Text = "*";
             // 
             // label26
@@ -607,7 +619,7 @@
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(17, 24);
             this.label26.TabIndex = 93;
-            this.label26.Tag = "Api";
+            this.label26.Tag = "";
             this.label26.Text = "*";
             // 
             // label29
@@ -619,7 +631,7 @@
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(17, 24);
             this.label29.TabIndex = 96;
-            this.label29.Tag = "Api";
+            this.label29.Tag = "";
             this.label29.Text = "*";
             // 
             // lblNotify
@@ -642,7 +654,7 @@
             this.cbGenSqlScript.Name = "cbGenSqlScript";
             this.cbGenSqlScript.Size = new System.Drawing.Size(172, 15);
             this.cbGenSqlScript.TabIndex = 56;
-            this.cbGenSqlScript.Tag = "Api";
+            this.cbGenSqlScript.Tag = "";
             this.cbGenSqlScript.Text = "Tạo sql script cho repository";
             this.cbGenSqlScript.UseSelectable = true;
             // 
@@ -654,7 +666,7 @@
             this.txtSqlRepositorytemplate.Name = "txtSqlRepositorytemplate";
             this.txtSqlRepositorytemplate.Size = new System.Drawing.Size(291, 20);
             this.txtSqlRepositorytemplate.TabIndex = 53;
-            this.txtSqlRepositorytemplate.Tag = "Api";
+            this.txtSqlRepositorytemplate.Tag = "";
             // 
             // txtInterfaceTemplate
             // 
@@ -664,7 +676,7 @@
             this.txtInterfaceTemplate.Name = "txtInterfaceTemplate";
             this.txtInterfaceTemplate.Size = new System.Drawing.Size(291, 20);
             this.txtInterfaceTemplate.TabIndex = 50;
-            this.txtInterfaceTemplate.Tag = "Api";
+            this.txtInterfaceTemplate.Tag = "";
             // 
             // txtSqlModelTemplate
             // 
@@ -674,7 +686,7 @@
             this.txtSqlModelTemplate.Name = "txtSqlModelTemplate";
             this.txtSqlModelTemplate.Size = new System.Drawing.Size(291, 20);
             this.txtSqlModelTemplate.TabIndex = 37;
-            this.txtSqlModelTemplate.Tag = "Api";
+            this.txtSqlModelTemplate.Tag = "";
             // 
             // cbDapperMapping
             // 
@@ -685,7 +697,7 @@
             this.cbDapperMapping.Name = "cbDapperMapping";
             this.cbDapperMapping.Size = new System.Drawing.Size(131, 15);
             this.cbDapperMapping.TabIndex = 36;
-            this.cbDapperMapping.Tag = "Api";
+            this.cbDapperMapping.Tag = "";
             this.cbDapperMapping.Text = "Tạo dapperMapping";
             this.cbDapperMapping.UseSelectable = true;
             // 
@@ -706,7 +718,7 @@
             this.autoTextBox1.Name = "autoTextBox1";
             this.autoTextBox1.Size = new System.Drawing.Size(291, 20);
             this.autoTextBox1.TabIndex = 28;
-            this.autoTextBox1.Tag = "Api";
+            this.autoTextBox1.Tag = "";
             // 
             // cbAutoCreateFile
             // 
@@ -729,7 +741,7 @@
             this.cbUseInterface.Name = "cbUseInterface";
             this.cbUseInterface.Size = new System.Drawing.Size(157, 15);
             this.cbUseInterface.TabIndex = 15;
-            this.cbUseInterface.Tag = "Api";
+            this.cbUseInterface.Tag = "";
             this.cbUseInterface.Text = "Dùng Interface repository";
             this.cbUseInterface.UseSelectable = true;
             // 
@@ -752,7 +764,7 @@
             this.btnControllerFolder.Name = "btnControllerFolder";
             this.btnControllerFolder.Size = new System.Drawing.Size(30, 23);
             this.btnControllerFolder.TabIndex = 104;
-            this.btnControllerFolder.Tag = "Api";
+            this.btnControllerFolder.Tag = "";
             this.btnControllerFolder.Text = "...";
             this.btnControllerFolder.UseVisualStyleBackColor = true;
             this.btnControllerFolder.Click += new System.EventHandler(this.btnControllerFolder_Click);
@@ -764,7 +776,7 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(83, 13);
             this.label7.TabIndex = 103;
-            this.label7.Tag = "Api";
+            this.label7.Tag = "";
             this.label7.Text = "Controller Folder";
             // 
             // txtControllerFolder
@@ -775,7 +787,7 @@
             this.txtControllerFolder.Name = "txtControllerFolder";
             this.txtControllerFolder.Size = new System.Drawing.Size(291, 20);
             this.txtControllerFolder.TabIndex = 102;
-            this.txtControllerFolder.Tag = "Api";
+            this.txtControllerFolder.Tag = "";
             // 
             // label1
             // 
@@ -784,7 +796,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(82, 13);
             this.label1.TabIndex = 112;
-            this.label1.Tag = "Api";
+            this.label1.Tag = "";
             this.label1.Text = "Unit Test Folder";
             // 
             // autoTextBox2
@@ -832,7 +844,7 @@
             // txtReactFile
             // 
             this.txtReactFile.BindingFor = "ApplicationSetting";
-            this.txtReactFile.BindingName = "ReactJsModelFile";
+            this.txtReactFile.BindingName = "ReactJsModelFolder";
             this.txtReactFile.Location = new System.Drawing.Point(147, 216);
             this.txtReactFile.Name = "txtReactFile";
             this.txtReactFile.Size = new System.Drawing.Size(291, 20);
@@ -857,7 +869,7 @@
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(93, 13);
             this.label8.TabIndex = 121;
-            this.label8.Tag = "Api";
+            this.label8.Tag = "";
             this.label8.Text = "Unit Test template";
             // 
             // autoTextBox5
@@ -888,7 +900,7 @@
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(62, 13);
             this.label10.TabIndex = 124;
-            this.label10.Tag = "Api";
+            this.label10.Tag = "";
             this.label10.Text = "File StartUp";
             // 
             // autoTextBox3
@@ -908,7 +920,7 @@
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(85, 13);
             this.label15.TabIndex = 127;
-            this.label15.Tag = "Api";
+            this.label15.Tag = "";
             this.label15.Text = "Mongo Interface";
             // 
             // autoTextBox6
@@ -919,7 +931,7 @@
             this.autoTextBox6.Name = "autoTextBox6";
             this.autoTextBox6.Size = new System.Drawing.Size(291, 20);
             this.autoTextBox6.TabIndex = 126;
-            this.autoTextBox6.Tag = "Api";
+            this.autoTextBox6.Tag = "";
             // 
             // label16
             // 
@@ -928,7 +940,7 @@
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(72, 13);
             this.label16.TabIndex = 129;
-            this.label16.Tag = "Api";
+            this.label16.Tag = "";
             this.label16.Text = "Neo Interface";
             // 
             // autoTextBox7
@@ -939,7 +951,7 @@
             this.autoTextBox7.Name = "autoTextBox7";
             this.autoTextBox7.Size = new System.Drawing.Size(291, 20);
             this.autoTextBox7.TabIndex = 128;
-            this.autoTextBox7.Tag = "Api";
+            this.autoTextBox7.Tag = "";
             // 
             // label17
             // 
@@ -950,7 +962,7 @@
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(17, 24);
             this.label17.TabIndex = 133;
-            this.label17.Tag = "Api";
+            this.label17.Tag = "";
             this.label17.Text = "*";
             // 
             // label22
@@ -960,7 +972,7 @@
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(93, 13);
             this.label22.TabIndex = 132;
-            this.label22.Tag = "Api";
+            this.label22.Tag = "";
             this.label22.Text = "Mongo Repository";
             // 
             // autoTextBox8
@@ -971,7 +983,7 @@
             this.autoTextBox8.Name = "autoTextBox8";
             this.autoTextBox8.Size = new System.Drawing.Size(291, 20);
             this.autoTextBox8.TabIndex = 131;
-            this.autoTextBox8.Tag = "Api";
+            this.autoTextBox8.Tag = "";
             // 
             // button3
             // 
@@ -979,7 +991,7 @@
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(30, 23);
             this.button3.TabIndex = 130;
-            this.button3.Tag = "Api";
+            this.button3.Tag = "";
             this.button3.Text = "...";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
@@ -993,7 +1005,7 @@
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(17, 24);
             this.label27.TabIndex = 137;
-            this.label27.Tag = "Api";
+            this.label27.Tag = "";
             this.label27.Text = "*";
             // 
             // label28
@@ -1003,7 +1015,7 @@
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(80, 13);
             this.label28.TabIndex = 136;
-            this.label28.Tag = "Api";
+            this.label28.Tag = "";
             this.label28.Text = "Neo Repository";
             // 
             // autoTextBox9
@@ -1014,7 +1026,7 @@
             this.autoTextBox9.Name = "autoTextBox9";
             this.autoTextBox9.Size = new System.Drawing.Size(291, 20);
             this.autoTextBox9.TabIndex = 135;
-            this.autoTextBox9.Tag = "Api";
+            this.autoTextBox9.Tag = "";
             // 
             // button4
             // 
@@ -1022,7 +1034,7 @@
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(30, 23);
             this.button4.TabIndex = 134;
-            this.button4.Tag = "Api";
+            this.button4.Tag = "";
             this.button4.Text = "...";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
@@ -1036,7 +1048,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(17, 24);
             this.label3.TabIndex = 141;
-            this.label3.Tag = "Api";
+            this.label3.Tag = "";
             this.label3.Text = "*";
             // 
             // button5
@@ -1045,7 +1057,7 @@
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(30, 23);
             this.button5.TabIndex = 140;
-            this.button5.Tag = "Api";
+            this.button5.Tag = "";
             this.button5.Text = "...";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
@@ -1057,7 +1069,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(114, 13);
             this.label4.TabIndex = 139;
-            this.label4.Tag = "Api";
+            this.label4.Tag = "";
             this.label4.Text = "Mongo model template";
             // 
             // autoTextBox10
@@ -1068,7 +1080,7 @@
             this.autoTextBox10.Name = "autoTextBox10";
             this.autoTextBox10.Size = new System.Drawing.Size(291, 20);
             this.autoTextBox10.TabIndex = 138;
-            this.autoTextBox10.Tag = "Api";
+            this.autoTextBox10.Tag = "";
             // 
             // label30
             // 
@@ -1079,7 +1091,7 @@
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(17, 24);
             this.label30.TabIndex = 145;
-            this.label30.Tag = "Api";
+            this.label30.Tag = "";
             this.label30.Text = "*";
             // 
             // button6
@@ -1088,7 +1100,7 @@
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(30, 23);
             this.button6.TabIndex = 144;
-            this.button6.Tag = "Api";
+            this.button6.Tag = "";
             this.button6.Text = "...";
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
@@ -1100,7 +1112,7 @@
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(101, 13);
             this.label33.TabIndex = 143;
-            this.label33.Tag = "Api";
+            this.label33.Tag = "";
             this.label33.Text = "Neo model template";
             // 
             // autoTextBox11
@@ -1111,7 +1123,7 @@
             this.autoTextBox11.Name = "autoTextBox11";
             this.autoTextBox11.Size = new System.Drawing.Size(291, 20);
             this.autoTextBox11.TabIndex = 142;
-            this.autoTextBox11.Tag = "Api";
+            this.autoTextBox11.Tag = "";
             // 
             // label34
             // 
@@ -1120,7 +1132,7 @@
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(81, 13);
             this.label34.TabIndex = 147;
-            this.label34.Tag = "Api";
+            this.label34.Tag = "";
             this.label34.Text = "Subfolder name";
             // 
             // autoTextBox12
@@ -1195,7 +1207,7 @@
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(30, 23);
             this.button8.TabIndex = 156;
-            this.button8.Tag = "Api";
+            this.button8.Tag = "";
             this.button8.Text = "...";
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Click += new System.EventHandler(this.button8_Click);
@@ -1207,7 +1219,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(94, 13);
             this.label6.TabIndex = 155;
-            this.label6.Tag = "Api";
+            this.label6.Tag = "";
             this.label6.Text = "Controller template";
             // 
             // autoTextBox14
@@ -1218,7 +1230,7 @@
             this.autoTextBox14.Name = "autoTextBox14";
             this.autoTextBox14.Size = new System.Drawing.Size(291, 20);
             this.autoTextBox14.TabIndex = 154;
-            this.autoTextBox14.Tag = "Api";
+            this.autoTextBox14.Tag = "";
             // 
             // label9
             // 
@@ -1227,7 +1239,7 @@
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(99, 13);
             this.label9.TabIndex = 164;
-            this.label9.Tag = "Api";
+            this.label9.Tag = "";
             this.label9.Text = "IBusiness Template";
             // 
             // autoTextBox15
@@ -1238,7 +1250,7 @@
             this.autoTextBox15.Name = "autoTextBox15";
             this.autoTextBox15.Size = new System.Drawing.Size(291, 20);
             this.autoTextBox15.TabIndex = 163;
-            this.autoTextBox15.Tag = "Api";
+            this.autoTextBox15.Tag = "";
             // 
             // label11
             // 
@@ -1247,7 +1259,7 @@
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(84, 13);
             this.label11.TabIndex = 162;
-            this.label11.Tag = "Api";
+            this.label11.Tag = "";
             this.label11.Text = "IBusiness Folder";
             // 
             // autoTextBox16
@@ -1258,7 +1270,7 @@
             this.autoTextBox16.Name = "autoTextBox16";
             this.autoTextBox16.Size = new System.Drawing.Size(291, 20);
             this.autoTextBox16.TabIndex = 161;
-            this.autoTextBox16.Tag = "Api";
+            this.autoTextBox16.Tag = "";
             // 
             // label20
             // 
@@ -1267,7 +1279,7 @@
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(78, 13);
             this.label20.TabIndex = 160;
-            this.label20.Tag = "Api";
+            this.label20.Tag = "";
             this.label20.Text = "Business folder";
             // 
             // autoTextBox17
@@ -1278,7 +1290,7 @@
             this.autoTextBox17.Name = "autoTextBox17";
             this.autoTextBox17.Size = new System.Drawing.Size(291, 20);
             this.autoTextBox17.TabIndex = 159;
-            this.autoTextBox17.Tag = "Api";
+            this.autoTextBox17.Tag = "";
             // 
             // label32
             // 
@@ -1287,7 +1299,7 @@
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(96, 13);
             this.label32.TabIndex = 158;
-            this.label32.Tag = "Api";
+            this.label32.Tag = "";
             this.label32.Text = "Business Template";
             // 
             // autoTextBox18
@@ -1298,7 +1310,7 @@
             this.autoTextBox18.Name = "autoTextBox18";
             this.autoTextBox18.Size = new System.Drawing.Size(291, 20);
             this.autoTextBox18.TabIndex = 157;
-            this.autoTextBox18.Tag = "Api";
+            this.autoTextBox18.Tag = "";
             // 
             // button9
             // 
@@ -1306,7 +1318,7 @@
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(30, 23);
             this.button9.TabIndex = 165;
-            this.button9.Tag = "Api";
+            this.button9.Tag = "";
             this.button9.Text = "...";
             this.button9.UseVisualStyleBackColor = true;
             this.button9.Click += new System.EventHandler(this.button9_Click);
@@ -1317,7 +1329,7 @@
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(30, 23);
             this.button10.TabIndex = 166;
-            this.button10.Tag = "Api";
+            this.button10.Tag = "";
             this.button10.Text = "...";
             this.button10.UseVisualStyleBackColor = true;
             this.button10.Click += new System.EventHandler(this.button10_Click);
@@ -1328,7 +1340,7 @@
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(30, 23);
             this.button11.TabIndex = 167;
-            this.button11.Tag = "Api";
+            this.button11.Tag = "";
             this.button11.Text = "...";
             this.button11.UseVisualStyleBackColor = true;
             this.button11.Click += new System.EventHandler(this.button11_Click);
@@ -1339,7 +1351,7 @@
             this.button12.Name = "button12";
             this.button12.Size = new System.Drawing.Size(30, 23);
             this.button12.TabIndex = 168;
-            this.button12.Tag = "Api";
+            this.button12.Tag = "";
             this.button12.Text = "...";
             this.button12.UseVisualStyleBackColor = true;
             this.button12.Click += new System.EventHandler(this.button12_Click);
@@ -1362,7 +1374,7 @@
             this.label36.Name = "label36";
             this.label36.Size = new System.Drawing.Size(76, 13);
             this.label36.TabIndex = 170;
-            this.label36.Tag = "Api";
+            this.label36.Tag = "";
             this.label36.Text = "Create mapper";
             // 
             // autoTextBox19
@@ -1374,18 +1386,6 @@
             this.autoTextBox19.Size = new System.Drawing.Size(291, 20);
             this.autoTextBox19.TabIndex = 169;
             this.autoTextBox19.Tag = "";
-            // 
-            // autoMetroCheckBox18
-            // 
-            this.autoMetroCheckBox18.AutoSize = true;
-            this.autoMetroCheckBox18.BindingFor = "ApplicationSession";
-            this.autoMetroCheckBox18.BindingName = "CreateMapper";
-            this.autoMetroCheckBox18.Location = new System.Drawing.Point(7, 115);
-            this.autoMetroCheckBox18.Name = "autoMetroCheckBox18";
-            this.autoMetroCheckBox18.Size = new System.Drawing.Size(87, 15);
-            this.autoMetroCheckBox18.TabIndex = 162;
-            this.autoMetroCheckBox18.Text = "Tạo mapper";
-            this.autoMetroCheckBox18.UseSelectable = true;
             // 
             // frmSetupApp
             // 
@@ -1487,7 +1487,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmSetupApp";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Tag = "Api";
+            this.Tag = "";
             this.Text = "Thiết lập hệ thống";
             this.Load += new System.EventHandler(this.frmSetupApplication_Load);
             this.groupBox2.ResumeLayout(false);
