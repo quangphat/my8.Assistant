@@ -527,7 +527,7 @@ namespace my8.Assistant
             {
                 className = modelName;
             }
-            m_strBuilder.Append($"export interface {className}");
+            m_strBuilder.Append($"export interface I{className}");
             m_strBuilder.Append(Environment.NewLine);
             m_strBuilder.Append("{");
             m_strBuilder.Append(Environment.NewLine);
@@ -587,7 +587,7 @@ namespace my8.Assistant
                 //}
                 //else
                 //{
-                    Utility.WriteToFile($"{filepath}\\{className}.tsx", m_templateContent);
+                    Utility.WriteToFile($"{filepath}\\I{className}.tsx", m_templateContent);
                 //}
             }
             return m_templateContent;
