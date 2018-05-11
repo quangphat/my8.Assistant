@@ -12,14 +12,10 @@ using my8.Client.Models;
 
 namespace my8.Client.Controllers
 {
-    public class {ModelName}Controller : Controller
+    public class {ModelName}Controller  : BaseController
     {
-        private readonly HttpClient _httpClient;
-        private readonly ClientConfig _clientConfig;
-        public {ModelName}Controller(HttpClient httpClient, IOptions<ClientConfig> clientConfig)
+        public CommentController(HttpClient httpClient, IOptions<ClientConfig> clientConfig):base(httpClient,clientConfig)
         {
-            _httpClient = httpClient;
-            _clientConfig = clientConfig.Value;
         }
         [HttpGet]
         [Route("/{modelname}/getbyPost/{Id}/{postType}")]
