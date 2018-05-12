@@ -14,7 +14,7 @@ namespace my8.Client.Controllers
 {
     public class {ModelName}Controller  : BaseController
     {
-        public CommentController(HttpClient httpClient, IOptions<ClientConfig> clientConfig):base(httpClient,clientConfig)
+        public {ModelName}Controller(HttpClient httpClient, IOptions<ClientConfig> clientConfig):base(httpClient,clientConfig)
         {
         }
         [HttpGet]
