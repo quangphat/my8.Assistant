@@ -205,6 +205,10 @@ namespace my8.Assistant
             {
                 m_Generator.CreateMapper();
             }
+            if(ThisApp.currentSession.CreateReactComponent)
+            {
+                m_Generator.CreateReactComponent();
+            }
             lblNotify.SetText("Thành công", LabelNotify.EnumStatus.Success);
             //rdRepository.PerformClick();
         }
@@ -320,8 +324,16 @@ namespace my8.Assistant
 
         private void btnSettingApplication_Click_1(object sender, EventArgs e)
         {
-            frmSetupApp frmSetting = new frmSetupApp();
-            frmSetting.ShowDialog();
+            if(ThisApp.Project.ProjectName=="api")
+            {
+                frmSetupApp frmSetting = new frmSetupApp();
+                frmSetting.ShowDialog();
+            }
+            else
+            {
+                frmSetupAppClient frmSetup = new frmSetupAppClient();
+                frmSetup.ShowDialog();
+            }
             if (rdSql.Checked)
                 m_dbType = DatabaseType.SQL;
             if (rdMongo.Checked)

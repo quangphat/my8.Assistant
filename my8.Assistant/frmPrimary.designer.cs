@@ -85,13 +85,14 @@
             this.rdNeo = new ModernUI.Controls.MetroRadioButton();
             this.rdSql = new ModernUI.Controls.MetroRadioButton();
             this.rdMongo = new ModernUI.Controls.MetroRadioButton();
+            this.btnRefresh = new ModernUI.Controls.MetroLink();
             this.metroLink1 = new ModernUI.Controls.MetroLink();
             this.btnCreateUpdateMongo = new ModernUI.Controls.MetroLink();
             this.btnGenReactClass = new ModernUI.Controls.MetroLink();
-            this.btnRefresh = new ModernUI.Controls.MetroLink();
             this.btnSignout = new ModernUI.Controls.MetroLink();
             this.btnTableName = new ModernUI.Controls.MetroLink();
             this.btnSettingApplication = new ModernUI.Controls.MetroLink();
+            this.autoMetroCheckBox20 = new AutoControl.AutoMetroCheckBox();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tab.SuspendLayout();
@@ -128,6 +129,7 @@
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.autoMetroCheckBox20);
             this.groupBox2.Controls.Add(this.autoMetroCheckBox19);
             this.groupBox2.Controls.Add(this.autoMetroCheckBox17);
             this.groupBox2.Controls.Add(this.autoMetroCheckBox18);
@@ -842,6 +844,18 @@
             this.rdMongo.UseSelectable = true;
             this.rdMongo.Click += new System.EventHandler(this.metroRadioButton9_Click);
             // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRefresh.HighLight = ModernUI.Controls.MetroLink.highlight.Alway;
+            this.btnRefresh.Image = ((System.Drawing.Image)(resources.GetObject("btnRefresh.Image")));
+            this.btnRefresh.Location = new System.Drawing.Point(507, 13);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(36, 28);
+            this.btnRefresh.TabIndex = 82;
+            this.btnRefresh.UseSelectable = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
             // metroLink1
             // 
             this.metroLink1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -881,18 +895,6 @@
             this.btnGenReactClass.UseSelectable = true;
             this.btnGenReactClass.Click += new System.EventHandler(this.btnGenReactClass_Click);
             // 
-            // btnRefresh
-            // 
-            this.btnRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRefresh.HighLight = ModernUI.Controls.MetroLink.highlight.Alway;
-            this.btnRefresh.Image = ((System.Drawing.Image)(resources.GetObject("btnRefresh.Image")));
-            this.btnRefresh.Location = new System.Drawing.Point(507, 13);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(36, 28);
-            this.btnRefresh.TabIndex = 82;
-            this.btnRefresh.UseSelectable = true;
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
-            // 
             // btnSignout
             // 
             this.btnSignout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -931,6 +933,18 @@
             this.btnSettingApplication.TabIndex = 72;
             this.btnSettingApplication.UseSelectable = true;
             this.btnSettingApplication.Click += new System.EventHandler(this.btnSettingApplication_Click_1);
+            // 
+            // autoMetroCheckBox20
+            // 
+            this.autoMetroCheckBox20.AutoSize = true;
+            this.autoMetroCheckBox20.BindingFor = "ApplicationSession";
+            this.autoMetroCheckBox20.BindingName = "CreateReactComponent";
+            this.autoMetroCheckBox20.Location = new System.Drawing.Point(912, 51);
+            this.autoMetroCheckBox20.Name = "autoMetroCheckBox20";
+            this.autoMetroCheckBox20.Size = new System.Drawing.Size(140, 15);
+            this.autoMetroCheckBox20.TabIndex = 165;
+            this.autoMetroCheckBox20.Text = "Tạo React component";
+            this.autoMetroCheckBox20.UseSelectable = true;
             // 
             // frmPrimary
             // 
@@ -1039,5 +1053,6 @@
         private AutoControl.AutoMetroCheckBox autoMetroCheckBox18;
         private AutoControl.AutoMetroCheckBox autoMetroCheckBox19;
         private ModernUI.Controls.MetroLink metroLink1;
+        private AutoControl.AutoMetroCheckBox autoMetroCheckBox20;
     }
 }

@@ -55,6 +55,8 @@ namespace my8.Assistant.Model
         public string IBusinessTemplate { get; set; }
         public string SubFolderName { get; set; } //Tên subfolder của sql, mongo,neo
         public string MapperFile { get; set; }
+        public string ReactJsComponentFolder { get; set; }
+        public string ReactJsComponentTemplate { get; set; }
         public string[] getSubFolferName()
         {
                 return SubFolderName.Split(';');

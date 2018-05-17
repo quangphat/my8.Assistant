@@ -1,0 +1,24 @@
+import * as React from 'react';
+import { RouteComponentProps } from 'react-router';
+import * as Utils from '../../Utils';
+import * as Models from '../../Models'
+import './index.css'
+
+
+interface {ModelName}Props {
+
+}
+export class {ModelName} extends React.Component<{ModelName}Props, {}>{
+    constructor(props) {
+        super(props);
+        this.state = {
+        }
+    }
+    public componentWillReceiveProps(this, nextProps: {ModelName}Props) {
+    }
+
+    public render(this) {
+        let render = null;
+        return render;
+    }
+}

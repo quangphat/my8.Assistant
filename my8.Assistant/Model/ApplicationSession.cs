@@ -35,5 +35,6 @@ namespace my8.Assistant.Model
         public bool CreateBusiness { get; set; }
         public bool OverWriteBusiness { get; set; }
         public bool CreateMapper { get; set; }
+        public bool CreateReactComponent { get; set; }
     }
 }

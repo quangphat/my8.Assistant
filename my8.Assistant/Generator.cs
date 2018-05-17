@@ -843,6 +843,28 @@ namespace my8.Assistant
             return m_templateContent;
         }
         #endregion
+        public string CreateReactComponent()
+        {
+            string filepath = ThisApp.AppSetting.ReactJsComponentTemplate;
+            m_strBuilder = new StringBuilder();
+            m_templateContent = Utility.ReadFile(ThisApp.AppSetting.ReactJsComponentTemplate);
+            if (string.IsNullOrWhiteSpace(m_templateContent))
+                return string.Empty;
+            m_templateContent = m_templateContent.Replace(TheText.ModelName, m_table.CustomName);
+            m_templateContent = m_templateContent.Replace(TheText.modelnameLowerCase, m_table.CustomName.ToLower());
+            string componentFolderPath = $"{ThisApp.AppSetting.ReactJsComponentFolder}\\{m_table.CustomName}";
+            if (ThisApp.AppSetting.AutoCreateFile == true)
+            {
+                if(!Directory.Exists(componentFolderPath))
+                {
+                    Directory.CreateDirectory(componentFolderPath);
+                }
+                Utility.WriteToFile($"{componentFolderPath}\\{m_table.CustomName}.tsx", m_templateContent);
+                Utility.WriteToFile($"{componentFolderPath}\\index.css", string.Empty);
+            }
+            return m_templateContent;
+        }
+
         public readonly string[] NumberDataType = { "int", "long", "double", "money", "decimal", "Double", "bigint" };
         public readonly string[] StringDataType = { "string", "datetime", "DateTime", "char", "nchar", "varchar", "nvarchar", "uniqueidentifier", "text", "time", "Guid" };
         public readonly string[] BoolDataType = { "bit", "bool", "Boolean" };

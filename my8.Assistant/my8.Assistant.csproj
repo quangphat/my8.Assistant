@@ -163,6 +163,12 @@
     <Compile Include="frmSelectProject.Designer.cs">
       <DependentUpon>frmSelectProject.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmSetupApplicationClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSetupApplicationClient.designer.cs">
+      <DependentUpon>frmSetupApplicationClient.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSetupApplication.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -208,6 +214,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmSelectProject.resx">
       <DependentUpon>frmSelectProject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSetupApplicationClient.resx">
+      <DependentUpon>frmSetupApplicationClient.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSetupApplication.resx">
       <DependentUpon>frmSetupApplication.cs</DependentUpon>
