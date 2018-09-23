@@ -33,6 +33,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.btnModelPFolder = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.autoMetroCheckBox20 = new AutoControl.AutoMetroCheckBox();
             this.autoMetroCheckBox18 = new AutoControl.AutoMetroCheckBox();
             this.autoMetroCheckBox17 = new AutoControl.AutoMetroCheckBox();
             this.autoMetroCheckBox16 = new AutoControl.AutoMetroCheckBox();
@@ -76,7 +77,9 @@
             this.button8 = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.autoTextBox14 = new AutoControl.AutoTextBox();
-            this.autoMetroCheckBox20 = new AutoControl.AutoMetroCheckBox();
+            this.button7 = new System.Windows.Forms.Button();
+            this.label35 = new System.Windows.Forms.Label();
+            this.autoTextBox13 = new AutoControl.AutoTextBox();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -149,6 +152,18 @@
             this.groupBox2.TabIndex = 57;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "User session";
+            // 
+            // autoMetroCheckBox20
+            // 
+            this.autoMetroCheckBox20.AutoSize = true;
+            this.autoMetroCheckBox20.BindingFor = "ApplicationSession";
+            this.autoMetroCheckBox20.BindingName = "CreateReactComponent";
+            this.autoMetroCheckBox20.Location = new System.Drawing.Point(139, 115);
+            this.autoMetroCheckBox20.Name = "autoMetroCheckBox20";
+            this.autoMetroCheckBox20.Size = new System.Drawing.Size(140, 15);
+            this.autoMetroCheckBox20.TabIndex = 166;
+            this.autoMetroCheckBox20.Text = "Tạo React component";
+            this.autoMetroCheckBox20.UseSelectable = true;
             // 
             // autoMetroCheckBox18
             // 
@@ -643,23 +658,42 @@
             this.autoTextBox14.TabIndex = 154;
             this.autoTextBox14.Tag = "";
             // 
-            // autoMetroCheckBox20
+            // button7
             // 
-            this.autoMetroCheckBox20.AutoSize = true;
-            this.autoMetroCheckBox20.BindingFor = "ApplicationSession";
-            this.autoMetroCheckBox20.BindingName = "CreateReactComponent";
-            this.autoMetroCheckBox20.Location = new System.Drawing.Point(139, 115);
-            this.autoMetroCheckBox20.Name = "autoMetroCheckBox20";
-            this.autoMetroCheckBox20.Size = new System.Drawing.Size(140, 15);
-            this.autoMetroCheckBox20.TabIndex = 166;
-            this.autoMetroCheckBox20.Text = "Tạo React component";
-            this.autoMetroCheckBox20.UseSelectable = true;
+            this.button7.Location = new System.Drawing.Point(442, 195);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(30, 23);
+            this.button7.TabIndex = 159;
+            this.button7.Text = "...";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(14, 199);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(102, 13);
+            this.label35.TabIndex = 158;
+            this.label35.Text = "Thư mục Repository";
+            // 
+            // autoTextBox13
+            // 
+            this.autoTextBox13.BindingFor = "ApplicationSetting";
+            this.autoTextBox13.BindingName = "RepositoryFolder";
+            this.autoTextBox13.Location = new System.Drawing.Point(146, 196);
+            this.autoTextBox13.Name = "autoTextBox13";
+            this.autoTextBox13.Size = new System.Drawing.Size(291, 20);
+            this.autoTextBox13.TabIndex = 157;
             // 
             // frmSetupAppClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1020, 608);
+            this.Controls.Add(this.button7);
+            this.Controls.Add(this.label35);
+            this.Controls.Add(this.autoTextBox13);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.autoTextBox14);
@@ -750,5 +784,8 @@
         private AutoControl.AutoMetroCheckBox autoMetroCheckBox17;
         private AutoControl.AutoMetroCheckBox autoMetroCheckBox18;
         private AutoControl.AutoMetroCheckBox autoMetroCheckBox20;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Label label35;
+        private AutoControl.AutoTextBox autoTextBox13;
     }
 }

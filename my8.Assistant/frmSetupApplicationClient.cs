@@ -219,6 +219,9 @@ namespace my8.Assistant
             groupBox2.ToForm(ThisApp.currentSession);
         }
 
-        
+        private void button7_Click(object sender, EventArgs e)
+        {
+            autoTextBox13.Text = Utility.GetFolderPath();
+        }
     }
 }

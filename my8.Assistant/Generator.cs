@@ -137,6 +137,21 @@ namespace my8.Assistant
             return m_strResult.ToString();
         }
         #region BuildRepository
+        public void CreateRepositoryFileForClient()
+        {
+            if (!ThisApp.currentSession.CreateRepository) return;
+            if (ThisApp.AppSetting.AutoCreateFile)
+            {
+                string filepath = string.Empty;
+                filepath = $"{ThisApp.AppSetting.RepositoryFolder}\\{m_table.CustomName}Repository.tsx";
+                m_templateContent = "import * as Models from '../Models'";
+                m_templateContent += Environment.NewLine;
+                m_templateContent += $@"export const {m_table.CustomName}Repository = {{";
+                m_templateContent += Environment.NewLine;
+                m_templateContent += "}";
+                Utility.WriteToFile(m_templateContent, filepath, FileType.Repository);
+            }
+        }
         public string BuildRepository()
         {
             if (!ThisApp.currentSession.CreateRepository) return null;
@@ -252,7 +267,7 @@ namespace my8.Assistant
             }
             if (ThisApp.AppSetting.AutoCreateFile)
             {
-                Utility.WriteToCsFile(m_templateContent, filepath, FileType.Repository);
+                Utility.WriteToFile(m_templateContent, filepath, FileType.Repository);
             }
             return m_templateContent;
         }
@@ -291,7 +306,7 @@ namespace my8.Assistant
             }
             if (ThisApp.AppSetting.AutoCreateFile)
             {
-                Utility.WriteToCsFile(m_templateContent, filepath, FileType.Interface);
+                Utility.WriteToFile(m_templateContent, filepath, FileType.Interface);
             }
             return m_templateContent;
         }
@@ -475,7 +490,7 @@ namespace my8.Assistant
             }
             if (ThisApp.AppSetting.AutoCreateFile)
             {
-                Utility.WriteToCsFile(m_templateContent, filepath, FileType.Model);
+                Utility.WriteToFile(m_templateContent, filepath, FileType.Model);
             }
             return m_templateContent;
         }
@@ -511,7 +526,7 @@ namespace my8.Assistant
         #endregion
 
         #region ReactJs
-        public string CreateReactJsModel(List<Column> columns, string modelName)
+        public string CreateReactJsModel(List<Column> columns, string modelName,ModelSyntaxType synTaxType = ModelSyntaxType.Original)
         {
             string filepath = ThisApp.AppSetting.ReactJsModelFolder;
             m_strBuilder = new StringBuilder();
@@ -535,6 +550,10 @@ namespace my8.Assistant
             string type = string.Empty;
             foreach (Column col in columns)
             {
+                if(synTaxType== ModelSyntaxType.CamelCase)
+                {
+                    col.Name = col.Name.ToCamelCase();
+                }
                 if (Array.IndexOf(NumberDataType, col.Datatype.ToString().ToLower()) > -1)
                 {
                     if (col.IsArray)
@@ -558,6 +577,10 @@ namespace my8.Assistant
                 if (Array.IndexOf(BoolDataType, col.Datatype.ToString().ToLower()) > -1)
                 {
                     name += $"\t {col.Name}: boolean," + Environment.NewLine;
+                }
+                else if(Array.IndexOf(DateTimeType,col.Datatype.ToString().ToLower())>-1)
+                {
+                    name += $"\t {col.Name}: Date," + Environment.NewLine;
                 }
                 else
                 {
@@ -791,6 +814,10 @@ namespace my8.Assistant
                         col.Datatype = temp[1].Trim();
                         col.IsArray = true;
                     }
+                    if(line.Contains("?"))
+                    {
+                        col.Name = col.Name + "?";
+                    }
                     lstColumn.Add(col);
                 }
             }
@@ -866,8 +893,9 @@ namespace my8.Assistant
         }
 
         public readonly string[] NumberDataType = { "int", "long", "double", "money", "decimal", "Double", "bigint" };
-        public readonly string[] StringDataType = { "string", "datetime", "DateTime", "char", "nchar", "varchar", "nvarchar", "uniqueidentifier", "text", "time", "Guid" };
+        public readonly string[] StringDataType = { "string", "char", "nchar", "varchar", "nvarchar", "uniqueidentifier", "text", "time", "Guid" };
         public readonly string[] BoolDataType = { "bit", "bool", "Boolean" };
+        public readonly string[] DateTimeType = { "datetime" };
     }
     public class ColumnFromCsharpClass
     {

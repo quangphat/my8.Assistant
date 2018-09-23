@@ -178,7 +178,12 @@ namespace my8.Assistant
             }
             if (ThisApp.currentSession.CreateRepository)
             {
-                rtRepository.Text = m_Generator.BuildRepository();
+                if(ThisApp.Project.Id==1)
+                {
+                    m_Generator.CreateRepositoryFileForClient();
+                }
+                else
+                    rtRepository.Text = m_Generator.BuildRepository();
             }
             if (ThisApp.currentSession.CreateReactModel && m_dbType == DatabaseType.SQL)
             {

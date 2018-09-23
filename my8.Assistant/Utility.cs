@@ -18,26 +18,26 @@ namespace my8.Assistant
         private static string AppSessionFile = "AppSession.txt";
         public static string LastProjectFile = "LastProject.txt";
         #region WriteCsFile
-        private static void WriteCsFile(string fileName, string content)
+        private static void WriteFile(string fileName, string content)
         {
             using (StreamWriter file = new StreamWriter(fileName))
             {
                 file.WriteLine(content);
             }
         }
-        public static void WriteToCsFile(string content, string filepath, FileType Type)
+        public static void WriteToFile(string content, string filepath, FileType Type)
         {
             if (Type == FileType.Model)
             {
-                WriteCsFile(filepath, content);
+                WriteFile(filepath, content);
             }
             if (Type == FileType.Interface)
             {
-                WriteCsFile(filepath, content);
+                WriteFile(filepath, content);
             }
             if (Type == FileType.Repository)
             {
-                WriteCsFile(filepath, content);
+                WriteFile(filepath, content);
             }
         }
         #endregion

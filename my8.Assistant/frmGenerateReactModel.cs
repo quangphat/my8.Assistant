@@ -16,10 +16,13 @@ namespace my8.Assistant
 
         public Generator m_Generator;
         private string className;
+        private ModelSyntaxType _syntaxType;
         public frmGenerateReactModel()
         {
             InitializeComponent();
             className = string.Empty;
+            this.rdOrigin.Checked = true;
+            _syntaxType = ModelSyntaxType.Original;
         }
 
         private void btnCreate_Click(object sender, EventArgs e)
@@ -27,7 +30,7 @@ namespace my8.Assistant
             if (m_Generator != null)
             {
                 List<Column> lstColumn = GetColumns();
-                string generated = m_Generator.CreateReactJsModel(lstColumn, className);
+                string generated = m_Generator.CreateReactJsModel(lstColumn, className,this._syntaxType);
                 txtReactModel.Text = generated;
             }
         }
@@ -45,5 +48,16 @@ namespace my8.Assistant
             string data = Clipboard.GetText();
             txtCSharpClass.Text = data;
         }
+
+        private void rdOrigin_Click(object sender, EventArgs e)
+        {
+            this._syntaxType = ModelSyntaxType.Original;
+        }
+
+        private void rdCamelCase_Click(object sender, EventArgs e)
+        {
+            this._syntaxType = ModelSyntaxType.CamelCase;
+        }
     }
+    
 }

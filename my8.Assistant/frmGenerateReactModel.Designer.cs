@@ -31,6 +31,8 @@
             this.txtCSharpClass = new System.Windows.Forms.RichTextBox();
             this.txtReactModel = new System.Windows.Forms.RichTextBox();
             this.btnCreate = new System.Windows.Forms.Button();
+            this.rdOrigin = new System.Windows.Forms.RadioButton();
+            this.rdCamelCase = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // txtCSharpClass
@@ -62,11 +64,37 @@
             this.btnCreate.UseVisualStyleBackColor = true;
             this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
             // 
+            // rdOrigin
+            // 
+            this.rdOrigin.AutoSize = true;
+            this.rdOrigin.Location = new System.Drawing.Point(345, 27);
+            this.rdOrigin.Name = "rdOrigin";
+            this.rdOrigin.Size = new System.Drawing.Size(60, 17);
+            this.rdOrigin.TabIndex = 3;
+            this.rdOrigin.TabStop = true;
+            this.rdOrigin.Text = "Original";
+            this.rdOrigin.UseVisualStyleBackColor = true;
+            this.rdOrigin.Click += new System.EventHandler(this.rdOrigin_Click);
+            // 
+            // rdCamelCase
+            // 
+            this.rdCamelCase.AutoSize = true;
+            this.rdCamelCase.Location = new System.Drawing.Point(345, 66);
+            this.rdCamelCase.Name = "rdCamelCase";
+            this.rdCamelCase.Size = new System.Drawing.Size(78, 17);
+            this.rdCamelCase.TabIndex = 4;
+            this.rdCamelCase.TabStop = true;
+            this.rdCamelCase.Text = "CamelCase";
+            this.rdCamelCase.UseVisualStyleBackColor = true;
+            this.rdCamelCase.Click += new System.EventHandler(this.rdCamelCase_Click);
+            // 
             // frmGenerateReactModel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(764, 371);
+            this.Controls.Add(this.rdCamelCase);
+            this.Controls.Add(this.rdOrigin);
             this.Controls.Add(this.btnCreate);
             this.Controls.Add(this.txtReactModel);
             this.Controls.Add(this.txtCSharpClass);
@@ -77,6 +105,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Create React model";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -85,5 +114,7 @@
         private System.Windows.Forms.RichTextBox txtCSharpClass;
         private System.Windows.Forms.RichTextBox txtReactModel;
         private System.Windows.Forms.Button btnCreate;
+        private System.Windows.Forms.RadioButton rdOrigin;
+        private System.Windows.Forms.RadioButton rdCamelCase;
     }
 }

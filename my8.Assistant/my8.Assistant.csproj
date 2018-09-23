@@ -194,6 +194,7 @@
     <Compile Include="SetupConnection.designer.cs">
       <DependentUpon>SetupConnection.cs</DependentUpon>
     </Compile>
+    <Compile Include="StringExtension.cs" />
     <Compile Include="TheText1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

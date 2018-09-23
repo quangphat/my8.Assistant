@@ -37,4 +37,9 @@ namespace my8.Assistant.Model
         public bool CreateMapper { get; set; }
         public bool CreateReactComponent { get; set; }
     }
+    public enum ModelSyntaxType
+    {
+        Original = 1,
+        CamelCase=2
+    }
 }
