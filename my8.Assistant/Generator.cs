@@ -146,6 +146,8 @@ namespace my8.Assistant
                 filepath = $"{ThisApp.AppSetting.RepositoryFolder}\\{m_table.CustomName}Repository.tsx";
                 m_templateContent = "import * as Models from '../Models'";
                 m_templateContent += Environment.NewLine;
+                m_templateContent += "import { Fetch } from './Fetch'";
+                m_templateContent += Environment.NewLine;
                 m_templateContent += $@"export const {m_table.CustomName}Repository = {{";
                 m_templateContent += Environment.NewLine;
                 m_templateContent += "}";
