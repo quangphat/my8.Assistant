@@ -12,17 +12,18 @@ using my8.Client.Models;
 
 namespace my8.Client.Controllers
 {
+[Route("{ModelName}s")]
     public class {ModelName}Controller  : BaseController
     {
         public {ModelName}Controller(HttpClient httpClient, IOptions<ClientConfig> clientConfig,CurrentProcess currentProcess):base(httpClient,clientConfig,currentProcess)
         {
         }
         [HttpGet]
-        [Route("/{modelname}/getbyPost/{Id}/{postType}")]
-        public async Task<IActionResult> Get(string Id,int postType)
+        [Route("{Id}")]
+        public async Task<IActionResult> Get(string Id)
         {
-            var result = await _httpClient.SendRequestAsync<List<{ModelName}>>(Request, _clientConfig, $"", HttpMethod.Get);
-            return Json(result);
+            var result = await _httpClient.SendRequestAsync<ResponseJsonModel<List<{ModelName}>>>(Request, _clientConfig, $"", HttpMethod.Get);
+            return ToResponse(result);
         }
 
     }

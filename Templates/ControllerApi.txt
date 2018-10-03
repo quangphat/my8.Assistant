@@ -13,30 +13,30 @@ namespace my8.Api.Controllers
 [Route("{ModelName}s")
     public class {ModelName}Controller : Controller
     {
-        I{ModelName}Business m_{ModelName}Business;
+        I{ModelName}Business _{modelname}Business;
         public {ModelName}Controller(I{ModelName}Business {modelname}Business)
         {
-            _{ModelName}Business = {modelname}Business;
+            _{modelname}Business = {modelname}Business;
         }
 		[HttpPost]
         [Route("create")]
         public async Task<IActionResult> Create([FromBody] {ModelName} model)
         {
-            {ModelName} {modelname}= await _{ModelName}Business.Create(model);
+            {ModelName} {modelname}= await _{modelname}Business.Create(model);
             return Json({modelname});
         }
         [HttpPut]
         [Route("update")]
         public async Task<IActionResult> Update([FromBody] {ModelName} model)
         {
-            bool result = await _{ModelName}Business.Update(model);
+            bool result = await _{modelname}Business.Update(model);
             return Json(result);
         }
         [HttpDelete]
         [Route("{id}")]
         public async Task<IActionResult> Delete(string id)
         {
-            bool rst = await _{ModelName}Business.Delete(id);
+            bool rst = await _{modelname}Business.Delete(id);
             return Json(rst);
         }
     }
