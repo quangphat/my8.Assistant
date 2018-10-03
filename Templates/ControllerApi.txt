@@ -10,32 +10,33 @@ using my8.Api.Models;
 namespace my8.Api.Controllers
 {
     [Produces("application/json")]
+[Route("{ModelName}s")
     public class {ModelName}Controller : Controller
     {
         I{ModelName}Business m_{ModelName}Business;
         public {ModelName}Controller(I{ModelName}Business {modelname}Business)
         {
-            m_{ModelName}Business = {modelname}Business;
+            _{ModelName}Business = {modelname}Business;
         }
 		[HttpPost]
-        [Route("api/{modelname}/create")]
+        [Route("create")]
         public async Task<IActionResult> Create([FromBody] {ModelName} model)
         {
-            {ModelName} {modelname}= await m_{ModelName}Business.Create(model);
+            {ModelName} {modelname}= await _{ModelName}Business.Create(model);
             return Json({modelname});
         }
         [HttpPut]
-        [Route("api/{modelname}/update")]
+        [Route("update")]
         public async Task<IActionResult> Update([FromBody] {ModelName} model)
         {
-            bool result = await m_{ModelName}Business.Update(model);
+            bool result = await _{ModelName}Business.Update(model);
             return Json(result);
         }
         [HttpDelete]
-        [Route("api/{modelname}/delete/{id}")]
+        [Route("{id}")]
         public async Task<IActionResult> Delete(string id)
         {
-            bool rst = await m_{ModelName}Business.Delete(id);
+            bool rst = await _{ModelName}Business.Delete(id);
             return Json(rst);
         }
     }
