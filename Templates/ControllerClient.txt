@@ -12,7 +12,7 @@ using my8.Client.Models;
 
 namespace my8.Client.Controllers
 {
-[Route("{ModelName}s")]
+    [Route("{ModelName}s")]
     public class {ModelName}Controller  : BaseController
     {
         public {ModelName}Controller(HttpClient httpClient, IOptions<ClientConfig> clientConfig,CurrentProcess currentProcess):base(httpClient,clientConfig,currentProcess)
@@ -22,7 +22,7 @@ namespace my8.Client.Controllers
         [Route("{Id}")]
         public async Task<IActionResult> Get(string Id)
         {
-            var result = await _httpClient.SendRequestAsync<ResponseJsonModel<List<{ModelName}>>>(Request, _clientConfig, $"", HttpMethod.Get);
+            var result = await _httpClient.SendRequestAsync<ResponseJsonModel<{ModelName}>>(Request, _clientConfig, $"", HttpMethod.Get);
             return ToResponse(result);
         }
 
