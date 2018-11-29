@@ -248,7 +248,6 @@ namespace my8.Assistant
             if (rdNeo.Checked)
                 m_dbType = DatabaseType.Neo;
             GetCurrentTable();
-            ThisApp.currentSession = ThisApp.getSessionByDbType(m_dbType);
             this.ToForm(ThisApp.currentSession);
         }
         private void InitCbbTable(Model.DatabaseType databaseType)
@@ -345,7 +344,6 @@ namespace my8.Assistant
                 m_dbType = DatabaseType.Mongo;
             if (rdNeo.Checked)
                 m_dbType = DatabaseType.Neo;
-            ThisApp.currentSession = ThisApp.getSessionByDbType(m_dbType);
             groupBox2.ToForm(ThisApp.currentSession);
         }
 

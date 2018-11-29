@@ -80,7 +80,7 @@ namespace my8.Assistant.Model
         public static ApplicationSession currentSession;
         public static ApplicationSession getSessionByDbType(DatabaseType dbType)
         {
-            ApplicationSession session = ProjectSessions.FirstOrDefault(p => p.DbType == dbType);
+            ApplicationSession session = ProjectSessions.FirstOrDefault(p => p.ProjectId == Project.Id);
             return session;
         }
         public static List<ApplicationSession> projectSessions;

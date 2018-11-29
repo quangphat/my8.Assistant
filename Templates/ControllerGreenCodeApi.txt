@@ -1,0 +1,43 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using my8GreenCodeApi.IBusiness;
+using my8GreenCodeApi.Models;
+using my8GreenCodeApi.Infrastructures;
+namespace my8GreenCodeApi.Controllers
+{
+    [Produces("application/json")]
+	[Route("{ModelName}s")]
+    public class {ModelName}Controller : BaseController
+    {
+        I{ModelName}Business _{modelname}Business;
+        public {ModelName}Controller(CurrentProcess process,I{ModelName}Business {modelname}Business) : base(process)
+        {
+            _{modelname}Business = {modelname}Business;
+        }
+		[HttpPost]
+        [Route("create")]
+        public async Task<IActionResult> Create([FromBody] {ModelName} model)
+        {
+            {ModelName} {modelname}= await _{modelname}Business.Create(model);
+            return ToResponse({modelname}.Id);
+        }
+        [HttpPut]
+        [Route("update")]
+        public async Task<IActionResult> Update([FromBody] {ModelName} model)
+        {
+            bool result = await _{modelname}Business.Update(model);
+            return ToResponse(result);
+        }
+        [HttpDelete]
+        [Route("{id}")]
+        public async Task<IActionResult> Delete(string id)
+        {
+            bool rst = await _{modelname}Business.Delete(id);
+            return ToResponse(rst);
+        }
+    }
+}

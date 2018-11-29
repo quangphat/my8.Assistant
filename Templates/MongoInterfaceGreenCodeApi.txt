@@ -1,0 +1,15 @@
+using my8GreenCodeApi.Models;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+namespace my8GreenCodeApi.Interfaces
+{
+    public interface I{ModelName}Repository
+    {
+        Task<string> Create({ModelName} {modelname});
+        Task<{ModelName}> Get(string id);
+        Task<bool> Update({ModelName} {modelname});
+        Task<bool> Delete(string id);
+        Task<List<{ModelName}>> Search(string searchStr);
+    }
+}

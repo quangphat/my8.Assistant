@@ -20,6 +20,7 @@ namespace my8.Assistant
         public frmSetupApp()
         {
             AppSetting = ThisApp.AppSetting;
+            Session = ThisApp.currentSession;
             InitializeComponent();
             lblNotify.Text = "";
         }
@@ -82,7 +83,6 @@ namespace my8.Assistant
                 m_dbType = DatabaseType.Mongo;
             if (rdNeo.Checked)
                 m_dbType = DatabaseType.Neo;
-            ThisApp.currentSession = ThisApp.getSessionByDbType(m_dbType);
             groupBox2.ToForm(ThisApp.currentSession);
         }
 

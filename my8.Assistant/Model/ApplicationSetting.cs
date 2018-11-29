@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace my8.Assistant.Model
 {
-    public enum EFType{List=1,IEnumerable=2,IQueryable=3};
+    public enum EFType { List = 1, IEnumerable = 2, IQueryable = 3 };
     public enum FileType
     {
         Model,
@@ -20,12 +20,12 @@ namespace my8.Assistant.Model
     {
         public int ProjectId { get; set; }
         public string ProjectName { get; set; }
-        public string ModelFolder {get;set;}
+        public string ModelFolder { get; set; }
         public string RepositoryFolder { get; set; }
         public string InterfaceFolder { get; set; }
         public bool UseInterface { get; set; }
         public bool UseEF { get; set; }
-        
+
         public bool AutoCreateFile { get; set; }
         public EFType EfReturnType { get; set; }
         public string PrimaryColumnRule { get; set; }
@@ -57,9 +57,11 @@ namespace my8.Assistant.Model
         public string MapperFile { get; set; }
         public string ReactJsComponentFolder { get; set; }
         public string ReactJsComponentTemplate { get; set; }
-        public string[] getSubFolferName()
+        public string getSubFolferName(int index)
         {
-                return SubFolderName.Split(';');
+            string[] arr = SubFolderName.Split(';');
+            if (arr.Length >= index+1) return arr[index];
+            return string.Empty;
         }
     }
 }

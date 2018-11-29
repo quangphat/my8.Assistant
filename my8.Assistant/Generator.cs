@@ -154,6 +154,13 @@ namespace my8.Assistant
                 Utility.WriteToFile(m_templateContent, filepath, FileType.Repository);
             }
         }
+        private string buildFilePath(string folder,string name, int subFolderIndex)
+        {
+            string subFolder = ThisApp.AppSetting.getSubFolferName(subFolderIndex);
+            if (!string.IsNullOrWhiteSpace(subFolder))
+                return folder + "\\" + subFolder + "\\" + m_table.CustomName + name;
+            return folder + "\\" + m_table.CustomName + name;
+        }
         public string BuildRepository()
         {
             if (!ThisApp.currentSession.CreateRepository) return null;
@@ -161,19 +168,19 @@ namespace my8.Assistant
             m_templateFilePath = string.Empty;
             if (m_DbType == DatabaseType.SQL)
             {
-                filepath = ThisApp.AppSetting.RepositoryFolder + "\\" + ThisApp.AppSetting.getSubFolferName()[0] + "\\" + m_table.CustomName + "Repository.cs";
+                filepath = buildFilePath(ThisApp.AppSetting.RepositoryFolder, "Repository.cs",0);
                 m_templateFilePath = ThisApp.AppSetting.SqlRepositoryTemplate;
             }
             else if (m_DbType == DatabaseType.Mongo)
             {
 
-                filepath = ThisApp.AppSetting.RepositoryFolder + "\\" + ThisApp.AppSetting.getSubFolferName()[1] + "\\" + m_table.CustomName + "Repository.cs";
+                filepath = buildFilePath(ThisApp.AppSetting.RepositoryFolder, "Repository.cs", 1);
                 m_templateFilePath = ThisApp.AppSetting.MongoRepositoryTemplate;
             }
             else if (m_DbType == DatabaseType.Neo)
             {
 
-                filepath = ThisApp.AppSetting.RepositoryFolder + "\\" + ThisApp.AppSetting.getSubFolferName()[2] + "\\" + m_table.CustomName + "Repository.cs";
+                filepath = buildFilePath(ThisApp.AppSetting.RepositoryFolder, "Repository.cs", 2);
                 m_templateFilePath = ThisApp.AppSetting.NeoRepositoryTemplate;
             }
 
@@ -283,17 +290,17 @@ namespace my8.Assistant
             if (m_DbType == DatabaseType.SQL)
             {
                 temp = Utility.ReadFile(ThisApp.AppSetting.SqlInterfaceTemplate);
-                filepath = ThisApp.AppSetting.InterfaceFolder + "\\" + ThisApp.AppSetting.getSubFolferName()[0] + "\\I" + m_table.CustomName + "Repository.cs";
+                filepath = buildFilePath(ThisApp.AppSetting.InterfaceFolder, "Repository.cs", 0);
             }
             else if (m_DbType == DatabaseType.Mongo)
             {
                 temp = Utility.ReadFile(ThisApp.AppSetting.MongoInterfaceTemplate);
-                filepath = ThisApp.AppSetting.InterfaceFolder + "\\" + ThisApp.AppSetting.getSubFolferName()[1] + "\\I" + m_table.CustomName + "Repository.cs";
+                filepath = buildFilePath(ThisApp.AppSetting.InterfaceFolder, "Repository.cs", 1);
             }
             else if (m_DbType == DatabaseType.Neo)
             {
                 temp = Utility.ReadFile(ThisApp.AppSetting.NeoInterfaceTemplate);
-                filepath = ThisApp.AppSetting.InterfaceFolder + "\\" + ThisApp.AppSetting.getSubFolferName()[2] + "\\I" + m_table.CustomName + "Repository.cs";
+                filepath = buildFilePath(ThisApp.AppSetting.InterfaceFolder, "Repository.cs", 2);
             }
             if (string.IsNullOrWhiteSpace(temp)) return string.Empty;
             m_templateContent = temp.Replace(TheText.ModelName, m_table.CustomName);

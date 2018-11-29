@@ -1,0 +1,44 @@
+using my8GreenCodeApi.IBusiness;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using my8GreenCodeApi.Interfaces;
+using my8GreenCodeApi.Models;
+using AutoMapper;
+using my8GreenCodeApi.Infrastructures;
+namespace my8GreenCodeApi.Business
+{
+    public class {ModelName}Business : I{ModelName}Business
+    {
+        I{ModelName}Repository _{modelname}Repository;
+        public {ModelName}Business(I{ModelName}Repository {modelname}Repo)
+        {
+            _{modelname}Repository = {modelname}Repo;
+        }
+        public async Task<{ModelName}> Create({ModelName} {modelname})
+        {
+            string id = await _{modelname}Repository.Create({modelname});
+            {modelname}.Id = id;
+            return {modelname};
+        }
+
+        public async Task<{ModelName}> Get(string {modelname}Id)
+        {
+            return await _{modelname}Repository.Get({modelname}Id);
+        }
+        public async Task<bool> Update({ModelName} {modelname})
+        {
+            return await _{modelname}Repository.Update({modelname});
+        }
+        public async Task<bool> Delete(string id)
+        {
+            return await _{modelname}Repository.Delete(id);
+        }
+        public async Task<List<{ModelName}>> Search(string searchStr)
+        {
+            searchStr = searchStr.ToLower();
+            return await _{modelname}Repository.Search(searchStr);
+        }
+    }
+}

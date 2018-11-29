@@ -1,0 +1,18 @@
+using my8GreenCodeApi.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+
+namespace my8GreenCodeApi.IBusiness
+{
+    public interface I{ModelName}Business
+    {
+        Task<{ModelName}> Create({ModelName} {modelname});
+        Task<{ModelName}> Get(string {modelname}Id);
+        Task<bool> Update({ModelName} {modelname});
+        Task<bool> Delete(string id);
+        Task<List<{ModelName}>> Search(string searchStr);
+    }
+}
