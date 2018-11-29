@@ -67,7 +67,7 @@ namespace my8.Assistant.Model
         {
             get
             {
-                appSetting = Utility.GetCurrentSetting(ThisApp.Project.ProjectName);
+                appSetting = Utility.GetCurrentSetting(ThisApp.Project.Name);
                 if (appSetting == null)
                     return new ApplicationSetting();
                 return appSetting;
@@ -88,7 +88,7 @@ namespace my8.Assistant.Model
         {
             get
             {
-                projectSessions = Utility.GetProjectSessions(ThisApp.Project.ProjectName);
+                projectSessions = Utility.GetProjectSessions(ThisApp.Project.Name);
                 if (projectSessions == null)
                     return new List<ApplicationSession>();
                 return projectSessions;

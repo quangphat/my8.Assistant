@@ -31,7 +31,7 @@ namespace my8.Assistant
         {
             AppSetting = new ApplicationSetting();
             this.ToEntity(AppSetting);
-            AppSetting.ProjectName = ThisApp.Project.ProjectName;
+            AppSetting.ProjectName = ThisApp.Project.Name;
             Utility.WriteAppSetting(AppSetting);
             Session = new ApplicationSession();
             if(rdSql.Checked)
@@ -47,7 +47,7 @@ namespace my8.Assistant
                 Session.DbType = DatabaseType.Neo;
             }
             groupBox2.ToEntity(Session);
-            Session.ProjectName = ThisApp.Project.ProjectName;
+            Session.ProjectName = ThisApp.Project.Name;
             Utility.WriteSession(Session);
             ThisApp.currentSession = Session;
             ThisApp.AppSetting = AppSetting;
@@ -61,7 +61,7 @@ namespace my8.Assistant
             {
                 if (c.Tag != null && c.Tag.ToString() == "Api")
                 {
-                        c.Enabled = ThisApp.Project.ProjectName.ToLower()=="client"?false:true;
+                        c.Enabled = ThisApp.Project.Name.ToLower()=="client"?false:true;
                         if (c.Controls.Count > 0)
                         {
                             HiddenControl(c);

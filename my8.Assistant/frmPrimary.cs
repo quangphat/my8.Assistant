@@ -229,7 +229,7 @@ namespace my8.Assistant
         private void frmPrimary_Load(object sender, EventArgs e)
         {
             bool setup = Utility.BindDbInfoToProject();
-            if(setup==false)
+            if(setup == false)
             {
                 SetupConnection frmSetupDb = new SetupConnection();
                 frmSetupDb.ShowDialog();
@@ -329,7 +329,7 @@ namespace my8.Assistant
 
         private void btnSettingApplication_Click_1(object sender, EventArgs e)
         {
-            if(ThisApp.Project.ProjectName=="api")
+            if(ThisApp.Project.Type.ToLower() =="api")
             {
                 frmSetupApp frmSetting = new frmSetupApp();
                 frmSetting.ShowDialog();

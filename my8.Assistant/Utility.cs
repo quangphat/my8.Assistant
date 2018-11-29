@@ -17,6 +17,7 @@ namespace my8.Assistant
         private static string AppSettingFile = "AppSetting.txt";
         private static string AppSessionFile = "AppSession.txt";
         public static string LastProjectFile = "LastProject.txt";
+        public static string ProjectsFile = "Projects.txt";
         #region WriteCsFile
         private static void WriteFile(string fileName, string content)
         {
@@ -312,8 +313,75 @@ namespace my8.Assistant
                 return null;
             }
         }
+        public static Project GetLastSelectedProject()
+        {
+            List<Project> lstProject = GetAllProject();
+            if (lstProject == null) return null;
+            return lstProject.Where(p => p.IsLastSelect == true).FirstOrDefault();
+        }
+        private static string ConvertProjectToJson(List<Project> projects)
+        {
+            return JsonConvert.SerializeObject(projects, Formatting.None);
+        }
+        public static void UpdateLastSelectProject(Project project)
+        {
+            List<Project> lstProject = GetAllProject();
+            if (lstProject == null) lstProject = new List<Project>();
+            Project exist = lstProject.FirstOrDefault(p => p.Id == project.Id);
+            lstProject.ForEach(p =>
+            {
+                p.IsLastSelect = false;
+                if (p.Id == project.Id)
+                    p.IsLastSelect = true;
+            });
+            WriteToFileInAppData(ProjectsFile, ConvertProjectToJson(lstProject));
+        }
+        public static void WriteProjects(Project project)
+        {
+            List<Project> lstProject = GetAllProject();
+            if (lstProject == null) lstProject = new List<Project>();
+            Project exist = lstProject.FirstOrDefault(p => p.Id== project.Id || p.Name.Trim() == project.Name.Trim());
+            if (exist != null)
+            {
+                lstProject.Remove(exist);
+                exist = project.DeepClone();
+                lstProject.Add(exist);
+            }
+            else
+            {
+                int maxId = lstProject.Count !=0 ? lstProject.Select(p => p.Id).Max(): 1;
+                project.Id = maxId + 1;
+                lstProject.Add(project);
+            }
+            WriteToFileInAppData(ProjectsFile, ConvertProjectToJson(lstProject));
+        }
+        private static string ReadProjectsFile()
+        {
+            return ReadAppDataFile(ProjectsFile);
+        }
         #endregion
-
+        public static List<Project> GetAllProject()
+        {
+            string projects = ReadProjectsFile();
+            if (string.IsNullOrEmpty(projects))
+            {
+                return null;
+            }
+            try
+            {
+                List<Project> lstProjects = JsonConvert.DeserializeObject<List<Project>>(projects);
+                return lstProjects;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+        public static Project GetProjectById(int id)
+        {
+            Project project = GetAllProject().Where(p => p.Id == id).FirstOrDefault();
+            return project;
+        }
         public static string ToPascalCase(this string the_string)
         {
             // If there are 0 or 1 characters, just return the string.

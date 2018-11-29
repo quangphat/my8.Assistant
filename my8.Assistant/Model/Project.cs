@@ -6,14 +6,17 @@ using System.Threading.Tasks;
 
 namespace my8.Assistant.Model
 {
+    [Serializable]
     public class Project
     {
         public Project()
         {
             Id = 1;
-            ProjectName = "my8";
+            Name = "my8";
         }
         public int Id { get; set; }
-        public string ProjectName;
+        public string Name { get; set; }
+        public bool IsLastSelect {get;set;}
+        public string Type { get; set; }
     }
 }

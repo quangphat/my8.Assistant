@@ -13,6 +13,7 @@ namespace my8.Assistant
 {
     public partial class frmSelectProject : Form
     {
+
         public frmSelectProject()
         {
             InitializeComponent();
@@ -20,19 +21,19 @@ namespace my8.Assistant
 
         private void btnConnect_Click(object sender, EventArgs e)
         {
-            ThisApp.Project = new Project();
-            if (rdClient.Checked)
-            {
-                ThisApp.Project.Id = 1;
-                ThisApp.Project.ProjectName = "client";
-            }
-            if (rdApi.Checked)
-            {
-                ThisApp.Project.Id = 2;
-                ThisApp.Project.ProjectName = "api";
-            }
-            Utility.WriteToFileInAppData(Utility.LastProjectFile, ThisApp.Project.ProjectName.ToLower());
-            ThisApp.AppSetting = Utility.GetCurrentSetting(ThisApp.Project.ProjectName);
+            ThisApp.Project = cbbProjectList.SelectedItem as Project;
+            //if (rdClient.Checked)
+            //{
+            //    ThisApp.Project.Id = 1;
+            //    ThisApp.Project.Name = "client";
+            //}
+            //if (rdApi.Checked)
+            //{
+            //    ThisApp.Project.Id = 2;
+            //    ThisApp.Project.Name = "api";
+            //}
+            Utility.UpdateLastSelectProject(ThisApp.Project);
+            ThisApp.AppSetting = Utility.GetCurrentSetting(ThisApp.Project.Name);
             ThisApp.currentSession = ThisApp.getSessionByDbType(DatabaseType.SQL);
             this.Close();
         }
@@ -50,7 +51,7 @@ namespace my8.Assistant
 
         private void frmSelectProject_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (ThisApp.Project.ProjectName == "my8")
+            if (ThisApp.Project.Name == "my8")
             {
                 Application.Exit();
             }
@@ -58,13 +59,25 @@ namespace my8.Assistant
 
         private void frmSelectProject_Load(object sender, EventArgs e)
         {
-            string lastProject = Utility.ReadAppDataFile(Utility.LastProjectFile);
-            if (lastProject == "api")
+            List<Project> lstProject = Utility.GetAllProject();
+            cbbProjectList.DataSource = lstProject;
+            cbbProjectList.ValueMember = "Id";
+            cbbProjectList.DisplayMember = "Name";
+            Project last = Utility.GetLastSelectedProject();
+            if (last != null)
             {
-                rdApi.Checked = true;
+                cbbProjectList.SelectedValue = last.Id;
             }
-            else
-                rdClient.Checked = true;
+        }
+
+        private void btnCreate_Click(object sender, EventArgs e)
+        {
+            frmCreateProject frmCreate = new frmCreateProject();
+            frmCreate.ShowDialog();
+            List<Project> lstProject = Utility.GetAllProject();
+            cbbProjectList.DataSource = lstProject;
+            cbbProjectList.ValueMember = "Id";
+            cbbProjectList.DisplayMember = "Name";
         }
     }
 }

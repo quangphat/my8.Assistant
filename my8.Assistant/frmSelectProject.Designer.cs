@@ -28,41 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.rdApi = new AutoControl.AutoMetroRadio();
-            this.rdClient = new AutoControl.AutoMetroRadio();
             this.btnConnect = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.btnCreate = new System.Windows.Forms.Button();
+            this.cbbProjectList = new ModernUI.Controls.MetroComboBox();
             this.SuspendLayout();
-            // 
-            // rdApi
-            // 
-            this.rdApi.AutoSize = true;
-            this.rdApi.BindingFor = "";
-            this.rdApi.BindingName = "";
-            this.rdApi.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.rdApi.Location = new System.Drawing.Point(169, 59);
-            this.rdApi.Name = "rdApi";
-            this.rdApi.Size = new System.Drawing.Size(41, 15);
-            this.rdApi.TabIndex = 25;
-            this.rdApi.Text = "Api";
-            this.rdApi.UseSelectable = true;
-            this.rdApi.ValueToCheck = 2;
-            // 
-            // rdClient
-            // 
-            this.rdClient.AutoSize = true;
-            this.rdClient.BindingFor = "";
-            this.rdClient.BindingName = "";
-            this.rdClient.Checked = true;
-            this.rdClient.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.rdClient.Location = new System.Drawing.Point(68, 59);
-            this.rdClient.Name = "rdClient";
-            this.rdClient.Size = new System.Drawing.Size(54, 15);
-            this.rdClient.TabIndex = 24;
-            this.rdClient.TabStop = true;
-            this.rdClient.Text = "Client";
-            this.rdClient.UseSelectable = true;
-            this.rdClient.ValueToCheck = 1;
             // 
             // btnConnect
             // 
@@ -84,15 +54,36 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // btnCreate
+            // 
+            this.btnCreate.Location = new System.Drawing.Point(220, 150);
+            this.btnCreate.Name = "btnCreate";
+            this.btnCreate.Size = new System.Drawing.Size(75, 23);
+            this.btnCreate.TabIndex = 29;
+            this.btnCreate.Text = "New";
+            this.btnCreate.UseVisualStyleBackColor = true;
+            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
+            // 
+            // cbbProjectList
+            // 
+            this.cbbProjectList.FormattingEnabled = true;
+            this.cbbProjectList.Highlight = ModernUI.Controls.MetroComboBox.enumHighLight.Alway;
+            this.cbbProjectList.ItemHeight = 23;
+            this.cbbProjectList.Location = new System.Drawing.Point(43, 12);
+            this.cbbProjectList.Name = "cbbProjectList";
+            this.cbbProjectList.Size = new System.Drawing.Size(220, 29);
+            this.cbbProjectList.TabIndex = 30;
+            this.cbbProjectList.UseSelectable = true;
+            // 
             // frmSelectProject
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(296, 174);
+            this.Controls.Add(this.cbbProjectList);
+            this.Controls.Add(this.btnCreate);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnConnect);
-            this.Controls.Add(this.rdApi);
-            this.Controls.Add(this.rdClient);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmSelectProject";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -101,15 +92,13 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmSelectProject_FormClosed);
             this.Load += new System.EventHandler(this.frmSelectProject_Load);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private AutoControl.AutoMetroRadio rdApi;
-        private AutoControl.AutoMetroRadio rdClient;
         private System.Windows.Forms.Button btnConnect;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Button btnCreate;
+        private ModernUI.Controls.MetroComboBox cbbProjectList;
     }
 }

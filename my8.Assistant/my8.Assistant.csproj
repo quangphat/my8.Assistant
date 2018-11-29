@@ -133,6 +133,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DeepClone.cs" />
+    <Compile Include="frmCreateProject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCreateProject.Designer.cs">
+      <DependentUpon>frmCreateProject.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmGenerateMongoUpdate.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -201,6 +207,9 @@
       <DependentUpon>TheText.resx</DependentUpon>
     </Compile>
     <Compile Include="Utility.cs" />
+    <EmbeddedResource Include="frmCreateProject.resx">
+      <DependentUpon>frmCreateProject.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmGenerateMongoUpdate.resx">
       <DependentUpon>frmGenerateMongoUpdate.cs</DependentUpon>
     </EmbeddedResource>
