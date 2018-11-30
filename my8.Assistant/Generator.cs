@@ -154,12 +154,18 @@ namespace my8.Assistant
                 Utility.WriteToFile(m_templateContent, filepath, FileType.Repository);
             }
         }
-        private string buildFilePath(string folder,string name, int subFolderIndex)
+        private string buildFilePath(string folder,string name, int subFolderIndex,bool isInterface = false)
         {
             string subFolder = ThisApp.AppSetting.getSubFolferName(subFolderIndex);
             if (!string.IsNullOrWhiteSpace(subFolder))
-                return folder + "\\" + subFolder + "\\" + m_table.CustomName + name;
-            return folder + "\\" + m_table.CustomName + name;
+            {
+                if(isInterface)
+                    return $"{folder}\\{subFolder}\\I{m_table.CustomName}{name}";
+                return  $"{folder}\\{subFolder}\\{m_table.CustomName}{name}";
+            }
+            if(isInterface)
+                return $"{folder}\\I{m_table.CustomName}{name}";
+            return $"{folder}\\{m_table.CustomName}{name}";
         }
         public string BuildRepository()
         {
@@ -290,17 +296,17 @@ namespace my8.Assistant
             if (m_DbType == DatabaseType.SQL)
             {
                 temp = Utility.ReadFile(ThisApp.AppSetting.SqlInterfaceTemplate);
-                filepath = buildFilePath(ThisApp.AppSetting.InterfaceFolder, "Repository.cs", 0);
+                filepath = buildFilePath(ThisApp.AppSetting.InterfaceFolder, "Repository.cs", 0, true);
             }
             else if (m_DbType == DatabaseType.Mongo)
             {
                 temp = Utility.ReadFile(ThisApp.AppSetting.MongoInterfaceTemplate);
-                filepath = buildFilePath(ThisApp.AppSetting.InterfaceFolder, "Repository.cs", 1);
+                filepath = buildFilePath(ThisApp.AppSetting.InterfaceFolder, "Repository.cs", 1, true);
             }
             else if (m_DbType == DatabaseType.Neo)
             {
                 temp = Utility.ReadFile(ThisApp.AppSetting.NeoInterfaceTemplate);
-                filepath = buildFilePath(ThisApp.AppSetting.InterfaceFolder, "Repository.cs", 2);
+                filepath = buildFilePath(ThisApp.AppSetting.InterfaceFolder, "Repository.cs", 2, true);
             }
             if (string.IsNullOrWhiteSpace(temp)) return string.Empty;
             m_templateContent = temp.Replace(TheText.ModelName, m_table.CustomName);
