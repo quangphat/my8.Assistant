@@ -2,7 +2,7 @@ using my8GreenCodeApi.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace my8GreenCodeApi.Interfaces
+namespace my8GreenCodeApi.Interface
 {
     public interface I{ModelName}Repository
     {
