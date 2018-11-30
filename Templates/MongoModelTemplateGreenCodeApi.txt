@@ -1,5 +1,6 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using System;
 
 namespace my8GreenCodeApi.Models
 {
@@ -10,5 +11,7 @@ namespace my8GreenCodeApi.Models
         [BsonRepresentation(BsonType.ObjectId)]
 		public string Id { get; set; }
 	[ModelClass]
+	public DateTime CreatedTime { get; set; }
+        public DateTime ModifiedTime { get; set; }
     }
 }
