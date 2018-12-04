@@ -14,9 +14,11 @@ namespace my8.Assistant
 {
     public partial class frmCreateProject : Form
     {
+        Project project;
         public frmCreateProject()
         {
             InitializeComponent();
+            project = new Project();
         }
 
         private void btnCreate_Click(object sender, EventArgs e)
@@ -26,7 +28,6 @@ namespace my8.Assistant
         }
         private void CreateProject()
         {
-            Project project = new Project();
             project.Id = 0;
             this.ToEntity(project);
             Utility.WriteProjects(project);
@@ -34,11 +35,18 @@ namespace my8.Assistant
 
         private void txtProjectName_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.Return)
+            if (e.KeyCode == Keys.Return)
             {
                 CreateProject();
                 this.Close();
             }
+        }
+
+        private void frmCreateProject_Load(object sender, EventArgs e)
+        {
+            if (project.Type == "client")
+                autoMetroRadio1.Checked = true;
+            else autoMetroRadio2.Checked = true;
         }
     }
 }

@@ -13,6 +13,7 @@ namespace my8.Assistant.Model
         {
             Id = 1;
             Name = "my8";
+            Type = "client";
         }
         public int Id { get; set; }
         public string Name { get; set; }
