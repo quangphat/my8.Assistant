@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 using my8GreenCodeApi.Interface;
 using my8GreenCodeApi.Models;
 using AutoMapper;
-using my8GreenCodeApi.Infrastructures;
+using my8GreenCodeApi.Infrastructure;
 namespace my8GreenCodeApi.Business
 {
-    public class {ModelName}Business : I{ModelName}Business
+    public class {ModelName}Business :BaseBusiness, I{ModelName}Business
     {
         I{ModelName}Repository _{modelname}Repository;
-        public {ModelName}Business(I{ModelName}Repository {modelname}Repo)
+        public {ModelName}Business(I{ModelName}Repository {modelname}Repo, CurrentProcess process):base(process)
         {
             _{modelname}Repository = {modelname}Repo;
         }
