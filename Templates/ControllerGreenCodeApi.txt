@@ -14,9 +14,9 @@ namespace my8GreenCodeApi.Controllers
     public class {ModelName}Controller : BaseController
     {
         I{ModelName}Business _biz{ModelName};
-        public {ModelName}Controller(CurrentProcess process,I{ModelName}Business biz{ModelName}) : base(process)
+        public {ModelName}Controller(CurrentProcess process,I{ModelName}Business {modelname}Business) : base(process)
         {
-            _biz{ModelName} = biz{ModelName};
+            _biz{ModelName} = {modelname}Business;
         }
 		[HttpPost]
         [Route("create")]
