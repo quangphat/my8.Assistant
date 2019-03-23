@@ -11,34 +11,34 @@ namespace my8GreenCodeApi.Business
 {
     public class {ModelName}Business :BaseBusiness, I{ModelName}Business
     {
-        I{ModelName}Repository _{modelname}Repository;
-        public {ModelName}Business(I{ModelName}Repository {modelname}Repo, CurrentProcess process):base(process)
+        I{ModelName}Repository _rp{ModelName};
+        public {ModelName}Business(I{ModelName}Repository rp{ModelName}, CurrentProcess process):base(process)
         {
-            _{modelname}Repository = {modelname}Repo;
+            _rp{ModelName} = rp{ModelName};
         }
         public async Task<{ModelName}> Create({ModelName} {modelname})
         {
-            string id = await _{modelname}Repository.Create({modelname});
+            string id = await _rp{ModelName}.Create({modelname});
             {modelname}.Id = id;
             return {modelname};
         }
 
         public async Task<{ModelName}> Get(string {modelname}Id)
         {
-            return await _{modelname}Repository.Get({modelname}Id);
+            return await _rp{ModelName}.Get({modelname}Id);
         }
         public async Task<bool> Update({ModelName} {modelname})
         {
-            return await _{modelname}Repository.Update({modelname});
+            return await _rp{ModelName}.Update({modelname});
         }
         public async Task<bool> Delete(string id)
         {
-            return await _{modelname}Repository.Delete(id);
+            return await_rp{ModelName}.Delete(id);
         }
         public async Task<List<{ModelName}>> Search(string searchStr)
         {
             searchStr = searchStr.ToLower();
-            return await _{modelname}Repository.Search(searchStr);
+            return await _rp{ModelName}.Search(searchStr);
         }
     }
 }
