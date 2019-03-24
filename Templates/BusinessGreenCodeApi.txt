@@ -14,7 +14,7 @@ namespace my8GreenCodeApi.Business
         I{ModelName}Repository _rp{ModelName};
         public {ModelName}Business(I{ModelName}Repository {modelname}Repository, CurrentProcess process):base(process)
         {
-            _rp{ModelName} = rp{ModelName};
+            _rp{ModelName} = {modelname}Repository;
         }
         public async Task<{ModelName}> Create({ModelName} {modelname})
         {
@@ -33,7 +33,7 @@ namespace my8GreenCodeApi.Business
         }
         public async Task<bool> Delete(string id)
         {
-            return await_rp{ModelName}.Delete(id);
+            return await _rp{ModelName}.Delete(id);
         }
         public async Task<List<{ModelName}>> Search(string searchStr)
         {
