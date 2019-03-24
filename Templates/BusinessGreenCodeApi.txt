@@ -18,8 +18,7 @@ namespace my8GreenCodeApi.Business
         }
         public async Task<{ModelName}> Create({ModelName} {modelname})
         {
-            string id = await _rp{ModelName}.Create({modelname});
-            {modelname}.Id = id;
+            await _rp{ModelName}.Create({modelname});
             return {modelname};
         }
 
