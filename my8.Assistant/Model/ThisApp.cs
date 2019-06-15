@@ -1,4 +1,5 @@
 ﻿using MongoDB.Driver;
+using my8.Assistant.Business;
 using Neo4jClient;
 using System;
 using System.Collections.Generic;
@@ -19,9 +20,11 @@ namespace my8.Assistant.Model
         public static DatabaseInfo SqlDbInfo;
         public static DatabaseInfo MongoDbInfo;
         public static DatabaseInfo NeoDbInfo;
-        private static ApplicationSetting appSetting;
+        public static ApplicationSetting AppSetting;
         public static DatabaseType DbType;
         public static Project Project = new Project();
+        private static AppSettingBusiness bizAppSetting = new AppSettingBusiness();
+        private static SessionBusiness bizSession = new SessionBusiness();
         public static IDbConnection SqlCon
         {
             get
@@ -63,36 +66,25 @@ namespace my8.Assistant.Model
                 return neoClient;
             }
         }
-        public static ApplicationSetting AppSetting
-        {
-            get
-            {
-                appSetting = Utility.GetCurrentSetting(ThisApp.Project.Name);
-                if (appSetting == null)
-                    return new ApplicationSetting();
-                return appSetting;
-            }
-            set
-            {
-                appSetting = value;
-            }
-        }
+        //public static async Task<ApplicationSetting> GetAppSetting()
+        //{
+        //    appSetting = await bizAppSetting.GetCurrentSetting(ThisApp.Project.Id);
+        //    return appSetting;
+        //}
+        //public static void SetAppSetting(ApplicationSetting setting)
+        //{
+        //    appSetting = setting;
+        //}
         public static ApplicationSession currentSession;
-        public static ApplicationSession getSessionByDbType(DatabaseType dbType)
-        {
-            ApplicationSession session = ProjectSessions.FirstOrDefault(p => p.ProjectId == Project.Id);
-            return session;
-        }
+        
         public static List<ApplicationSession> projectSessions;
-        public static List<ApplicationSession> ProjectSessions
+
+        public static async Task<List<ApplicationSession>> GetProjectSession()
         {
-            get
-            {
-                projectSessions = Utility.GetProjectSessions(ThisApp.Project.Name);
-                if (projectSessions == null)
-                    return new List<ApplicationSession>();
-                return projectSessions;
-            }
+            projectSessions = await bizSession.GetProjectSessions(ThisApp.Project.Id);
+            if (projectSessions == null)
+                return new List<ApplicationSession>();
+            return projectSessions;
         }
         public static string usingSytem = "using System;" + Environment.NewLine;
         public static string usingDapperExtension = "using DapperExtensions.Mapper;" + Environment.NewLine;

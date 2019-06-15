@@ -13,6 +13,7 @@ using ModernUI.Controls;
 using Microsoft.SqlServer.Management.Smo;
 using Model = my8.Assistant.Model;
 using my8.Assistant.Model;
+using my8.Assistant.Business;
 
 namespace my8.Assistant
 {
@@ -21,13 +22,21 @@ namespace my8.Assistant
         public List<Model.Table> m_lstSqlTable;
         public List<Model.Table> m_lstMongoCollection;
         public  List<Model.Table> m_lstNeoNode;
-        Model.DatabaseHelper m_dbhelper;
+        Model.DatabaseHelper _dbHelper;
         Generator m_Generator;
         DatabaseType m_dbType;
         Model.Table m_Table;
+
+        DatabaseBusiness _bizDatabase;
+        ProjectBusiness _bizProject;
+        SessionBusiness _bizSession;
         public frmPrimary()
         {
             InitializeComponent();
+            _bizDatabase = new DatabaseBusiness();
+            _bizProject = new ProjectBusiness();
+            _bizSession = new SessionBusiness();
+            _dbHelper = new DatabaseHelper();
             lblNotify.Text = "";
             rdRepository.Click += rdRepository_Click;
             rdEntityclass.Click += rdEntityclass_Click;
@@ -38,6 +47,7 @@ namespace my8.Assistant
             rdInsert.Click += rdInsert_Click;
             rdDelete.Click += rdDelete_Click;
             rdUpdate.Click += rdUpdate_Click;
+
             foreach (Control c in groupBox2.Controls)
             {
                 if (c is AutoMetroCheckBox)
@@ -61,13 +71,13 @@ namespace my8.Assistant
                     m_Table.TableType = TableType.table;
                 }
             }
-            m_Generator = new Generator(m_Table, m_dbhelper, m_dbType);
+            
         }
         void rdUpdate_Click(object sender, EventArgs e)
         {
             GetCurrentTable();
             tab.SelectedTab = tabUpdate;
-            rtUpdate.Text = m_Generator.Update();
+            rtUpdate.Text = m_Generator.GetSqlUpdateQuery();
             if (ThisApp.currentSession.AutoCopy)
             {
                 Clipboard.SetText(rtUpdate.Text);
@@ -78,7 +88,7 @@ namespace my8.Assistant
         {
             GetCurrentTable();
             tab.SelectedTab = tabDelete;
-            rtDelete.Text = m_Generator.Delete();
+            rtDelete.Text = m_Generator.GetSqlDeleteQuery();
             if (ThisApp.currentSession.AutoCopy)
             {
                 Clipboard.SetText(rtDelete.Text);
@@ -89,7 +99,7 @@ namespace my8.Assistant
         {
             GetCurrentTable();
             tab.SelectedTab = tabInsert;
-            rtInsert.Text = m_Generator.Insert();
+            rtInsert.Text = m_Generator.GetSqlInsertQuery();
             if (ThisApp.currentSession.AutoCopy)
             {
                 Clipboard.SetText(rtInsert.Text);
@@ -100,7 +110,7 @@ namespace my8.Assistant
         {
             GetCurrentTable();
             tab.SelectedTab = tabSelect;
-            rtSelect.Text = m_Generator.Select();
+            rtSelect.Text = m_Generator.GetSqlSelectQuery();
             if (ThisApp.currentSession.AutoCopy)
             {
                 Clipboard.SetText(rtSelect.Text);
@@ -153,12 +163,12 @@ namespace my8.Assistant
             
         }
 
-        void cb_CheckedChanged(object sender, EventArgs e)
+        async void cb_CheckedChanged(object sender, EventArgs e)
         {
             ApplicationSession session = new ApplicationSession();
             session.DbType = m_dbType;
             groupBox2.ToEntity(session);
-            Utility.WriteSession(session);
+            await _bizSession.CreateSession(session);
             ThisApp.currentSession = session;
         }
 
@@ -180,14 +190,14 @@ namespace my8.Assistant
             {
                 if(ThisApp.Project.Id==1)
                 {
-                    m_Generator.CreateRepositoryFileForClient();
+                    m_Generator.CreateReactJsRepositoryFile();
                 }
                 else
                     rtRepository.Text = m_Generator.BuildRepository();
             }
             if (ThisApp.currentSession.CreateReactModel && m_dbType == DatabaseType.SQL)
             {
-                rtIUOW.Text = m_Generator.CreateReactJsModel(m_dbhelper.GetSqlColumn(m_Table),string.Empty);
+                rtIUOW.Text = m_Generator.CreateReactJsModel(_dbHelper.GetSqlColumn(m_Table),string.Empty);
             }
             if (ThisApp.currentSession.CreateController)
             {
@@ -228,32 +238,20 @@ namespace my8.Assistant
 
         private void frmPrimary_Load(object sender, EventArgs e)
         {
-            bool setup = Utility.BindDbInfoToProject();
-            if(setup == false)
-            {
-                SetupConnection frmSetupDb = new SetupConnection();
-                frmSetupDb.ShowDialog();
-            }
+            //bool setup = Utility.BindDbInfoToProject();
+            //if(setup == false)
+            //{
+            //    SetupConnection frmSetupDb = new SetupConnection();
+            //    frmSetupDb.ShowDialog();
+            //}
             frmSelectProject frmSelectProject = new frmSelectProject();
             frmSelectProject.ShowDialog();
-            m_dbhelper = new Model.DatabaseHelper(Utility.GetCurrentListDbInfo());
-            m_dbhelper.GetAllTableType();
-            InitCbbTable(Model.DatabaseType.SQL);
-
-            m_dbType = DatabaseType.SQL;
-            if (rdSql.Checked)
-                m_dbType = DatabaseType.SQL;
-            if (rdMongo.Checked)
-                m_dbType = DatabaseType.Mongo;
-            if (rdNeo.Checked)
-                m_dbType = DatabaseType.Neo;
-            GetCurrentTable();
             this.ToForm(ThisApp.currentSession);
         }
-        private void InitCbbTable(Model.DatabaseType databaseType)
+        private async Task InitCbbTable(Model.DatabaseType databaseType)
         {
             m_dbType = databaseType;
-            ThisApp.currentSession = ThisApp.getSessionByDbType(m_dbType);
+            ThisApp.currentSession  = await _bizSession.GetSessionByDbType(m_dbType, ThisApp.Project.Id);
             this.ToForm(ThisApp.currentSession);
             ThisApp.DbType = m_dbType;
             cbbTable.DataSource = null;
@@ -278,7 +276,7 @@ namespace my8.Assistant
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-            m_dbhelper.GetAllTableType();
+            _dbHelper.GetAllTableType();
             InitCbbTable(Model.DatabaseType.SQL);
         }
 
@@ -291,19 +289,6 @@ namespace my8.Assistant
         {
             frmSelectProject frmSelectProject = new frmSelectProject();
             frmSelectProject.ShowDialog();
-            m_dbhelper = new Model.DatabaseHelper(Utility.GetCurrentListDbInfo());
-            m_dbhelper.GetAllTableType();
-            InitCbbTable(Model.DatabaseType.SQL);
-            this.ToForm(ThisApp.currentSession);
-
-            m_dbType = DatabaseType.SQL;
-            if (rdSql.Checked)
-                m_dbType = DatabaseType.SQL;
-            if (rdMongo.Checked)
-                m_dbType = DatabaseType.Mongo;
-            if (rdNeo.Checked)
-                m_dbType = DatabaseType.Neo;
-            GetCurrentTable();
         }
 
         private void btnMenu_Click(object sender, EventArgs e)
@@ -338,12 +323,6 @@ namespace my8.Assistant
                 frmSetupAppClient frmSetup = new frmSetupAppClient();
                 frmSetup.ShowDialog();
             }
-            if (rdSql.Checked)
-                m_dbType = DatabaseType.SQL;
-            if (rdMongo.Checked)
-                m_dbType = DatabaseType.Mongo;
-            if (rdNeo.Checked)
-                m_dbType = DatabaseType.Neo;
             groupBox2.ToForm(ThisApp.currentSession);
         }
 
@@ -365,6 +344,11 @@ namespace my8.Assistant
         {
             frmGenerateNeoInsert frm = new frmGenerateNeoInsert();
             frm.ShowDialog();
+        }
+
+        private void txtConsole_KeyUp(object sender, KeyEventArgs e)
+        {
+
         }
     }
 }

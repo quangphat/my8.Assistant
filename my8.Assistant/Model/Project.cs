@@ -14,10 +14,12 @@ namespace my8.Assistant.Model
             Id = 1;
             Name = "my8";
             Type = "client";
+            IsConnectDatabase = false;
         }
         public int Id { get; set; }
         public string Name { get; set; }
         public bool IsLastSelect {get;set;}
         public string Type { get; set; }
+        public bool IsConnectDatabase { get; set; }
     }
 }

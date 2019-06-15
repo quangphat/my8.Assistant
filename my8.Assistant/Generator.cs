@@ -14,16 +14,20 @@ namespace my8.Assistant
         protected StringBuilder m_strBuilder;
         public StringBuilder m_clause1, m_clause2;
         public StringBuilder m_strResult;
-        protected List<Column> m_lstColumn;
+        
         protected string m_templateFilePath;
         protected string m_templateContent;
         protected Table m_table;
         protected DatabaseHelper m_DbHelper;
         protected DatabaseType m_DbType;
+
+        private ApplicationSession _Session;
+        private ApplicationSetting _AppSetting;
         public Generator(Table table, DatabaseHelper dbHelper, DatabaseType dbType)
         {
+            
             m_strBuilder = null;
-            m_lstColumn = null;
+          
             m_clause1 = null;
             m_clause2 = null;
             m_strResult = null;
@@ -33,17 +37,15 @@ namespace my8.Assistant
             m_table = table;
             m_DbHelper = dbHelper;
             m_DbType = dbType;
-            if (m_table != null)
-            {
-                m_lstColumn = m_DbHelper.GetSqlColumn(table);
-            }
         }
-        public string Insert()
+        public string GetSqlInsertQuery()
         {
+            List<Column> columns = m_DbHelper.GetSqlColumn(m_table);
+            if (columns == null|| !columns.Any()) return string.Empty;
             bool first = true;
             m_clause1 = new StringBuilder();
             m_clause2 = new StringBuilder();
-            foreach (Column column in m_lstColumn)
+            foreach (Column column in columns)
             {
                 if (first == true)
                 {
@@ -77,11 +79,13 @@ namespace my8.Assistant
             m_strResult.Append(")");
             return m_strResult.ToString();
         }
-        public string Update()
+        public string GetSqlUpdateQuery()
         {
+            List<Column> columns = m_DbHelper.GetSqlColumn(m_table);
+            if (columns == null || !columns.Any()) return string.Empty;
             bool first = true;
             m_clause1 = new StringBuilder();
-            foreach (Column column in m_lstColumn)
+            foreach (Column column in columns)
             {
                 if (first == true)
                 {
@@ -117,7 +121,7 @@ namespace my8.Assistant
             return m_strResult.ToString();
         }
 
-        public string Select()
+        public string GetSqlSelectQuery()
         {
             m_strResult = new StringBuilder();
             m_strResult.Append("select * from ");
@@ -125,7 +129,7 @@ namespace my8.Assistant
             return m_strResult.ToString();
         }
 
-        public string Delete()
+        public string GetSqlDeleteQuery()
         {
             m_strResult = new StringBuilder();
             m_strResult.Append("delete from ");
@@ -137,7 +141,7 @@ namespace my8.Assistant
             return m_strResult.ToString();
         }
         #region BuildRepository
-        public void CreateRepositoryFileForClient()
+        public void CreateReactJsRepositoryFile()
         {
             if (!ThisApp.currentSession.CreateRepository) return;
             if (ThisApp.AppSetting.AutoCreateFile)
@@ -215,7 +219,7 @@ namespace my8.Assistant
             //insert
             m_strBuilder = new StringBuilder();
             m_strBuilder.Append("string insert = string.Format(@\"");
-            string sql = Insert();
+            string sql = GetSqlInsertQuery();
             m_strBuilder.Append(sql);
             m_strBuilder.Append("\");");
             m_strBuilder.Append(Environment.NewLine);
@@ -223,7 +227,7 @@ namespace my8.Assistant
             //select
             m_strBuilder = new StringBuilder();
             m_strBuilder.Append("string select = string.Format(@\"");
-            sql = Select();
+            sql = GetSqlSelectQuery();
             m_strBuilder.Append(sql);
             m_strBuilder.Append("\");");
             m_strBuilder.Append(Environment.NewLine);
@@ -265,7 +269,7 @@ namespace my8.Assistant
             //update 
             m_strBuilder = new StringBuilder();
             m_strBuilder.Append("string update = string.Format(@\"");
-            sql = Update();
+            sql = GetSqlUpdateQuery();
             m_strBuilder.Append(sql);
             m_strBuilder.Append("\");");
             m_templateContent = m_templateContent.Replace(TheText.SqlUpdate, m_strBuilder.ToString());
@@ -330,9 +334,13 @@ namespace my8.Assistant
         protected string BuildEntitiesClass()
         {
             StringBuilder m_strBuilder = new StringBuilder();
-            if (m_lstColumn == null) return string.Empty;
-            m_lstColumn = m_lstColumn.OrderByDescending(p => p.IsPrimary).ToList();
-            foreach (Column column in m_lstColumn)
+            List<Column> columns = m_DbHelper.GetSqlColumn(m_table);
+            if (columns == null && ThisApp.Project.IsConnectDatabase)
+                return string.Empty;
+            if (columns == null)
+                columns = new List<Column>();
+            columns = columns.OrderByDescending(p => p.IsPrimary).ToList();
+            foreach (Column column in columns)
             {
                 if (column.Datatype == "int")
                 {

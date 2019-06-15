@@ -1,4 +1,5 @@
 ﻿using AutoControl;
+using my8.Assistant.Business;
 using my8.Assistant.Model;
 using System;
 using System.Collections.Generic;
@@ -15,10 +16,12 @@ namespace my8.Assistant
     public partial class frmCreateProject : Form
     {
         Project project;
+        private ProjectBusiness bizProject;
         public frmCreateProject()
         {
             InitializeComponent();
             project = new Project();
+            bizProject = new ProjectBusiness();
         }
 
         private void btnCreate_Click(object sender, EventArgs e)
@@ -30,7 +33,7 @@ namespace my8.Assistant
         {
             project.Id = 0;
             this.ToEntity(project);
-            Utility.WriteProjects(project);
+            bizProject.CreateProject(project);
         }
 
         private void txtProjectName_KeyDown(object sender, KeyEventArgs e)

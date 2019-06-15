@@ -13,6 +13,8 @@ namespace my8.Assistant.Model
         public static List<Table> lstMongoCollection;
         public static List<Table> lstNeoNode;
         public static List<Table> lstNeoRelationship;
+        public DatabaseHelper()
+        { }
         public DatabaseHelper(List<DatabaseInfo> lstDbInfo)
         {
             DatabaseInfo Sql = lstDbInfo.FirstOrDefault(p => p.DbType == DatabaseType.SQL);

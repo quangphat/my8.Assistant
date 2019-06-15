@@ -1,4 +1,5 @@
-﻿using my8.Assistant.Model;
+﻿using my8.Assistant.Business;
+using my8.Assistant.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,28 +14,23 @@ namespace my8.Assistant
 {
     public partial class frmSelectProject : Form
     {
-
+        private ProjectBusiness _bizProject;
+        private AppSettingBusiness _bizAppSetting;
+        private SessionBusiness _bizSession;
         public frmSelectProject()
         {
             InitializeComponent();
+            _bizProject = new ProjectBusiness();
+            _bizAppSetting = new AppSettingBusiness();
+            _bizSession = new SessionBusiness();
         }
 
-        private void btnConnect_Click(object sender, EventArgs e)
+        private async void btnConnect_Click(object sender, EventArgs e)
         {
             ThisApp.Project = cbbProjectList.SelectedItem as Project;
-            //if (rdClient.Checked)
-            //{
-            //    ThisApp.Project.Id = 1;
-            //    ThisApp.Project.Name = "client";
-            //}
-            //if (rdApi.Checked)
-            //{
-            //    ThisApp.Project.Id = 2;
-            //    ThisApp.Project.Name = "api";
-            //}
-            Utility.UpdateLastSelectProject(ThisApp.Project);
-            ThisApp.AppSetting = Utility.GetCurrentSetting(ThisApp.Project.Name);
-            ThisApp.currentSession = ThisApp.getSessionByDbType(DatabaseType.SQL);
+            await _bizProject.UpdateLastSelectProject(ThisApp.Project);
+            ThisApp.AppSetting = await _bizAppSetting.GetCurrentSetting(ThisApp.Project.Id);
+            ThisApp.currentSession = await _bizSession.GetSessionByDbType(DatabaseType.SQL, ThisApp.Project.Id);
             this.Close();
         }
 
@@ -57,24 +53,26 @@ namespace my8.Assistant
             }
         }
 
-        private void frmSelectProject_Load(object sender, EventArgs e)
+        private async void frmSelectProject_Load(object sender, EventArgs e)
         {
-            List<Project> lstProject = Utility.GetAllProject();
+            List<Project> lstProject = await _bizProject.GetAll();
+            if (lstProject == null) return;
             cbbProjectList.DataSource = lstProject;
             cbbProjectList.ValueMember = "Id";
             cbbProjectList.DisplayMember = "Name";
-            Project last = Utility.GetLastSelectedProject();
+            Project last = lstProject.FirstOrDefault(p=>p.IsLastSelect==true);
             if (last != null)
             {
                 cbbProjectList.SelectedValue = last.Id;
             }
         }
 
-        private void btnCreate_Click(object sender, EventArgs e)
+        private async void btnCreate_Click(object sender, EventArgs e)
         {
             frmCreateProject frmCreate = new frmCreateProject();
             frmCreate.ShowDialog();
-            List<Project> lstProject = Utility.GetAllProject();
+            List<Project> lstProject = await _bizProject.GetAll();
+            if (lstProject == null) return;
             cbbProjectList.DataSource = lstProject;
             cbbProjectList.ValueMember = "Id";
             cbbProjectList.DisplayMember = "Name";

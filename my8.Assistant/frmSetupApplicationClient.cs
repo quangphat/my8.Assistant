@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AutoControl;
+using my8.Assistant.Business;
 using my8.Assistant.Model;
 
 namespace my8.Assistant
@@ -17,22 +18,25 @@ namespace my8.Assistant
     {
         ApplicationSetting AppSetting = null;
         ApplicationSession Session = null;
+        private AppSettingBusiness _bizAppSetting;
+        private SessionBusiness _bizSession;
         public frmSetupAppClient()
         {
-            AppSetting = ThisApp.AppSetting;
             InitializeComponent();
             lblNotify.Text = "";
+            _bizAppSetting = new AppSettingBusiness();
+            _bizSession = new SessionBusiness();
         }
 
 
         public delegate void delgUpdateSession();
         public delgUpdateSession updateSession;
-        private void btnSave_Click(object sender, EventArgs e)
+        private async void btnSave_Click(object sender, EventArgs e)
         {
             AppSetting = new ApplicationSetting();
             this.ToEntity(AppSetting);
             AppSetting.ProjectName = ThisApp.Project.Name;
-            Utility.WriteAppSetting(AppSetting);
+            await _bizAppSetting.WriteAppSetting(AppSetting);
             Session = new ApplicationSession();
             if(rdSql.Checked)
             {
@@ -48,7 +52,7 @@ namespace my8.Assistant
             }
             groupBox2.ToEntity(Session);
             Session.ProjectName = ThisApp.Project.Name;
-            Utility.WriteSession(Session);
+            await _bizSession.CreateSession(Session);
             ThisApp.currentSession = Session;
             ThisApp.AppSetting = AppSetting;
             lblNotify.SetText("Thành công", AutoControl.LabelNotify.EnumStatus.Success);
@@ -70,7 +74,7 @@ namespace my8.Assistant
             }
         }
         DatabaseType m_dbType;
-        private void frmSetupApplication_Load(object sender, EventArgs e)
+        private async void frmSetupApplication_Load(object sender, EventArgs e)
         {
             HiddenControl(this);
             if (ThisApp.AppSetting == null) return;
@@ -82,7 +86,7 @@ namespace my8.Assistant
                 m_dbType = DatabaseType.Mongo;
             if (rdNeo.Checked)
                 m_dbType = DatabaseType.Neo;
-            ThisApp.currentSession = ThisApp.getSessionByDbType(m_dbType);
+            ThisApp.currentSession = await _bizSession.GetSessionByDbType(m_dbType, ThisApp.Project.Id);
             groupBox2.ToForm(ThisApp.currentSession);
         }
 
@@ -198,24 +202,24 @@ namespace my8.Assistant
             autoTextBox14.Text = Utility.GetFilePath();
         }
 
-        private void rdSql_Click(object sender, EventArgs e)
+        private async void rdSql_Click(object sender, EventArgs e)
         {
             m_dbType = DatabaseType.SQL;
-            ThisApp.currentSession = ThisApp.getSessionByDbType(m_dbType);
+            ThisApp.currentSession = await _bizSession.GetSessionByDbType(m_dbType, ThisApp.Project.Id);
             groupBox2.ToForm(ThisApp.currentSession);
         }
 
-        private void rdMongo_Click(object sender, EventArgs e)
+        private async void rdMongo_Click(object sender, EventArgs e)
         {
             m_dbType = DatabaseType.Mongo;
-            ThisApp.currentSession = ThisApp.getSessionByDbType(m_dbType);
+            ThisApp.currentSession = await _bizSession.GetSessionByDbType(m_dbType, ThisApp.Project.Id);
             groupBox2.ToForm(ThisApp.currentSession);
         }
 
-        private void rdNeo_Click(object sender, EventArgs e)
+        private async void rdNeo_Click(object sender, EventArgs e)
         {
             m_dbType = DatabaseType.Neo;
-            ThisApp.currentSession = ThisApp.getSessionByDbType(m_dbType);
+            ThisApp.currentSession = await _bizSession.GetSessionByDbType(m_dbType, ThisApp.Project.Id);
             groupBox2.ToForm(ThisApp.currentSession);
         }
 

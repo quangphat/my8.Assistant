@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using AutoControl;
+using my8.Assistant.Business;
 using my8.Assistant.Model;
 
 namespace my8.Assistant
@@ -15,32 +16,35 @@ namespace my8.Assistant
     public partial class SetupConnection : Form
     {
         List<DatabaseInfo> m_lstDbInfo = null;
+        private DatabaseBusiness _bizDatabase;
         public SetupConnection()
         {
             InitializeComponent();
             m_lstDbInfo = new List<DatabaseInfo>();
+            _bizDatabase = new DatabaseBusiness();
             txtServer.Select();
+
         }
 
-        private void SetupConnection_Load(object sender, EventArgs e)
+        private async void SetupConnection_Load(object sender, EventArgs e)
         {
-            m_lstDbInfo = Utility.GetCurrentListDbInfo();
+            m_lstDbInfo = await _bizDatabase.GetByProjectId(ThisApp.AppSetting.ProjectId);
             DatabaseInfo sql = m_lstDbInfo.FirstOrDefault(p => p.DbType == DatabaseType.SQL);
             this.ToForm(sql);
         }
 
-        private void btnWrite_Click(object sender, EventArgs e)
+        private async void btnWrite_Click(object sender, EventArgs e)
         {
             DatabaseInfo dbInfo = new DatabaseInfo();
             this.ToEntity(dbInfo);
-            Utility.WriteDbInfo(dbInfo);
-            m_lstDbInfo = Utility.GetCurrentListDbInfo();
+            await _bizDatabase.CreateDbInfo(dbInfo);
+            m_lstDbInfo = await _bizDatabase.GetByProjectId(ThisApp.AppSetting.ProjectId);
         }
 
 
-        private void btnConnect_Click(object sender, EventArgs e)
+        private async void btnConnect_Click(object sender, EventArgs e)
         {
-            Utility.BindDbInfoToProject();
+            await _bizDatabase.BindDbInfoToProject();
             this.Close();
         }
 
@@ -52,14 +56,14 @@ namespace my8.Assistant
             }
         }
 
-        private void btnRemove_Click(object sender, EventArgs e)
+        private async void btnRemove_Click(object sender, EventArgs e)
         {
             DatabaseInfo dbinfo = new DatabaseInfo();
             this.ToEntity(dbinfo);
             DialogResult result = MessageBox.Show("Bạn có chắc muốn xóa mục này?","", MessageBoxButtons.YesNo);
             if (result == System.Windows.Forms.DialogResult.No) return;
-            Utility.RemoveDbInfo(dbinfo);
-            Utility.BindDbInfoToProject();
+            await _bizDatabase.RemoveDbInfo(dbinfo);
+            await _bizDatabase.BindDbInfoToProject();
         }
 
         private void autoMetroRadio1_Click(object sender, EventArgs e)
