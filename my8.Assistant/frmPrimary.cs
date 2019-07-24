@@ -172,6 +172,16 @@ namespace my8.Assistant
         }
         void btnCreate_Click(object sender, EventArgs e)
         {
+            string content = txtConsole.Text;
+            if (string.IsNullOrWhiteSpace(content))
+                return;
+            string[] arr = StringExtension.GetConsole(content);
+            if(arr.Length>=3)
+            {
+                var consoleObj = StringExtension.GetConsoleObjectMultiple(content);
+                excuteConsoleMultiple(consoleObj);
+                return;
+            }
             var table = GetCurrentTable();
             if (ThisApp.currentSession.CreateClass)
             {
@@ -354,6 +364,7 @@ namespace my8.Assistant
             //string[] arr = StringExtension.GetConsole(content);
             var consoleObj = StringExtension.GetConsoleObjectMultiple(content);
             excuteConsoleMultiple(consoleObj);
+            lblNotify.SetText("Thành công", LabelNotify.EnumStatus.Success);
         }
         private void excuteConsoleMultiple(List<ConsoleObject> objects)
         {
@@ -363,6 +374,7 @@ namespace my8.Assistant
             {
                 excuteConsoleOne(obj);
             }
+
         }
         private void excuteConsoleOne(ConsoleObject consoleObj)
         {
