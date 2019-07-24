@@ -59,6 +59,8 @@ namespace my8.Assistant.Model
         public string ReactJsComponentTemplate { get; set; }
         public string getSubFolferName(int index)
         {
+            if (string.IsNullOrWhiteSpace(SubFolderName))
+                return string.Empty;
             string[] arr = SubFolderName.Split(';');
             if (arr.Length >= index+1) return arr[index];
             return string.Empty;

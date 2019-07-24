@@ -137,7 +137,7 @@ namespace my8.Assistant
         #region BuildRepository
         public void CreateReactJsRepositoryFile(Table table, bool createFile = true)
         {
-            if (!ThisApp.currentSession.CreateRepository) return;
+            
             if (createFile)
             {
                 string filepath = string.Empty;
@@ -167,7 +167,7 @@ namespace my8.Assistant
         }
         public string BuildRepository(Table table, bool createFile = true)
         {
-            if (!ThisApp.currentSession.CreateRepository) return null;
+            
             string filepath = string.Empty;
             m_templateFilePath = string.Empty;
             //if (m_DbType == DatabaseType.SQL)
@@ -216,62 +216,62 @@ namespace my8.Assistant
             }
             //Nếu dùng dapper thuần( sql script)
             //insert
-            m_strBuilder = new StringBuilder();
-            m_strBuilder.Append("string insert = string.Format(@\"");
-            string sql = GetSqlInsertQuery(table);
-            m_strBuilder.Append(sql);
-            m_strBuilder.Append("\");");
-            m_strBuilder.Append(Environment.NewLine);
-            m_templateContent = m_templateContent.Replace(TheText.SqlCreate, m_strBuilder.ToString());
-            //select
-            m_strBuilder = new StringBuilder();
-            m_strBuilder.Append("string select = string.Format(@\"");
-            sql = GetSqlSelectQuery(table);
-            m_strBuilder.Append(sql);
-            m_strBuilder.Append("\");");
-            m_strBuilder.Append(Environment.NewLine);
-            m_templateContent = m_templateContent.Replace(TheText.SqlGetAll, m_strBuilder.ToString());
-            //FindById
-            m_strBuilder = new StringBuilder();
-            m_strBuilder.Append("string select = $\"");
-            m_strBuilder.Append($"select * from {table.CustomName}  where {table.PrimaryKeyCol} = ");
-            m_strBuilder.Append("{id}\";");
-            m_templateContent = m_templateContent.Replace(TheText.SqlFindById, m_strBuilder.ToString());
-            //Find by entity
-            m_strBuilder = new StringBuilder();
-            m_strBuilder.Append("return Connection.Query<");
-            m_strBuilder.Append(table.CustomName);
-            m_strBuilder.Append(">(\"select * from ");
-            m_strBuilder.Append(table.CustomName);
-            m_strBuilder.Append(" where ");
-            m_strBuilder.Append(table.PrimaryKeyCol);
-            m_strBuilder.Append(" = @Id)\"");
-            m_strBuilder.Append(", param: new { Id = ");
-            m_strBuilder.Append("entity.");
-            m_strBuilder.Append(table.PrimaryKeyCol);
-            m_strBuilder.Append(" }, transaction: Transaction).FirstOrDefault();");
-            m_templateContent = m_templateContent.Replace(TheText.SqlFind, m_strBuilder.ToString());
-            //remove by Id
-            m_strBuilder = new StringBuilder();
-            m_strBuilder.Append("Connection.Execute(\"delete from ");
-            m_strBuilder.Append(table.CustomName);
-            m_strBuilder.Append(" where ");
-            m_strBuilder.Append(table.PrimaryKeyCol);
-            m_strBuilder.Append(" = @Id\", param: new { Id = id }, transaction: Transaction);");
-            m_templateContent = m_templateContent.Replace(TheText.SqlRemoveById, m_strBuilder.ToString());
-            //remove by entity
-            m_strBuilder = new StringBuilder();
-            m_strBuilder.Append("Remove(entity.");
-            m_strBuilder.Append(table.PrimaryKeyCol);
-            m_strBuilder.Append(");");
-            m_templateContent = m_templateContent.Replace(TheText.SqlRemove, m_strBuilder.ToString());
-            //update 
-            m_strBuilder = new StringBuilder();
-            m_strBuilder.Append("string update = string.Format(@\"");
-            sql = GetSqlUpdateQuery(table);
-            m_strBuilder.Append(sql);
-            m_strBuilder.Append("\");");
-            m_templateContent = m_templateContent.Replace(TheText.SqlUpdate, m_strBuilder.ToString());
+            //m_strBuilder = new StringBuilder();
+            //m_strBuilder.Append("string insert = string.Format(@\"");
+            //string sql = GetSqlInsertQuery(table);
+            //m_strBuilder.Append(sql);
+            //m_strBuilder.Append("\");");
+            //m_strBuilder.Append(Environment.NewLine);
+            //m_templateContent = m_templateContent.Replace(TheText.SqlCreate, m_strBuilder.ToString());
+            ////select
+            //m_strBuilder = new StringBuilder();
+            //m_strBuilder.Append("string select = string.Format(@\"");
+            //sql = GetSqlSelectQuery(table);
+            //m_strBuilder.Append(sql);
+            //m_strBuilder.Append("\");");
+            //m_strBuilder.Append(Environment.NewLine);
+            //m_templateContent = m_templateContent.Replace(TheText.SqlGetAll, m_strBuilder.ToString());
+            ////FindById
+            //m_strBuilder = new StringBuilder();
+            //m_strBuilder.Append("string select = $\"");
+            //m_strBuilder.Append($"select * from {table.CustomName}  where {table.PrimaryKeyCol} = ");
+            //m_strBuilder.Append("{id}\";");
+            //m_templateContent = m_templateContent.Replace(TheText.SqlFindById, m_strBuilder.ToString());
+            ////Find by entity
+            //m_strBuilder = new StringBuilder();
+            //m_strBuilder.Append("return Connection.Query<");
+            //m_strBuilder.Append(table.CustomName);
+            //m_strBuilder.Append(">(\"select * from ");
+            //m_strBuilder.Append(table.CustomName);
+            //m_strBuilder.Append(" where ");
+            //m_strBuilder.Append(table.PrimaryKeyCol);
+            //m_strBuilder.Append(" = @Id)\"");
+            //m_strBuilder.Append(", param: new { Id = ");
+            //m_strBuilder.Append("entity.");
+            //m_strBuilder.Append(table.PrimaryKeyCol);
+            //m_strBuilder.Append(" }, transaction: Transaction).FirstOrDefault();");
+            //m_templateContent = m_templateContent.Replace(TheText.SqlFind, m_strBuilder.ToString());
+            ////remove by Id
+            //m_strBuilder = new StringBuilder();
+            //m_strBuilder.Append("Connection.Execute(\"delete from ");
+            //m_strBuilder.Append(table.CustomName);
+            //m_strBuilder.Append(" where ");
+            //m_strBuilder.Append(table.PrimaryKeyCol);
+            //m_strBuilder.Append(" = @Id\", param: new { Id = id }, transaction: Transaction);");
+            //m_templateContent = m_templateContent.Replace(TheText.SqlRemoveById, m_strBuilder.ToString());
+            ////remove by entity
+            //m_strBuilder = new StringBuilder();
+            //m_strBuilder.Append("Remove(entity.");
+            //m_strBuilder.Append(table.PrimaryKeyCol);
+            //m_strBuilder.Append(");");
+            //m_templateContent = m_templateContent.Replace(TheText.SqlRemove, m_strBuilder.ToString());
+            ////update 
+            //m_strBuilder = new StringBuilder();
+            //m_strBuilder.Append("string update = string.Format(@\"");
+            //sql = GetSqlUpdateQuery(table);
+            //m_strBuilder.Append(sql);
+            //m_strBuilder.Append("\");");
+            //m_templateContent = m_templateContent.Replace(TheText.SqlUpdate, m_strBuilder.ToString());
             //search by string
             //m_strBuilder = new StringBuilder();
             //m_strBuilder.Append("");

@@ -120,7 +120,7 @@ namespace my8.Assistant
                 }
                 else if (type.Value == ConsoleDefinition.react_model)
                 {
-                    consoleObj.ObjectType = ObjectType.react_model;
+                    consoleObj.ObjectType = ObjectType.react_repository;
                 }
                 else if (type.Value == ConsoleDefinition.biz_interface)
                 {
@@ -149,6 +149,10 @@ namespace my8.Assistant
                 else if (type.Value == ConsoleDefinition.mapper)
                 {
                     consoleObj.ObjectType = ObjectType.mapper;
+                }
+                else if (type.Value == ConsoleDefinition.react_repository)
+                {
+                    consoleObj.ObjectType = ObjectType.react_repository;
                 }
                 else
                 {

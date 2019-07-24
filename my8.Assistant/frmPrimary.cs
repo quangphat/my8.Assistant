@@ -405,7 +405,7 @@ namespace my8.Assistant
                     m_Generator.BuildRepository(table);
                     return;
                 }
-                if (consoleObj.ObjectType == ObjectType.react_model)
+                if (consoleObj.ObjectType == ObjectType.react_repository)
                 {
                     m_Generator.CreateReactJsRepositoryFile(table);
                     return;

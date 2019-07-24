@@ -77,7 +77,7 @@ namespace my8.Assistant
         {
             HiddenControl(this);
             if (ThisApp.AppSetting == null) return;
-            this.ToForm(AppSetting);
+            this.ToForm(ThisApp.AppSetting);
             
             //if (rdSql.Checked)
             //    m_dbType = DatabaseType.SQL;

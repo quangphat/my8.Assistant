@@ -12,6 +12,7 @@ namespace my8.Assistant
         public const string model = "class";
         public const string view = "view";
         public const string react_component = "react-component";
+        public const string react_repository = "react-repository";
         public const string react_model = "react-model";
         public const string biz_interface = "business-interface";
         public const string biz_class = "business";
@@ -41,10 +42,15 @@ namespace my8.Assistant
             {"rp-interface","repository-interface" },
             {"repo-interface","repository-interface" },
             {"rp-class","repository-class" },
+            
             {"repo-class","repository-class" },
             {"repository-class","repository-class" },
             {"repository","repository-class" },
             {"react-model","react-model" },
+            {"react-repository","react-repository" },
+            {"react-rp","react-repository" },
+            {"rp-react","react-repository" },
+            {"repository-react","react-repository" },
             {"react-component","react-component" },
             {"biz-di","business-denpendency-injection" },
             {"business-denpendency-injection","business-denpendency-injection" },

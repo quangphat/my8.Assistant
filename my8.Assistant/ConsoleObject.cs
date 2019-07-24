@@ -17,7 +17,7 @@ namespace my8.Assistant
         rp_interface = 7,
         rp_class = 8,
         rp_di = 9,
-        react_model = 10,
+        react_repository = 10,
         react_component = 11,
         mapper = 12
     }
