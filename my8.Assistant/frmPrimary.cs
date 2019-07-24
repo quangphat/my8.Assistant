@@ -24,7 +24,7 @@ namespace my8.Assistant
         public  List<Model.Table> m_lstNeoNode;
         Model.DatabaseHelper _dbHelper;
         Generator m_Generator;
-        DatabaseType m_dbType;
+       
         Model.Table m_Table;
 
         DatabaseBusiness _bizDatabase;
@@ -59,25 +59,20 @@ namespace my8.Assistant
             }
         }
 
-        private void GetCurrentTable()
+        private Model.Table GetCurrentTable()
         {
-            m_Table = cbbTable.SelectedItem as Model.Table;
-            if (m_Table == null)
-            {
-                if (!string.IsNullOrEmpty(cbbTable.Text))
-                {
-                    m_Table = new Model.Table();
-                    m_Table.RealName = cbbTable.Text;
-                    m_Table.TableType = TableType.table;
-                }
-            }
+            m_Table = new Model.Table {
+
+               RealName = txtConsole.Text
+            };
             
+            return m_Table;
         }
         void rdUpdate_Click(object sender, EventArgs e)
         {
-            GetCurrentTable();
+            var table = GetCurrentTable();
             tab.SelectedTab = tabUpdate;
-            rtUpdate.Text = m_Generator.GetSqlUpdateQuery();
+            rtUpdate.Text = m_Generator.GetSqlUpdateQuery(table);
             if (ThisApp.currentSession.AutoCopy)
             {
                 Clipboard.SetText(rtUpdate.Text);
@@ -86,9 +81,9 @@ namespace my8.Assistant
 
         void rdDelete_Click(object sender, EventArgs e)
         {
-            GetCurrentTable();
+            var table  = GetCurrentTable();
             tab.SelectedTab = tabDelete;
-            rtDelete.Text = m_Generator.GetSqlDeleteQuery();
+            rtDelete.Text = m_Generator.GetSqlDeleteQuery(table);
             if (ThisApp.currentSession.AutoCopy)
             {
                 Clipboard.SetText(rtDelete.Text);
@@ -97,9 +92,9 @@ namespace my8.Assistant
 
         void rdInsert_Click(object sender, EventArgs e)
         {
-            GetCurrentTable();
+            var table = GetCurrentTable();
             tab.SelectedTab = tabInsert;
-            rtInsert.Text = m_Generator.GetSqlInsertQuery();
+            rtInsert.Text = m_Generator.GetSqlInsertQuery(table);
             if (ThisApp.currentSession.AutoCopy)
             {
                 Clipboard.SetText(rtInsert.Text);
@@ -108,9 +103,9 @@ namespace my8.Assistant
 
         void rdSSelect_Click(object sender, EventArgs e)
         {
-            GetCurrentTable();
+            var table = GetCurrentTable();
             tab.SelectedTab = tabSelect;
-            rtSelect.Text = m_Generator.GetSqlSelectQuery();
+            rtSelect.Text = m_Generator.GetSqlSelectQuery(table);
             if (ThisApp.currentSession.AutoCopy)
             {
                 Clipboard.SetText(rtSelect.Text);
@@ -129,9 +124,9 @@ namespace my8.Assistant
 
         void rdInterface_Click(object sender, EventArgs e)
         {
-            GetCurrentTable();
+            var table = GetCurrentTable();
             tab.SelectedTab = tabInterface;
-            rtInterface.Text = m_Generator.BuildInterface();
+            rtInterface.Text = m_Generator.BuildInterface(table);
             if (ThisApp.currentSession.AutoCopy && !string.IsNullOrWhiteSpace(rtRepository.Text))
             {
                 Clipboard.SetText(rtInterface.Text);
@@ -140,9 +135,9 @@ namespace my8.Assistant
 
         void rdEntityclass_Click(object sender, EventArgs e)
         {
-            GetCurrentTable();
+            var table = GetCurrentTable();
             tab.SelectedTab = tabClass;
-            rtClass.Text = m_Generator.CreateClass();
+            rtClass.Text = m_Generator.CreateClass(table);
             if (ThisApp.currentSession.AutoCopy)
             {
                 Clipboard.SetText(rtClass.Text);
@@ -150,9 +145,9 @@ namespace my8.Assistant
         }
         void rdRepository_Click(object sender, EventArgs e)
         {
-            GetCurrentTable();
+            var table = GetCurrentTable();
             tab.SelectedTab = tabRepository;
-            rtRepository.Text = m_Generator.BuildRepository();
+            rtRepository.Text = m_Generator.BuildRepository(table);
             if (ThisApp.currentSession.AutoCopy)
             {
                 Clipboard.SetText(rtRepository.Text);
@@ -163,12 +158,12 @@ namespace my8.Assistant
             
         }
 
-        async void cb_CheckedChanged(object sender, EventArgs e)
+        void cb_CheckedChanged(object sender, EventArgs e)
         {
             ApplicationSession session = new ApplicationSession();
-            session.DbType = m_dbType;
+            //session.DbType = m_dbType;
             groupBox2.ToEntity(session);
-            await _bizSession.CreateSession(session);
+            _bizSession.CreateSession(session);
             ThisApp.currentSession = session;
         }
 
@@ -177,52 +172,53 @@ namespace my8.Assistant
         }
         void btnCreate_Click(object sender, EventArgs e)
         {
-            GetCurrentTable();
+            var table = GetCurrentTable();
             if (ThisApp.currentSession.CreateClass)
             {
-                rtClass.Text = m_Generator.CreateClass();
+                rtClass.Text = m_Generator.CreateClass(table);
             }
             if (ThisApp.currentSession.CreateInterface)
             {
-                rtInterface.Text = m_Generator.BuildInterface();
+                rtInterface.Text = m_Generator.BuildInterface(table);
             }
             if (ThisApp.currentSession.CreateRepository)
             {
                 if(ThisApp.Project.Id==1)
                 {
-                    m_Generator.CreateReactJsRepositoryFile();
+                    m_Generator.CreateReactJsRepositoryFile(table);
                 }
                 else
-                    rtRepository.Text = m_Generator.BuildRepository();
+                    rtRepository.Text = m_Generator.BuildRepository(table);
             }
-            if (ThisApp.currentSession.CreateReactModel && m_dbType == DatabaseType.SQL)
-            {
-                rtIUOW.Text = m_Generator.CreateReactJsModel(_dbHelper.GetSqlColumn(m_Table),string.Empty);
-            }
+            //if (ThisApp.currentSession.CreateReactModel && m_dbType == DatabaseType.SQL)
+            //{
+            //    rtIUOW.Text = m_Generator.CreateReactJsModel(table,_dbHelper.GetSqlColumn(m_Table),string.Empty);
+            //}
             if (ThisApp.currentSession.CreateController)
             {
-                m_Generator.CreateController();
+                m_Generator.CreateController(table);
             }
             if (ThisApp.currentSession.CreateUnitTest)
             {
-                m_Generator.CreateUnitTestClass();
+                m_Generator.CreateUnitTestClass(table);
             }
             if (ThisApp.currentSession.CreateDependencyInjection)
             {
-                m_Generator.CreateDependencyInjection();
+                m_Generator.CreateDependencyInjection(table, ObjectType.biz_di);
+                m_Generator.CreateDependencyInjection(table, ObjectType.rp_di);
             }
             if (ThisApp.currentSession.CreateBusiness)
             {
-                m_Generator.CreateBusinessClass();
-                m_Generator.CreateBusinessInterface();
+                m_Generator.CreateBusinessClass(table);
+                m_Generator.CreateBusinessInterface(table);
             }
             if (ThisApp.currentSession.CreateMapper)
             {
-                m_Generator.CreateMapper();
+                m_Generator.CreateMapper(table);
             }
             if(ThisApp.currentSession.CreateReactComponent)
             {
-                m_Generator.CreateReactComponent();
+                m_Generator.CreateReactComponent(table);
             }
             lblNotify.SetText("Thành công", LabelNotify.EnumStatus.Success);
             //rdRepository.PerformClick();
@@ -247,27 +243,29 @@ namespace my8.Assistant
             frmSelectProject frmSelectProject = new frmSelectProject();
             frmSelectProject.ShowDialog();
             this.ToForm(ThisApp.currentSession);
+            this.Text = ThisApp.Project.Name;
+            
+            m_Generator = new Generator();
         }
-        private async Task InitCbbTable(Model.DatabaseType databaseType)
+        private void InitCbbTable()
         {
-            m_dbType = databaseType;
-            ThisApp.currentSession  = await _bizSession.GetSessionByDbType(m_dbType, ThisApp.Project.Id);
+            ThisApp.currentSession  = _bizSession.GetSessionByDbType( ThisApp.Project.Id);
             this.ToForm(ThisApp.currentSession);
-            ThisApp.DbType = m_dbType;
-            cbbTable.DataSource = null;
-            if(databaseType== Model.DatabaseType.SQL)
-            {
-                cbbTable.DataSource = Model.DatabaseHelper.lstSqlTable;
-            }
-            if (databaseType == Model.DatabaseType.Mongo)
-            {
-                cbbTable.DataSource = Model.DatabaseHelper.lstMongoCollection;
-            }
-            if (databaseType == Model.DatabaseType.Neo)
-            {
-                cbbTable.DataSource = Model.DatabaseHelper.lstNeoNode;
-            }
-            cbbTable.DisplayMember = "RealName";
+            
+            //cbbTable.DataSource = null;
+            //if(databaseType== Model.DatabaseType.SQL)
+            //{
+            //    cbbTable.DataSource = Model.DatabaseHelper.lstSqlTable;
+            //}
+            //if (databaseType == Model.DatabaseType.Mongo)
+            //{
+            //    cbbTable.DataSource = Model.DatabaseHelper.lstMongoCollection;
+            //}
+            //if (databaseType == Model.DatabaseType.Neo)
+            //{
+            //    cbbTable.DataSource = Model.DatabaseHelper.lstNeoNode;
+            //}
+            //cbbTable.DisplayMember = "RealName";
         }
         public void LoadTable()
         {
@@ -276,8 +274,8 @@ namespace my8.Assistant
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-            _dbHelper.GetAllTableType();
-            InitCbbTable(Model.DatabaseType.SQL);
+            //_dbHelper.GetAllTableType();
+            InitCbbTable();
         }
 
         private void btnTableName_Click(object sender, EventArgs e)
@@ -298,17 +296,17 @@ namespace my8.Assistant
 
         private void metroRadioButton9_Click(object sender, EventArgs e)
         {
-            InitCbbTable(Model.DatabaseType.Mongo);
+            InitCbbTable();
         }
 
         private void metroRadioButton7_Click(object sender, EventArgs e)
         {
-            InitCbbTable(Model.DatabaseType.Neo);
+            InitCbbTable();
         }
 
         private void metroRadioButton8_Click(object sender, EventArgs e)
         {
-            InitCbbTable(Model.DatabaseType.SQL);
+            InitCbbTable();
         }
 
         private void btnSettingApplication_Click_1(object sender, EventArgs e)
@@ -348,7 +346,94 @@ namespace my8.Assistant
 
         private void txtConsole_KeyUp(object sender, KeyEventArgs e)
         {
+            if (e.KeyCode != Keys.Return)
+                return;
+            string content = txtConsole.Text;
+            if (string.IsNullOrWhiteSpace(content))
+                return;
+            //string[] arr = StringExtension.GetConsole(content);
+            var consoleObj = StringExtension.GetConsoleObjectMultiple(content);
+            excuteConsoleMultiple(consoleObj);
+        }
+        private void excuteConsoleMultiple(List<ConsoleObject> objects)
+        {
+            if (objects == null)
+                return;
+            foreach(ConsoleObject obj in objects)
+            {
+                excuteConsoleOne(obj);
+            }
+        }
+        private void excuteConsoleOne(ConsoleObject consoleObj)
+        {
+            if (!consoleObj.canExcuteCommand)
+            {
+                lblNotify.SetText(consoleObj.error, LabelNotify.EnumStatus.Failed);
+                return;
+            }
 
+            var table = new Model.Table
+            {
+                RealName = consoleObj.ObjectName
+            };
+            if (consoleObj.Command == CommandType.create)
+            {
+                if (consoleObj.ObjectType == ObjectType.model)
+                {
+                    m_Generator.CreateClass(table);
+                    return;
+                }
+                if (consoleObj.ObjectType == ObjectType.rp_interface)
+                {
+                    m_Generator.BuildInterface(table);
+                    return;
+                }
+                if (consoleObj.ObjectType == ObjectType.rp_class)
+                {
+                    m_Generator.BuildRepository(table);
+                    return;
+                }
+                if (consoleObj.ObjectType == ObjectType.react_model)
+                {
+                    m_Generator.CreateReactJsRepositoryFile(table);
+                    return;
+                }
+                if (consoleObj.ObjectType == ObjectType.react_component)
+                {
+                    m_Generator.CreateReactComponent(table);
+                    return;
+                }
+                if (consoleObj.ObjectType == ObjectType.controller)
+                {
+                    m_Generator.CreateController(table);
+                    return;
+                }
+                if (consoleObj.ObjectType == ObjectType.rp_di)
+                {
+                    m_Generator.CreateDependencyInjection(table, ObjectType.rp_di);
+                    return;
+                }
+                if (consoleObj.ObjectType == ObjectType.biz_di)
+                {
+                    m_Generator.CreateDependencyInjection(table, ObjectType.biz_di);
+                    return;
+                }
+                if (consoleObj.ObjectType == ObjectType.biz_interface)
+                {
+                    m_Generator.CreateBusinessInterface(table);
+                    return;
+                }
+                if (consoleObj.ObjectType == ObjectType.biz_class)
+                {
+                    m_Generator.CreateBusinessClass(table);
+                    return;
+                }
+                if (consoleObj.ObjectType == ObjectType.mapper)
+                {
+                    m_Generator.CreateMapper(table);
+                    return;
+                }
+            }
         }
     }
 }

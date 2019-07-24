@@ -51,7 +51,6 @@
             this.autoMetroCheckBox3 = new AutoControl.AutoMetroCheckBox();
             this.autoMetroCheckBox2 = new AutoControl.AutoMetroCheckBox();
             this.autoMetroCheckBox1 = new AutoControl.AutoMetroCheckBox();
-            this.cbbTable = new ModernUI.Controls.MetroSearchComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.rdDelete = new ModernUI.Controls.MetroRadioButton();
             this.rdSSelect = new ModernUI.Controls.MetroRadioButton();
@@ -416,16 +415,6 @@
             this.autoMetroCheckBox1.TabIndex = 0;
             this.autoMetroCheckBox1.Text = "Tạo interface repository";
             this.autoMetroCheckBox1.UseSelectable = true;
-            // 
-            // cbbTable
-            // 
-            this.cbbTable.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.cbbTable.FormattingEnabled = true;
-            this.cbbTable.Location = new System.Drawing.Point(9, 23);
-            this.cbbTable.Margin = new System.Windows.Forms.Padding(4);
-            this.cbbTable.Name = "cbbTable";
-            this.cbbTable.Size = new System.Drawing.Size(732, 33);
-            this.cbbTable.TabIndex = 61;
             // 
             // groupBox1
             // 
@@ -956,16 +945,15 @@
             // 
             this.txtConsole.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtConsole.Location = new System.Drawing.Point(9, 74);
+            this.txtConsole.Location = new System.Drawing.Point(0, 25);
             this.txtConsole.Name = "txtConsole";
-            this.txtConsole.Size = new System.Drawing.Size(881, 22);
+            this.txtConsole.Size = new System.Drawing.Size(742, 22);
             this.txtConsole.TabIndex = 91;
             this.txtConsole.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtConsole_KeyUp);
             // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.txtConsole);
-            this.groupBox3.Controls.Add(this.cbbTable);
             this.groupBox3.Controls.Add(this.btnRefresh);
             this.groupBox3.Controls.Add(this.btnCreate);
             this.groupBox3.Location = new System.Drawing.Point(5, 4);
@@ -1032,7 +1020,6 @@
         private AutoControl.AutoMetroCheckBox autoMetroCheckBox2;
         private AutoControl.AutoMetroCheckBox autoMetroCheckBox1;
         private ModernUI.Controls.MetroLink btnSettingApplication;
-        private ModernUI.Controls.MetroSearchComboBox cbbTable;
         private AutoControl.AutoMetroCheckBox autoMetroCheckBox6;
         private AutoControl.AutoMetroCheckBox autoMetroCheckBox7;
         private AutoControl.AutoMetroCheckBox autoMetroCheckBox8;

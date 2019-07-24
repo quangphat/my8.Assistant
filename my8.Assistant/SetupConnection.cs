@@ -26,25 +26,25 @@ namespace my8.Assistant
 
         }
 
-        private async void SetupConnection_Load(object sender, EventArgs e)
+        private void SetupConnection_Load(object sender, EventArgs e)
         {
-            m_lstDbInfo = await _bizDatabase.GetByProjectId(ThisApp.AppSetting.ProjectId);
-            DatabaseInfo sql = m_lstDbInfo.FirstOrDefault(p => p.DbType == DatabaseType.SQL);
+            m_lstDbInfo = _bizDatabase.GetByProjectId(ThisApp.AppSetting.ProjectId);
+            DatabaseInfo sql = m_lstDbInfo.FirstOrDefault();
             this.ToForm(sql);
         }
 
-        private async void btnWrite_Click(object sender, EventArgs e)
+        private void btnWrite_Click(object sender, EventArgs e)
         {
             DatabaseInfo dbInfo = new DatabaseInfo();
             this.ToEntity(dbInfo);
-            await _bizDatabase.CreateDbInfo(dbInfo);
-            m_lstDbInfo = await _bizDatabase.GetByProjectId(ThisApp.AppSetting.ProjectId);
+            _bizDatabase.CreateDbInfo(dbInfo);
+            m_lstDbInfo = _bizDatabase.GetByProjectId(ThisApp.AppSetting.ProjectId);
         }
 
 
-        private async void btnConnect_Click(object sender, EventArgs e)
+        private void btnConnect_Click(object sender, EventArgs e)
         {
-            await _bizDatabase.BindDbInfoToProject();
+            //_bizDatabase.BindDbInfoToProject();
             this.Close();
         }
 
@@ -56,23 +56,23 @@ namespace my8.Assistant
             }
         }
 
-        private async void btnRemove_Click(object sender, EventArgs e)
+        private void btnRemove_Click(object sender, EventArgs e)
         {
             DatabaseInfo dbinfo = new DatabaseInfo();
             this.ToEntity(dbinfo);
             DialogResult result = MessageBox.Show("Bạn có chắc muốn xóa mục này?","", MessageBoxButtons.YesNo);
             if (result == System.Windows.Forms.DialogResult.No) return;
-            await _bizDatabase.RemoveDbInfo(dbinfo);
-            await _bizDatabase.BindDbInfoToProject();
+            _bizDatabase.RemoveDbInfo(dbinfo);
+            //_bizDatabase.BindDbInfoToProject();
         }
 
         private void autoMetroRadio1_Click(object sender, EventArgs e)
         {
-            DatabaseInfo dbinfo = m_lstDbInfo.FirstOrDefault(p => p.DbType == DatabaseType.SQL);
+            DatabaseInfo dbinfo = m_lstDbInfo.FirstOrDefault();
             if (dbinfo == null)
             {
                 dbinfo = new DatabaseInfo();
-                dbinfo.DbType = DatabaseType.SQL;
+                //dbinfo.DbType = DatabaseType.SQL;
             }
                
             this.ToForm(dbinfo);
@@ -81,22 +81,22 @@ namespace my8.Assistant
 
         private void autoMetroRadio5_Click(object sender, EventArgs e)
         {
-            DatabaseInfo dbinfo = m_lstDbInfo.FirstOrDefault(p => p.DbType == DatabaseType.Mongo);
+            DatabaseInfo dbinfo = m_lstDbInfo.FirstOrDefault();
             if (dbinfo == null)
             {
                 dbinfo = new DatabaseInfo();
-                dbinfo.DbType = DatabaseType.Mongo;
+                //dbinfo.DbType = DatabaseType.Mongo;
             }
             this.ToForm(dbinfo);
         }
 
         private void autoMetroRadio4_Click(object sender, EventArgs e)
         {
-            DatabaseInfo dbinfo = m_lstDbInfo.FirstOrDefault(p => p.DbType == DatabaseType.Neo);
+            DatabaseInfo dbinfo = m_lstDbInfo.FirstOrDefault();
             if (dbinfo == null)
             {
                 dbinfo = new DatabaseInfo();
-                dbinfo.DbType = DatabaseType.Neo;
+                //dbinfo.DbType = DatabaseType.Neo;
             }
             this.ToForm(dbinfo);
         }

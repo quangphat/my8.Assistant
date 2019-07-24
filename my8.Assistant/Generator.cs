@@ -14,34 +14,28 @@ namespace my8.Assistant
         protected StringBuilder m_strBuilder;
         public StringBuilder m_clause1, m_clause2;
         public StringBuilder m_strResult;
-        
+
         protected string m_templateFilePath;
         protected string m_templateContent;
-        protected Table m_table;
         protected DatabaseHelper m_DbHelper;
-        protected DatabaseType m_DbType;
-
-        private ApplicationSession _Session;
-        private ApplicationSetting _AppSetting;
-        public Generator(Table table, DatabaseHelper dbHelper, DatabaseType dbType)
+        public Generator()
         {
-            
+
             m_strBuilder = null;
-          
+
             m_clause1 = null;
             m_clause2 = null;
             m_strResult = null;
             m_templateContent = string.Empty;
             m_templateFilePath = string.Empty;
             m_templateContent = string.Empty;
-            m_table = table;
-            m_DbHelper = dbHelper;
-            m_DbType = dbType;
+            m_DbHelper = new DatabaseHelper();
+
         }
-        public string GetSqlInsertQuery()
+        public string GetSqlInsertQuery(Table table)
         {
-            List<Column> columns = m_DbHelper.GetSqlColumn(m_table);
-            if (columns == null|| !columns.Any()) return string.Empty;
+            List<Column> columns = m_DbHelper.GetSqlColumn(table);
+            if (columns == null || !columns.Any()) return string.Empty;
             bool first = true;
             m_clause1 = new StringBuilder();
             m_clause2 = new StringBuilder();
@@ -70,7 +64,7 @@ namespace my8.Assistant
             }
             m_strResult = new StringBuilder();
             m_strResult.Append("insert into ");
-            m_strResult.Append(m_table.CustomName);
+            m_strResult.Append(table.CustomName);
             m_strResult.Append(" (");
             m_strResult.Append(m_clause1);
             m_strResult.Append(") ");
@@ -79,9 +73,9 @@ namespace my8.Assistant
             m_strResult.Append(")");
             return m_strResult.ToString();
         }
-        public string GetSqlUpdateQuery()
+        public string GetSqlUpdateQuery(Table table)
         {
-            List<Column> columns = m_DbHelper.GetSqlColumn(m_table);
+            List<Column> columns = m_DbHelper.GetSqlColumn(table);
             if (columns == null || !columns.Any()) return string.Empty;
             bool first = true;
             m_clause1 = new StringBuilder();
@@ -110,98 +104,103 @@ namespace my8.Assistant
             }
             m_strResult = new StringBuilder();
             m_strResult.Append("update ");
-            m_strResult.Append(m_table.CustomName);
+            m_strResult.Append(table.CustomName);
             m_strResult.Append(" set ");
             m_strResult.Append(m_clause1);
             m_strResult.Append(" where ");
-            m_strResult.Append(m_table.PrimaryKeyCol);
+            m_strResult.Append(table.PrimaryKeyCol);
             m_strResult.Append(" = ");
             m_strResult.Append("@");
-            m_strResult.Append(m_table.PrimaryKeyCol);
+            m_strResult.Append(table.PrimaryKeyCol);
             return m_strResult.ToString();
         }
 
-        public string GetSqlSelectQuery()
+        public string GetSqlSelectQuery(Table table)
         {
             m_strResult = new StringBuilder();
             m_strResult.Append("select * from ");
-            m_strResult.Append(m_table.CustomName);
+            m_strResult.Append(table.CustomName);
             return m_strResult.ToString();
         }
 
-        public string GetSqlDeleteQuery()
+        public string GetSqlDeleteQuery(Table table)
         {
             m_strResult = new StringBuilder();
             m_strResult.Append("delete from ");
-            m_strResult.Append(m_table.CustomName);
+            m_strResult.Append(table.CustomName);
             m_strResult.Append(" where ");
-            m_strResult.Append(m_table.PrimaryKeyCol);
+            m_strResult.Append(table.PrimaryKeyCol);
             m_strResult.Append(" = @");
-            m_strResult.Append(m_table.PrimaryKeyCol);
+            m_strResult.Append(table.PrimaryKeyCol);
             return m_strResult.ToString();
         }
         #region BuildRepository
-        public void CreateReactJsRepositoryFile()
+        public void CreateReactJsRepositoryFile(Table table, bool createFile = true)
         {
             if (!ThisApp.currentSession.CreateRepository) return;
-            if (ThisApp.AppSetting.AutoCreateFile)
+            if (createFile)
             {
                 string filepath = string.Empty;
-                filepath = $"{ThisApp.AppSetting.RepositoryFolder}\\{m_table.CustomName}Repository.tsx";
+                filepath = $"{ThisApp.AppSetting.RepositoryFolder}\\{table.CustomName}Repository.tsx";
                 m_templateContent = "import * as Models from '../Models'";
                 m_templateContent += Environment.NewLine;
                 m_templateContent += "import { Fetch } from './Fetch'";
                 m_templateContent += Environment.NewLine;
-                m_templateContent += $@"export const {m_table.CustomName}Repository = {{";
+                m_templateContent += $@"export const {table.CustomName}Repository = {{";
                 m_templateContent += Environment.NewLine;
                 m_templateContent += "}";
                 Utility.WriteToFile(m_templateContent, filepath, FileType.Repository);
             }
         }
-        private string buildFilePath(string folder,string name, int subFolderIndex,bool isInterface = false)
+        private string buildFilePath(Table table, string folder, string name, int subFolderIndex, bool isInterface = false)
         {
             string subFolder = ThisApp.AppSetting.getSubFolferName(subFolderIndex);
             if (!string.IsNullOrWhiteSpace(subFolder))
             {
-                if(isInterface)
-                    return $"{folder}\\{subFolder}\\I{m_table.CustomName}{name}";
-                return  $"{folder}\\{subFolder}\\{m_table.CustomName}{name}";
+                if (isInterface)
+                    return $"{folder}\\{subFolder}\\I{table.CustomName}{name}";
+                return $"{folder}\\{subFolder}\\{table.CustomName}{name}";
             }
-            if(isInterface)
-                return $"{folder}\\I{m_table.CustomName}{name}";
-            return $"{folder}\\{m_table.CustomName}{name}";
+            if (isInterface)
+                return $"{folder}\\I{table.CustomName}{name}";
+            return $"{folder}\\{table.CustomName}{name}";
         }
-        public string BuildRepository()
+        public string BuildRepository(Table table, bool createFile = true)
         {
             if (!ThisApp.currentSession.CreateRepository) return null;
             string filepath = string.Empty;
             m_templateFilePath = string.Empty;
-            if (m_DbType == DatabaseType.SQL)
-            {
-                filepath = buildFilePath(ThisApp.AppSetting.RepositoryFolder, "Repository.cs",0);
-                m_templateFilePath = ThisApp.AppSetting.SqlRepositoryTemplate;
-            }
-            else if (m_DbType == DatabaseType.Mongo)
-            {
+            //if (m_DbType == DatabaseType.SQL)
+            //{
+            //    filepath = buildFilePath(table,ThisApp.AppSetting.RepositoryFolder, "Repository.cs",0);
+            //    m_templateFilePath = ThisApp.AppSetting.SqlRepositoryTemplate;
+            //}
+            //else if (m_DbType == DatabaseType.Mongo)
+            //{
 
-                filepath = buildFilePath(ThisApp.AppSetting.RepositoryFolder, "Repository.cs", 1);
-                m_templateFilePath = ThisApp.AppSetting.MongoRepositoryTemplate;
-            }
-            else if (m_DbType == DatabaseType.Neo)
-            {
+            //    filepath = buildFilePath(table,ThisApp.AppSetting.RepositoryFolder, "Repository.cs", 1);
+            //    m_templateFilePath = ThisApp.AppSetting.MongoRepositoryTemplate;
+            //}
+            //else if (m_DbType == DatabaseType.Neo)
+            //{
 
-                filepath = buildFilePath(ThisApp.AppSetting.RepositoryFolder, "Repository.cs", 2);
-                m_templateFilePath = ThisApp.AppSetting.NeoRepositoryTemplate;
-            }
-
-
+            //    filepath = buildFilePath(table,ThisApp.AppSetting.RepositoryFolder, "Repository.cs", 2);
+            //    m_templateFilePath = ThisApp.AppSetting.NeoRepositoryTemplate;
+            //}
+            //else
+            //{
+            //    filepath = buildFilePath(table, ThisApp.AppSetting.RepositoryFolder, "Repository.cs", 0);
+            //    m_templateFilePath = ThisApp.AppSetting.SqlRepositoryTemplate;
+            //}
+            filepath = buildFilePath(table, ThisApp.AppSetting.RepositoryFolder, "Repository.cs", 1);
+            m_templateFilePath = ThisApp.AppSetting.MongoRepositoryTemplate;
             m_templateContent = string.Empty;
             m_templateContent = Utility.ReadFile(m_templateFilePath);
-            m_templateContent = m_templateContent.Replace(TheText.ModelName, m_table.CustomName);
-            m_templateContent = m_templateContent.Replace(TheText.modelnameLowerCase, m_table.CustomName.ToLower());
+            m_templateContent = m_templateContent.Replace(TheText.ModelName, table.CustomName);
+            m_templateContent = m_templateContent.Replace(TheText.modelnameLowerCase, table.CustomName.ToLower());
             if (m_templateContent.Contains(TheText.KeyType) == true)
             {
-                m_templateContent = m_templateContent.Replace(TheText.KeyType, m_table.KeyType);
+                m_templateContent = m_templateContent.Replace(TheText.KeyType, table.KeyType);
             }
             if (ThisApp.AppSetting.UseEF)
             {
@@ -219,7 +218,7 @@ namespace my8.Assistant
             //insert
             m_strBuilder = new StringBuilder();
             m_strBuilder.Append("string insert = string.Format(@\"");
-            string sql = GetSqlInsertQuery();
+            string sql = GetSqlInsertQuery(table);
             m_strBuilder.Append(sql);
             m_strBuilder.Append("\");");
             m_strBuilder.Append(Environment.NewLine);
@@ -227,7 +226,7 @@ namespace my8.Assistant
             //select
             m_strBuilder = new StringBuilder();
             m_strBuilder.Append("string select = string.Format(@\"");
-            sql = GetSqlSelectQuery();
+            sql = GetSqlSelectQuery(table);
             m_strBuilder.Append(sql);
             m_strBuilder.Append("\");");
             m_strBuilder.Append(Environment.NewLine);
@@ -235,41 +234,41 @@ namespace my8.Assistant
             //FindById
             m_strBuilder = new StringBuilder();
             m_strBuilder.Append("string select = $\"");
-            m_strBuilder.Append($"select * from {m_table.CustomName}  where {m_table.PrimaryKeyCol} = ");
+            m_strBuilder.Append($"select * from {table.CustomName}  where {table.PrimaryKeyCol} = ");
             m_strBuilder.Append("{id}\";");
             m_templateContent = m_templateContent.Replace(TheText.SqlFindById, m_strBuilder.ToString());
             //Find by entity
             m_strBuilder = new StringBuilder();
             m_strBuilder.Append("return Connection.Query<");
-            m_strBuilder.Append(m_table.CustomName);
+            m_strBuilder.Append(table.CustomName);
             m_strBuilder.Append(">(\"select * from ");
-            m_strBuilder.Append(m_table.CustomName);
+            m_strBuilder.Append(table.CustomName);
             m_strBuilder.Append(" where ");
-            m_strBuilder.Append(m_table.PrimaryKeyCol);
+            m_strBuilder.Append(table.PrimaryKeyCol);
             m_strBuilder.Append(" = @Id)\"");
             m_strBuilder.Append(", param: new { Id = ");
             m_strBuilder.Append("entity.");
-            m_strBuilder.Append(m_table.PrimaryKeyCol);
+            m_strBuilder.Append(table.PrimaryKeyCol);
             m_strBuilder.Append(" }, transaction: Transaction).FirstOrDefault();");
             m_templateContent = m_templateContent.Replace(TheText.SqlFind, m_strBuilder.ToString());
             //remove by Id
             m_strBuilder = new StringBuilder();
             m_strBuilder.Append("Connection.Execute(\"delete from ");
-            m_strBuilder.Append(m_table.CustomName);
+            m_strBuilder.Append(table.CustomName);
             m_strBuilder.Append(" where ");
-            m_strBuilder.Append(m_table.PrimaryKeyCol);
+            m_strBuilder.Append(table.PrimaryKeyCol);
             m_strBuilder.Append(" = @Id\", param: new { Id = id }, transaction: Transaction);");
             m_templateContent = m_templateContent.Replace(TheText.SqlRemoveById, m_strBuilder.ToString());
             //remove by entity
             m_strBuilder = new StringBuilder();
             m_strBuilder.Append("Remove(entity.");
-            m_strBuilder.Append(m_table.PrimaryKeyCol);
+            m_strBuilder.Append(table.PrimaryKeyCol);
             m_strBuilder.Append(");");
             m_templateContent = m_templateContent.Replace(TheText.SqlRemove, m_strBuilder.ToString());
             //update 
             m_strBuilder = new StringBuilder();
             m_strBuilder.Append("string update = string.Format(@\"");
-            sql = GetSqlUpdateQuery();
+            sql = GetSqlUpdateQuery(table);
             m_strBuilder.Append(sql);
             m_strBuilder.Append("\");");
             m_templateContent = m_templateContent.Replace(TheText.SqlUpdate, m_strBuilder.ToString());
@@ -284,7 +283,7 @@ namespace my8.Assistant
                     return m_templateContent;
                 }
             }
-            if (ThisApp.AppSetting.AutoCreateFile)
+            if (createFile)
             {
                 Utility.WriteToFile(m_templateContent, filepath, FileType.Repository);
             }
@@ -292,30 +291,32 @@ namespace my8.Assistant
         }
         #endregion
         #region BuildInterface
-        public string BuildInterface()
+        public string BuildInterface(Table table, bool createFile = true)
         {
             m_strBuilder = new StringBuilder();
             string temp = string.Empty;
             string filepath = string.Empty;
-            if (m_DbType == DatabaseType.SQL)
-            {
-                temp = Utility.ReadFile(ThisApp.AppSetting.SqlInterfaceTemplate);
-                filepath = buildFilePath(ThisApp.AppSetting.InterfaceFolder, "Repository.cs", 0, true);
-            }
-            else if (m_DbType == DatabaseType.Mongo)
-            {
-                temp = Utility.ReadFile(ThisApp.AppSetting.MongoInterfaceTemplate);
-                filepath = buildFilePath(ThisApp.AppSetting.InterfaceFolder, "Repository.cs", 1, true);
-            }
-            else if (m_DbType == DatabaseType.Neo)
-            {
-                temp = Utility.ReadFile(ThisApp.AppSetting.NeoInterfaceTemplate);
-                filepath = buildFilePath(ThisApp.AppSetting.InterfaceFolder, "Repository.cs", 2, true);
-            }
+            //if (m_DbType == DatabaseType.SQL)
+            //{
+            //    temp = Utility.ReadFile(ThisApp.AppSetting.SqlInterfaceTemplate);
+            //    filepath = buildFilePath(table,ThisApp.AppSetting.InterfaceFolder, "Repository.cs", 0, true);
+            //}
+            //else if (m_DbType == DatabaseType.Mongo)
+            //{
+            //    temp = Utility.ReadFile(ThisApp.AppSetting.MongoInterfaceTemplate);
+            //    filepath = buildFilePath(table,ThisApp.AppSetting.InterfaceFolder, "Repository.cs", 1, true);
+            //}
+            //else if (m_DbType == DatabaseType.Neo)
+            //{
+            //    temp = Utility.ReadFile(ThisApp.AppSetting.NeoInterfaceTemplate);
+            //    filepath = buildFilePath(table,ThisApp.AppSetting.InterfaceFolder, "Repository.cs", 2, true);
+            //}
+            temp = Utility.ReadFile(ThisApp.AppSetting.MongoInterfaceTemplate);
+            filepath = buildFilePath(table, ThisApp.AppSetting.InterfaceFolder, "Repository.cs", 1, true);
             if (string.IsNullOrWhiteSpace(temp)) return string.Empty;
-            m_templateContent = temp.Replace(TheText.ModelName, m_table.CustomName);
-            m_templateContent = m_templateContent.Replace(TheText.modelnameLowerCase, m_table.CustomName.ToLower());
-            m_templateContent = m_templateContent.Replace(TheText.KeyType, m_table.KeyType);
+            m_templateContent = temp.Replace(TheText.ModelName, table.CustomName);
+            m_templateContent = m_templateContent.Replace(TheText.modelnameLowerCase, table.CustomName.ToLower());
+            m_templateContent = m_templateContent.Replace(TheText.KeyType, table.KeyType);
             if (ThisApp.currentSession.OverwriteInterfaceRepository == false)
             {
                 if (File.Exists(filepath))
@@ -323,7 +324,7 @@ namespace my8.Assistant
                     return m_templateContent;
                 }
             }
-            if (ThisApp.AppSetting.AutoCreateFile)
+            if (createFile)
             {
                 Utility.WriteToFile(m_templateContent, filepath, FileType.Interface);
             }
@@ -331,177 +332,177 @@ namespace my8.Assistant
         }
         #endregion
         #region Class
-        protected string BuildEntitiesClass()
+        protected string BuildEntitiesClass(Table table)
         {
             StringBuilder m_strBuilder = new StringBuilder();
-            List<Column> columns = m_DbHelper.GetSqlColumn(m_table);
-            if (columns == null && ThisApp.Project.IsConnectDatabase)
-                return string.Empty;
-            if (columns == null)
-                columns = new List<Column>();
-            columns = columns.OrderByDescending(p => p.IsPrimary).ToList();
-            foreach (Column column in columns)
-            {
-                if (column.Datatype == "int")
-                {
-                    if (column.IsPrimary)
-                    {
-                        m_strBuilder.Append("public int ");
-                    }
-                    else
-                    {
-                        m_strBuilder.Append("\t\tpublic Nullable<int> ");
-                    }
-                    m_strBuilder.Append(column.Name);
-                    m_strBuilder.Append(" { get; set; }");
-                    m_strBuilder.Append(Environment.NewLine);
-                    continue;
-                }
-                if (column.Datatype == "float" || column.Datatype == "real")
-                {
+            //List<Column> columns = m_DbHelper.GetSqlColumn(table);
+            //if (columns == null && ThisApp.Project.IsConnectDatabase)
+            //    return string.Empty;
+            //if (columns == null)
+            //    columns = new List<Column>();
+            //columns = columns.OrderByDescending(p => p.IsPrimary).ToList();
+            //foreach (Column column in columns)
+            //{
+            //    if (column.Datatype == "int")
+            //    {
+            //        if (column.IsPrimary)
+            //        {
+            //            m_strBuilder.Append("public int ");
+            //        }
+            //        else
+            //        {
+            //            m_strBuilder.Append("\t\tpublic Nullable<int> ");
+            //        }
+            //        m_strBuilder.Append(column.Name);
+            //        m_strBuilder.Append(" { get; set; }");
+            //        m_strBuilder.Append(Environment.NewLine);
+            //        continue;
+            //    }
+            //    if (column.Datatype == "float" || column.Datatype == "real")
+            //    {
 
-                    m_strBuilder.Append("\t\tpublic double? ");
-                    m_strBuilder.Append(column.Name);
-                    m_strBuilder.Append(" { get; set; }");
-                    m_strBuilder.Append(Environment.NewLine);
-                    continue;
-                }
-                if (column.Datatype == "decimal")
-                {
+            //        m_strBuilder.Append("\t\tpublic double? ");
+            //        m_strBuilder.Append(column.Name);
+            //        m_strBuilder.Append(" { get; set; }");
+            //        m_strBuilder.Append(Environment.NewLine);
+            //        continue;
+            //    }
+            //    if (column.Datatype == "decimal")
+            //    {
 
-                    m_strBuilder.Append("\t\tpublic decimal? ");
-                    m_strBuilder.Append(column.Name);
-                    m_strBuilder.Append(" { get; set; }");
-                    m_strBuilder.Append(Environment.NewLine);
-                    continue;
-                }
-                if (column.Datatype == "bit")
-                {
+            //        m_strBuilder.Append("\t\tpublic decimal? ");
+            //        m_strBuilder.Append(column.Name);
+            //        m_strBuilder.Append(" { get; set; }");
+            //        m_strBuilder.Append(Environment.NewLine);
+            //        continue;
+            //    }
+            //    if (column.Datatype == "bit")
+            //    {
 
-                    m_strBuilder.Append("\t\tpublic bool? ");
-                    m_strBuilder.Append(column.Name);
-                    m_strBuilder.Append(" { get; set; }");
-                    m_strBuilder.Append(Environment.NewLine);
-                    continue;
-                }
-                if (column.Datatype == "timestamp" || column.Datatype == "smalldatetime" || column.Datatype == "datetime" || column.Datatype == "datetime2" || column.Datatype == "date")
-                {
-                    m_strBuilder.Append("\t\tpublic DateTime? ");
-                    m_strBuilder.Append(column.Name);
-                    m_strBuilder.Append(" { get; set; }");
-                    m_strBuilder.Append(Environment.NewLine);
-                    continue;
-                }
-                if (column.Datatype == "datetimeoffset")
-                {
-                    m_strBuilder.Append("\t\tpublic DateTimeOffset? ");
-                    m_strBuilder.Append(column.Name);
-                    m_strBuilder.Append(" { get; set; }");
-                    m_strBuilder.Append(Environment.NewLine);
-                    continue;
-                }
-                if (column.Datatype == "smallint")
-                {
-                    m_strBuilder.Append("\t\tpublic short? ");
-                    m_strBuilder.Append(column.Name);
-                    m_strBuilder.Append(" { get; set; }");
-                    m_strBuilder.Append(Environment.NewLine);
-                    continue;
-                }
-                if (column.Datatype == "varbinary" || column.Datatype == "tinyint" || column.Datatype == "image" || column.Datatype == "binary")
-                {
-                    m_strBuilder.Append("\t\tpublic byte[] ");
-                    m_strBuilder.Append(column.Name);
-                    m_strBuilder.Append(" { get; set; }");
-                    m_strBuilder.Append(Environment.NewLine);
-                    continue;
-                }
-                if (column.Datatype == "smallmoney" || column.Datatype == "money" || column.Datatype == "numeric")
-                {
-                    m_strBuilder.Append("\t\tpublic decimal? ");
-                    m_strBuilder.Append(column.Name);
-                    m_strBuilder.Append(" { get; set; }");
-                    m_strBuilder.Append(Environment.NewLine);
-                    continue;
-                }
-                if (column.Datatype == "text" || column.Datatype == "ntext" || column.Datatype == "char" || column.Datatype == "nchar" || column.Datatype == "ntext" || column.Datatype == "nvarchar" || column.Datatype == "varchar")
-                {
-                    if (column.IsPrimary)
-                    {
-                        m_strBuilder.Append("\tpublic string ");
-                    }
-                    else
-                    {
-                        m_strBuilder.Append("\t\tpublic string ");
-                    }
-                    m_strBuilder.Append(column.Name);
-                    m_strBuilder.Append(" { get; set; }");
-                    m_strBuilder.Append(Environment.NewLine);
-                    continue;
-                }
-                if (column.Datatype == "bigint")
-                {
-                    m_strBuilder.Append("\t\tpublic long? ");
-                    m_strBuilder.Append(column.Name);
-                    m_strBuilder.Append(" { get; set; }");
-                    m_strBuilder.Append(Environment.NewLine);
-                    continue;
-                }
-                if (column.Datatype == "time")
-                {
-                    m_strBuilder.Append("\t\tpublic TimeSpan? ");
-                    m_strBuilder.Append(column.Name);
-                    m_strBuilder.Append(" { get; set; }");
-                    m_strBuilder.Append(Environment.NewLine);
-                    continue;
-                }
-                if (column.Datatype == "uniqueidentifier")
-                {
-                    if (column.IsPrimary)
-                    {
-                        m_strBuilder.Append("public Guid ");
-                    }
-                    else
-                    {
-                        m_strBuilder.Append("\t\tpublic Guid? ");
-                    }
-                    m_strBuilder.Append(column.Name);
-                    m_strBuilder.Append(" { get; set; }");
-                    m_strBuilder.Append(Environment.NewLine);
-                    continue;
-                }
+            //        m_strBuilder.Append("\t\tpublic bool? ");
+            //        m_strBuilder.Append(column.Name);
+            //        m_strBuilder.Append(" { get; set; }");
+            //        m_strBuilder.Append(Environment.NewLine);
+            //        continue;
+            //    }
+            //    if (column.Datatype == "timestamp" || column.Datatype == "smalldatetime" || column.Datatype == "datetime" || column.Datatype == "datetime2" || column.Datatype == "date")
+            //    {
+            //        m_strBuilder.Append("\t\tpublic DateTime? ");
+            //        m_strBuilder.Append(column.Name);
+            //        m_strBuilder.Append(" { get; set; }");
+            //        m_strBuilder.Append(Environment.NewLine);
+            //        continue;
+            //    }
+            //    if (column.Datatype == "datetimeoffset")
+            //    {
+            //        m_strBuilder.Append("\t\tpublic DateTimeOffset? ");
+            //        m_strBuilder.Append(column.Name);
+            //        m_strBuilder.Append(" { get; set; }");
+            //        m_strBuilder.Append(Environment.NewLine);
+            //        continue;
+            //    }
+            //    if (column.Datatype == "smallint")
+            //    {
+            //        m_strBuilder.Append("\t\tpublic short? ");
+            //        m_strBuilder.Append(column.Name);
+            //        m_strBuilder.Append(" { get; set; }");
+            //        m_strBuilder.Append(Environment.NewLine);
+            //        continue;
+            //    }
+            //    if (column.Datatype == "varbinary" || column.Datatype == "tinyint" || column.Datatype == "image" || column.Datatype == "binary")
+            //    {
+            //        m_strBuilder.Append("\t\tpublic byte[] ");
+            //        m_strBuilder.Append(column.Name);
+            //        m_strBuilder.Append(" { get; set; }");
+            //        m_strBuilder.Append(Environment.NewLine);
+            //        continue;
+            //    }
+            //    if (column.Datatype == "smallmoney" || column.Datatype == "money" || column.Datatype == "numeric")
+            //    {
+            //        m_strBuilder.Append("\t\tpublic decimal? ");
+            //        m_strBuilder.Append(column.Name);
+            //        m_strBuilder.Append(" { get; set; }");
+            //        m_strBuilder.Append(Environment.NewLine);
+            //        continue;
+            //    }
+            //    if (column.Datatype == "text" || column.Datatype == "ntext" || column.Datatype == "char" || column.Datatype == "nchar" || column.Datatype == "ntext" || column.Datatype == "nvarchar" || column.Datatype == "varchar")
+            //    {
+            //        if (column.IsPrimary)
+            //        {
+            //            m_strBuilder.Append("\tpublic string ");
+            //        }
+            //        else
+            //        {
+            //            m_strBuilder.Append("\t\tpublic string ");
+            //        }
+            //        m_strBuilder.Append(column.Name);
+            //        m_strBuilder.Append(" { get; set; }");
+            //        m_strBuilder.Append(Environment.NewLine);
+            //        continue;
+            //    }
+            //    if (column.Datatype == "bigint")
+            //    {
+            //        m_strBuilder.Append("\t\tpublic long? ");
+            //        m_strBuilder.Append(column.Name);
+            //        m_strBuilder.Append(" { get; set; }");
+            //        m_strBuilder.Append(Environment.NewLine);
+            //        continue;
+            //    }
+            //    if (column.Datatype == "time")
+            //    {
+            //        m_strBuilder.Append("\t\tpublic TimeSpan? ");
+            //        m_strBuilder.Append(column.Name);
+            //        m_strBuilder.Append(" { get; set; }");
+            //        m_strBuilder.Append(Environment.NewLine);
+            //        continue;
+            //    }
+            //    if (column.Datatype == "uniqueidentifier")
+            //    {
+            //        if (column.IsPrimary)
+            //        {
+            //            m_strBuilder.Append("public Guid ");
+            //        }
+            //        else
+            //        {
+            //            m_strBuilder.Append("\t\tpublic Guid? ");
+            //        }
+            //        m_strBuilder.Append(column.Name);
+            //        m_strBuilder.Append(" { get; set; }");
+            //        m_strBuilder.Append(Environment.NewLine);
+            //        continue;
+            //    }
 
-            }
+            //}
 
             return m_strBuilder.ToString();
         }
         #endregion
         #region BuildEntityClass
-        public string CreateClass()
+        public string CreateClass(Table table, bool createFile = true)
         {
             string filepath = string.Empty;
             //if (m_DbType == DatabaseType.SQL)
             //{
             //    m_templateFilePath = ThisApp.AppSetting.SqlModelTemplateFile;
-            //    filepath = ThisApp.AppSetting.ModelFolder + "\\" + ThisApp.AppSetting.getSubFolferName()[0] + "\\" + m_table.CustomName + ".cs";
+            //    filepath = ThisApp.AppSetting.ModelFolder + "\\" + ThisApp.AppSetting.getSubFolferName()[0] + "\\" + table.CustomName + ".cs";
             //}
             //else if (m_DbType == DatabaseType.Mongo)
             //{
             //    m_templateFilePath = ThisApp.AppSetting.MongoModelTemplateFile;
-            //    filepath = ThisApp.AppSetting.ModelFolder + "\\" + ThisApp.AppSetting.getSubFolferName()[1] + "\\" + m_table.CustomName + ".cs";
+            //    filepath = ThisApp.AppSetting.ModelFolder + "\\" + ThisApp.AppSetting.getSubFolferName()[1] + "\\" + table.CustomName + ".cs";
             //}
             //else if (m_DbType == DatabaseType.Neo)
             //{
             //    m_templateFilePath = ThisApp.AppSetting.NeoModelTemplateFile;
-            //    filepath = ThisApp.AppSetting.ModelFolder + "\\" + ThisApp.AppSetting.getSubFolferName()[2] + "\\" + m_table.CustomName + ".cs";
+            //    filepath = ThisApp.AppSetting.ModelFolder + "\\" + ThisApp.AppSetting.getSubFolferName()[2] + "\\" + table.CustomName + ".cs";
             //}
-            m_templateFilePath = ThisApp.AppSetting.SqlModelTemplateFile;
-            filepath = ThisApp.AppSetting.ModelFolder + "\\" + m_table.CustomName + ".cs";
+            m_templateFilePath = ThisApp.AppSetting.MongoModelTemplateFile;
+            filepath = ThisApp.AppSetting.ModelFolder + "\\" + table.CustomName + ".cs";
             m_templateContent = Utility.ReadFile(m_templateFilePath);
-            string Entityclass = BuildEntitiesClass();
-            m_templateContent = m_templateContent.Replace(TheText.ModelName, m_table.CustomName);
-            m_templateContent = m_templateContent.Replace(TheText.modelnameLowerCase, m_table.CustomName.ToLower());
-            m_templateContent = m_templateContent.Replace(TheText.TableName, m_table.RealName);
+            string Entityclass = BuildEntitiesClass(table);
+            m_templateContent = m_templateContent.Replace(TheText.ModelName, table.CustomName);
+            m_templateContent = m_templateContent.Replace(TheText.modelnameLowerCase, table.CustomName.ToLower());
+            m_templateContent = m_templateContent.Replace(TheText.TableName, table.RealName);
             m_templateContent = m_templateContent.Replace("[ModelClass]", Entityclass);
 
             if (ThisApp.currentSession.OverwriteClass == false)
@@ -511,7 +512,7 @@ namespace my8.Assistant
                     return m_templateContent;
                 }
             }
-            if (ThisApp.AppSetting.AutoCreateFile)
+            if (createFile)
             {
                 Utility.WriteToFile(m_templateContent, filepath, FileType.Model);
             }
@@ -519,18 +520,18 @@ namespace my8.Assistant
         }
         #endregion
         #region Controller
-        public string CreateController()
+        public string CreateController(Table table, bool createFile = true)
         {
-            string filepath = ThisApp.AppSetting.ControllerFolder + "\\" + m_table.CustomName + "Controller.cs";
+            string filepath = ThisApp.AppSetting.ControllerFolder + "\\" + table.CustomName + "Controller.cs";
             m_strBuilder = new StringBuilder();
             m_templateContent = string.Empty;
             m_templateContent = Utility.ReadFile(ThisApp.AppSetting.ControllerTemplate);
             if (string.IsNullOrWhiteSpace(m_templateContent))
                 return string.Empty;
-            m_templateContent = m_templateContent.Replace(TheText.ModelName, m_table.CustomName);
-            m_templateContent = m_templateContent.Replace(TheText.modelnameLowerCase, m_table.CustomName.ToLower());
-            m_templateContent = m_templateContent.Replace(TheText.KeyType, m_table.KeyType);
-            if (ThisApp.AppSetting.AutoCreateFile == true)
+            m_templateContent = m_templateContent.Replace(TheText.ModelName, table.CustomName);
+            m_templateContent = m_templateContent.Replace(TheText.modelnameLowerCase, table.CustomName.ToLower());
+            m_templateContent = m_templateContent.Replace(TheText.KeyType, table.KeyType);
+            if (createFile)
             {
                 if (File.Exists(filepath))
                 {
@@ -549,7 +550,7 @@ namespace my8.Assistant
         #endregion
 
         #region ReactJs
-        public string CreateReactJsModel(List<Column> columns, string modelName,ModelSyntaxType synTaxType = ModelSyntaxType.Original)
+        public string CreateReactJsModel(Table table, List<Column> columns, string modelName, ModelSyntaxType synTaxType = ModelSyntaxType.Original)
         {
             string filepath = ThisApp.AppSetting.ReactJsModelFolder;
             m_strBuilder = new StringBuilder();
@@ -557,14 +558,15 @@ namespace my8.Assistant
             //if (string.IsNullOrWhiteSpace(m_templateContent))
             //    return string.Empty;
             string className = string.Empty;
-            if (m_DbType == DatabaseType.SQL && string.IsNullOrEmpty(modelName))
-            {
-                className = m_table.CustomName;
-            }
-            else
-            {
-                className = modelName;
-            }
+            //if (m_DbType == DatabaseType.SQL && string.IsNullOrEmpty(modelName))
+            //{
+            //    className = table.CustomName;
+            //}
+            //else
+            //{
+            //    className = modelName;
+            //}
+            className = modelName;
             m_strBuilder.Append($"export interface I{className}");
             m_strBuilder.Append(Environment.NewLine);
             m_strBuilder.Append("{");
@@ -573,7 +575,7 @@ namespace my8.Assistant
             string type = string.Empty;
             foreach (Column col in columns)
             {
-                if(synTaxType== ModelSyntaxType.CamelCase)
+                if (synTaxType == ModelSyntaxType.CamelCase)
                 {
                     col.Name = col.Name.ToCamelCase();
                 }
@@ -601,7 +603,7 @@ namespace my8.Assistant
                 {
                     name += $"\t {col.Name}: boolean," + Environment.NewLine;
                 }
-                else if(Array.IndexOf(DateTimeType,col.Datatype.ToString().ToLower())>-1)
+                else if (Array.IndexOf(DateTimeType, col.Datatype.ToString().ToLower()) > -1)
                 {
                     name += $"\t {col.Name}: Date," + Environment.NewLine;
                 }
@@ -621,7 +623,7 @@ namespace my8.Assistant
             m_strBuilder.Append(Environment.NewLine);
             m_strBuilder.Append(TheText.AppendNewHere);
             //m_templateContent = m_templateContent.Replace(TheText.AppendNewHere, m_strBuilder.ToString());
-            m_templateContent =  m_strBuilder.ToString();
+            m_templateContent = m_strBuilder.ToString();
             if (ThisApp.AppSetting.AutoCreateFile == true)
             {
                 //if (File.Exists(filepath))
@@ -633,21 +635,21 @@ namespace my8.Assistant
                 //}
                 //else
                 //{
-                    Utility.WriteToFile($"{filepath}\\I{className}.tsx", m_templateContent);
+                Utility.WriteToFile($"{filepath}\\I{className}.tsx", m_templateContent);
                 //}
             }
             return m_templateContent;
         }
         #endregion
         #region UnitTest
-        public string CreateUnitTestClass()
+        public string CreateUnitTestClass(Table table)
         {
-            string filepath = $"{ThisApp.AppSetting.UnitTestFolder}\\Test{m_table.CustomName}.cs";
+            string filepath = $"{ThisApp.AppSetting.UnitTestFolder}\\Test{table.CustomName}.cs";
             m_strBuilder = new StringBuilder();
             m_templateContent = Utility.ReadFile(ThisApp.AppSetting.UnitTestFileTemplate);
             if (string.IsNullOrWhiteSpace(m_templateContent))
                 return string.Empty;
-            m_templateContent = m_templateContent.Replace(TheText.ModelName, m_table.CustomName);
+            m_templateContent = m_templateContent.Replace(TheText.ModelName, table.CustomName);
             if (ThisApp.AppSetting.AutoCreateFile == true)
             {
                 if (File.Exists(filepath))
@@ -666,16 +668,16 @@ namespace my8.Assistant
         }
         #endregion
         #region Business
-        public string CreateBusinessClass()
+        public string CreateBusinessClass(Table table, bool createFile = true)
         {
-            string filepath = $"{ThisApp.AppSetting.BusinessFolder}\\{m_table.CustomName}Business.cs";
+            string filepath = $"{ThisApp.AppSetting.BusinessFolder}\\{table.CustomName}Business.cs";
             m_strBuilder = new StringBuilder();
             m_templateContent = Utility.ReadFile(ThisApp.AppSetting.BusinessTemplate);
             if (string.IsNullOrWhiteSpace(m_templateContent))
                 return string.Empty;
-            m_templateContent = m_templateContent.Replace(TheText.ModelName, m_table.CustomName);
-            m_templateContent = m_templateContent.Replace(TheText.modelnameLowerCase, m_table.CustomName.ToLower());
-            if (ThisApp.AppSetting.AutoCreateFile == true)
+            m_templateContent = m_templateContent.Replace(TheText.ModelName, table.CustomName);
+            m_templateContent = m_templateContent.Replace(TheText.modelnameLowerCase, table.CustomName.ToLower());
+            if (createFile == true)
             {
                 if (File.Exists(filepath))
                 {
@@ -691,16 +693,16 @@ namespace my8.Assistant
             }
             return m_templateContent;
         }
-        public string CreateBusinessInterface()
+        public string CreateBusinessInterface(Table table, bool createFile = true)
         {
-            string filepath = $"{ThisApp.AppSetting.IBusinessFolder}\\I{m_table.CustomName}Business.cs";
+            string filepath = $"{ThisApp.AppSetting.IBusinessFolder}\\I{table.CustomName}Business.cs";
             m_strBuilder = new StringBuilder();
             m_templateContent = Utility.ReadFile(ThisApp.AppSetting.IBusinessTemplate);
             if (string.IsNullOrWhiteSpace(m_templateContent))
                 return string.Empty;
-            m_templateContent = m_templateContent.Replace(TheText.ModelName, m_table.CustomName);
-            m_templateContent = m_templateContent.Replace(TheText.modelnameLowerCase, m_table.CustomName.ToLower());
-            if (ThisApp.AppSetting.AutoCreateFile == true)
+            m_templateContent = m_templateContent.Replace(TheText.ModelName, table.CustomName);
+            m_templateContent = m_templateContent.Replace(TheText.modelnameLowerCase, table.CustomName.ToLower());
+            if (createFile)
             {
                 if (File.Exists(filepath))
                 {
@@ -718,64 +720,77 @@ namespace my8.Assistant
         }
         #endregion
         #region Dependency Injection
-        public string CreateDependencyInjection()
+        public string CreateDependencyInjection(Table table, ObjectType objectType, bool createFile = true)
         {
             string filepath = $"{ThisApp.AppSetting.StartUpFile}";
             m_strBuilder = new StringBuilder();
             m_templateContent = Utility.ReadFile(ThisApp.AppSetting.StartUpFile);
             if (string.IsNullOrWhiteSpace(m_templateContent))
                 return string.Empty;
-            //if (m_templateContent.Contains($"I{m_table.CustomName}Repository"))
+            //if (m_templateContent.Contains($"I{table.CustomName}Repository"))
             //    return null;
             string line = string.Empty;
-            if (m_DbType == DatabaseType.SQL)
-            {
-                if (m_templateContent.Contains($"SqlI.I{m_table.CustomName}Repository") == false)
-                {
-                    m_strBuilder = new StringBuilder();
-                    line = $"services.AddSingleton<SqlI.I{m_table.CustomName}Repository, SqlR.{m_table.CustomName}Repository>();";
-                    m_strBuilder.Append(line);
-                    m_strBuilder.Append(Environment.NewLine);
-                    m_strBuilder.Append("\t\t\t");
-                    m_strBuilder.Append(TheText.AppendSqlDI);
-                    m_templateContent = m_templateContent.Replace(TheText.AppendSqlDI, m_strBuilder.ToString());
-                }
+            //if (m_DbType == DatabaseType.SQL)
+            //{
+            //    if (m_templateContent.Contains($"SqlI.I{table.CustomName}Repository") == false)
+            //    {
+            //        m_strBuilder = new StringBuilder();
+            //        line = $"services.AddSingleton<SqlI.I{table.CustomName}Repository, SqlR.{table.CustomName}Repository>();";
+            //        m_strBuilder.Append(line);
+            //        m_strBuilder.Append(Environment.NewLine);
+            //        m_strBuilder.Append("\t\t\t");
+            //        m_strBuilder.Append(TheText.AppendSqlDI);
+            //        m_templateContent = m_templateContent.Replace(TheText.AppendSqlDI, m_strBuilder.ToString());
+            //    }
 
-            }
-            if (m_DbType == DatabaseType.Mongo)
+            //}
+            //if (m_DbType == DatabaseType.Mongo)
+            //{
+            //    if (!m_templateContent.Contains($"MongoI.I{table.CustomName}Repository"))
+            //    {
+            //        m_strBuilder = new StringBuilder();
+            //        line = $"services.AddSingleton<MongoI.I{table.CustomName}Repository, MongoR.{table.CustomName}Repository>();";
+            //        m_strBuilder.Append(line);
+            //        m_strBuilder.Append(Environment.NewLine);
+            //        m_strBuilder.Append("\t\t\t");
+            //        m_strBuilder.Append(TheText.AppendMongoDI);
+            //        m_templateContent = m_templateContent.Replace(TheText.AppendMongoDI, m_strBuilder.ToString());
+            //    }
+
+            //}
+            //if (m_DbType == DatabaseType.Neo)
+            //{
+            //    if (!m_templateContent.Contains($"NeoI.I{table.CustomName}Repository"))
+            //    {
+            //        m_strBuilder = new StringBuilder();
+            //        line = $"services.AddSingleton<NeoI.I{table.CustomName}Repository, NeoR.{table.CustomName}Repository>();";
+            //        m_strBuilder.Append(line);
+            //        m_strBuilder.Append(Environment.NewLine);
+            //        m_strBuilder.Append("\t\t\t");
+            //        m_strBuilder.Append(TheText.AppendNeoDI);
+            //        m_templateContent = m_templateContent.Replace(TheText.AppendNeoDI, m_strBuilder.ToString());
+            //    }
+
+            //}
+            if (objectType == ObjectType.rp_di)
             {
-                if (!m_templateContent.Contains($"MongoI.I{m_table.CustomName}Repository"))
+                if (!m_templateContent.Contains($"MGI{table.CustomName}Repository"))
                 {
                     m_strBuilder = new StringBuilder();
-                    line = $"services.AddSingleton<MongoI.I{m_table.CustomName}Repository, MongoR.{m_table.CustomName}Repository>();";
+                    line = $"services.AddSingleton<MGI{table.CustomName}Repository, MG{table.CustomName}Repository>();";
                     m_strBuilder.Append(line);
                     m_strBuilder.Append(Environment.NewLine);
                     m_strBuilder.Append("\t\t\t");
                     m_strBuilder.Append(TheText.AppendMongoDI);
                     m_templateContent = m_templateContent.Replace(TheText.AppendMongoDI, m_strBuilder.ToString());
                 }
-
             }
-            if (m_DbType == DatabaseType.Neo)
-            {
-                if (!m_templateContent.Contains($"NeoI.I{m_table.CustomName}Repository"))
-                {
-                    m_strBuilder = new StringBuilder();
-                    line = $"services.AddSingleton<NeoI.I{m_table.CustomName}Repository, NeoR.{m_table.CustomName}Repository>();";
-                    m_strBuilder.Append(line);
-                    m_strBuilder.Append(Environment.NewLine);
-                    m_strBuilder.Append("\t\t\t");
-                    m_strBuilder.Append(TheText.AppendNeoDI);
-                    m_templateContent = m_templateContent.Replace(TheText.AppendNeoDI, m_strBuilder.ToString());
-                }
-
-            }
-            if (ThisApp.currentSession.CreateBusiness)
+            if (objectType == ObjectType.biz_di)
             {
                 m_strBuilder = new StringBuilder();
-                if (m_templateContent.Contains($"I{m_table.CustomName}Business") == false)
+                if (m_templateContent.Contains($"I{table.CustomName}Business") == false)
                 {
-                    line = $"services.AddScoped<I{m_table.CustomName}Business, {m_table.CustomName}Business>();";
+                    line = $"services.AddScoped<I{table.CustomName}Business, {table.CustomName}Business>();";
                     m_strBuilder.Append(line);
                     m_strBuilder.Append(Environment.NewLine);
                     m_strBuilder.Append("\t\t\t");
@@ -783,8 +798,7 @@ namespace my8.Assistant
                     m_templateContent = m_templateContent.Replace(TheText.AppendBusinessDI, m_strBuilder.ToString());
                 }
             }
-
-            if (ThisApp.AppSetting.AutoCreateFile == true)
+            if (createFile)
             {
                 if (File.Exists(filepath))
                 {
@@ -798,6 +812,8 @@ namespace my8.Assistant
                     Utility.WriteToFile(filepath, m_templateContent);
                 }
             }
+
+
             return m_templateContent;
         }
 
@@ -837,7 +853,7 @@ namespace my8.Assistant
                         col.Datatype = temp[1].Trim();
                         col.IsArray = true;
                     }
-                    if(line.Contains("?"))
+                    if (line.Contains("?"))
                     {
                         col.Name = col.Name + "?";
                     }
@@ -850,7 +866,7 @@ namespace my8.Assistant
         #endregion
 
         #region Mapper
-        public string CreateMapper()
+        public string CreateMapper(Table table, bool createFile = true)
         {
             string filepath = $"{ThisApp.AppSetting.MapperFile}";
             m_strBuilder = new StringBuilder();
@@ -861,22 +877,22 @@ namespace my8.Assistant
             if (m_templateContent.Contains($"{TheText.ModelName}"))
                 return null;
             string line = string.Empty;
-            m_strBuilder.Append($"mapper.CreateMap<ModelM.{m_table.CustomName}, Model.{m_table.CustomName}>();");
+            m_strBuilder.Append($"mapper.CreateMap<ModelM.{table.CustomName}, Model.{table.CustomName}>();");
             m_strBuilder.Append(Environment.NewLine);
-            m_strBuilder.Append($"\t\t\tmapper.CreateMap<Model.{m_table.CustomName}, ModelM.{m_table.CustomName}>();");
+            m_strBuilder.Append($"\t\t\tmapper.CreateMap<Model.{table.CustomName}, ModelM.{table.CustomName}>();");
             m_strBuilder.Append(Environment.NewLine);
-            m_strBuilder.Append($"\t\t\tmapper.CreateMap<Model.{m_table.CustomName}, ModelN.{m_table.CustomName}>();");
+            m_strBuilder.Append($"\t\t\tmapper.CreateMap<Model.{table.CustomName}, ModelN.{table.CustomName}>();");
             m_strBuilder.Append(Environment.NewLine);
-            m_strBuilder.Append($"\t\t\tmapper.CreateMap<ModelN.{m_table.CustomName}, Model.{m_table.CustomName}>();");
+            m_strBuilder.Append($"\t\t\tmapper.CreateMap<ModelN.{table.CustomName}, Model.{table.CustomName}>();");
             m_strBuilder.Append(Environment.NewLine);
-            m_strBuilder.Append($"\t\t\tmapper.CreateMap<ModelS.{m_table.CustomName}, Model.{m_table.CustomName}>();");
+            m_strBuilder.Append($"\t\t\tmapper.CreateMap<ModelS.{table.CustomName}, Model.{table.CustomName}>();");
             m_strBuilder.Append(Environment.NewLine);
-            m_strBuilder.Append($"\t\t\tmapper.CreateMap<Model.{m_table.CustomName}, ModelS.{m_table.CustomName}>();");
+            m_strBuilder.Append($"\t\t\tmapper.CreateMap<Model.{table.CustomName}, ModelS.{table.CustomName}>();");
             m_strBuilder.Append(Environment.NewLine);
             m_strBuilder.Append($"\t\t\t{TheText.AppendNewHere}");
             m_strBuilder.Append(Environment.NewLine);
             m_templateContent = m_templateContent.Replace(TheText.AppendNewHere, m_strBuilder.ToString());
-            if (ThisApp.AppSetting.AutoCreateFile == true)
+            if (createFile == true)
             {
                 if (File.Exists(filepath))
                 {
@@ -893,23 +909,23 @@ namespace my8.Assistant
             return m_templateContent;
         }
         #endregion
-        public string CreateReactComponent()
+        public string CreateReactComponent(Table table, bool createFile = true)
         {
             string filepath = ThisApp.AppSetting.ReactJsComponentTemplate;
             m_strBuilder = new StringBuilder();
             m_templateContent = Utility.ReadFile(ThisApp.AppSetting.ReactJsComponentTemplate);
             if (string.IsNullOrWhiteSpace(m_templateContent))
                 return string.Empty;
-            m_templateContent = m_templateContent.Replace(TheText.ModelName, m_table.CustomName);
-            m_templateContent = m_templateContent.Replace(TheText.modelnameLowerCase, m_table.CustomName.ToLower());
-            string componentFolderPath = $"{ThisApp.AppSetting.ReactJsComponentFolder}\\{m_table.CustomName}";
-            if (ThisApp.AppSetting.AutoCreateFile == true)
+            m_templateContent = m_templateContent.Replace(TheText.ModelName, table.CustomName);
+            m_templateContent = m_templateContent.Replace(TheText.modelnameLowerCase, table.CustomName.ToLower());
+            string componentFolderPath = $"{ThisApp.AppSetting.ReactJsComponentFolder}\\{table.CustomName}";
+            if (createFile)
             {
-                if(!Directory.Exists(componentFolderPath))
+                if (!Directory.Exists(componentFolderPath))
                 {
                     Directory.CreateDirectory(componentFolderPath);
                 }
-                Utility.WriteToFile($"{componentFolderPath}\\{m_table.CustomName}.tsx", m_templateContent);
+                Utility.WriteToFile($"{componentFolderPath}\\{table.CustomName}.tsx", m_templateContent);
                 Utility.WriteToFile($"{componentFolderPath}\\index.css", string.Empty);
             }
             return m_templateContent;

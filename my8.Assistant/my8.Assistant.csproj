@@ -137,6 +137,8 @@
     <Compile Include="Business\ProjectBusiness.cs" />
     <Compile Include="Business\SessionBusiness.cs" />
     <Compile Include="ConsoleBusiness.cs" />
+    <Compile Include="ConsoleDefinition.cs" />
+    <Compile Include="ConsoleObject.cs" />
     <Compile Include="DeepClone.cs" />
     <Compile Include="frmCreateProject.cs">
       <SubType>Form</SubType>

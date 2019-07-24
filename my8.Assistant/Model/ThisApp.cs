@@ -21,7 +21,6 @@ namespace my8.Assistant.Model
         public static DatabaseInfo MongoDbInfo;
         public static DatabaseInfo NeoDbInfo;
         public static ApplicationSetting AppSetting;
-        public static DatabaseType DbType;
         public static Project Project = new Project();
         private static AppSettingBusiness bizAppSetting = new AppSettingBusiness();
         private static SessionBusiness bizSession = new SessionBusiness();
@@ -38,8 +37,8 @@ namespace my8.Assistant.Model
         {
             get
             {
-                
-                if (mongoCon==null)
+
+                if (mongoCon == null)
                 {
                     mongoClient = new MongoClient($"mongodb://{MongoDbInfo.UserName}:{MongoDbInfo.Password}@{MongoDbInfo.Server}");
                     mongoCon = mongoClient.GetDatabase(MongoDbInfo.DatabaseName);
@@ -51,7 +50,7 @@ namespace my8.Assistant.Model
         {
             get
             {
-                if(neoClient==null)
+                if (neoClient == null)
                 {
                     try
                     {
@@ -76,12 +75,12 @@ namespace my8.Assistant.Model
         //    appSetting = setting;
         //}
         public static ApplicationSession currentSession;
-        
+
         public static List<ApplicationSession> projectSessions;
 
-        public static async Task<List<ApplicationSession>> GetProjectSession()
+        public static List<ApplicationSession> GetProjectSession()
         {
-            projectSessions = await bizSession.GetProjectSessions(ThisApp.Project.Id);
+            projectSessions = bizSession.GetProjectSessions(ThisApp.Project.Id);
             if (projectSessions == null)
                 return new List<ApplicationSession>();
             return projectSessions;

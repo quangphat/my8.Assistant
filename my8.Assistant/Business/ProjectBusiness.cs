@@ -10,11 +10,11 @@ namespace my8.Assistant.Business
 {
     public class ProjectBusiness
     {
-        public async Task<List<Project>> GetAll()
+        public List<Project> GetAll()
         {
             string projects = string.Empty;
 
-            projects = await Utility.ReadProjectsFile();
+            projects = Utility.ReadProjectsFile();
             
             if (string.IsNullOrEmpty(projects))
             {
@@ -30,14 +30,14 @@ namespace my8.Assistant.Business
                 return null;
             }
         }
-        public async Task<Project> GetProjectById(int projectId)
+        public Project GetProjectById(int projectId)
         {
-            Project project = (await GetAll()).Where(p => p.Id == projectId).FirstOrDefault();
+            Project project = GetAll().Where(p => p.Id == projectId).FirstOrDefault();
             return project;
         }
-        public async Task CreateProject(Project project)
+        public void CreateProject(Project project)
         {
-            List<Project> lstProject = await GetAll();
+            List<Project> lstProject = GetAll();
             if (lstProject == null)
                 lstProject = new List<Project>();
             Project exist = lstProject.FirstOrDefault(p => p.Id == project.Id || p.Name.Trim() == project.Name.Trim());
@@ -53,11 +53,11 @@ namespace my8.Assistant.Business
                 project.Id = maxId + 1;
                 lstProject.Add(project);
             }
-            await Utility.WriteToFileInAppData(Utility.ProjectsFile, Utility.ConvertListObjectToJson(lstProject));
+            Utility.WriteToFileInAppData(Utility.ProjectsFile, Utility.ConvertListObjectToJson(lstProject));
         }
-        public async Task UpdateLastSelectProject(Project project)
+        public void UpdateLastSelectProject(Project project)
         {
-            List<Project> lstProject = await GetAll();
+            List<Project> lstProject = GetAll();
             if (lstProject == null)
                 lstProject = new List<Project>();
             Project exist = lstProject.FirstOrDefault(p => p.Id == project.Id);
@@ -67,7 +67,7 @@ namespace my8.Assistant.Business
                 if (p.Id == project.Id)
                     p.IsLastSelect = true;
             });
-            await Utility.WriteToFileInAppData(Utility.ProjectsFile, Utility.ConvertListObjectToJson(lstProject));
+            Utility.WriteToFileInAppData(Utility.ProjectsFile, Utility.ConvertListObjectToJson(lstProject));
         }
     }
 }

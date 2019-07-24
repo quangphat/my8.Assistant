@@ -15,61 +15,55 @@ namespace my8.Assistant.Model
         public static List<Table> lstNeoRelationship;
         public DatabaseHelper()
         { }
-        public DatabaseHelper(List<DatabaseInfo> lstDbInfo)
-        {
-            DatabaseInfo Sql = lstDbInfo.FirstOrDefault(p => p.DbType == DatabaseType.SQL);
-            if(Sql!=null)
-            {
-                ThisApp.SqlDbInfo = Sql;
+        //public DatabaseHelper(List<DatabaseInfo> lstDbInfo)
+        //{
+        //    DatabaseInfo Sql = lstDbInfo.FirstOrDefault(p => p.DbType == DatabaseType.SQL);
+        //    if(Sql!=null)
+        //    {
+        //        ThisApp.SqlDbInfo = Sql;
                 
-            }
-            DatabaseInfo Mongo = lstDbInfo.FirstOrDefault(p => p.DbType == DatabaseType.Mongo);
-            if(Mongo!=null)
-            {
-                ThisApp.MongoDbInfo = Mongo;
-            }
-            DatabaseInfo Neo = lstDbInfo.FirstOrDefault(p => p.DbType == DatabaseType.Neo);
-            if (Neo != null)
-            {
-                ThisApp.NeoDbInfo = Neo;
-            }
-        }
-        public void GetAllTableType()
-        {
-            lstSqlTable = GetTable(DatabaseType.SQL);
-            lstMongoCollection = GetTable(DatabaseType.Mongo);
-            lstNeoNode = GetTable(DatabaseType.Neo);
-        }
-        public List<Table> GetTable(DatabaseType dbType)
-        {
-            if(dbType== DatabaseType.SQL)
-            {
-                string getSqlTableQuery = string.Format(@"use {0}
-                                select t.name as RealName,p.Column_Name as PrimaryKeyCol,dt.Data_Type as KeyType,TableType =1 from 
-                                (SELECT p.*, row_number() over (partition by Table_Name order by Column_Name desc) as seqnum
-                                FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE p) p
-                                right join sys.Tables t on p.Table_Name = t.Name and p.seqnum=1
-                                left join (SELECT distinct(COLUMN_NAME) as colName, DATA_TYPE,Table_Name 
-                                FROM INFORMATION_SCHEMA.COLUMNS) dt on p.COLUMN_NAME = dt.colName and dt.Table_Name = t.Name
-                                where t.Name<>'sysdiagrams'", ThisApp.SqlDbInfo.DatabaseName);
-                lstSqlTable = ThisApp.SqlCon.Query<Table>(getSqlTableQuery).ToList();
-                return lstSqlTable;
-            }
-            if(dbType == DatabaseType.Mongo)
-            {
-                lstMongoCollection = GetCollections();
-                return lstMongoCollection;
-            }
-            if(dbType == DatabaseType.Neo)
-            {
-                List<Table> lstNode = GetNeoNodes();
-                List<Table> lstRelationShip = GetNeoRelationships();
-                if (lstNode == null) return null;
-                lstNeoNode = lstNode.Concat<Table>(lstRelationShip).ToList();
-                return lstNeoNode;
-            }
-            return null;
-        }
+        //    }
+        //    DatabaseInfo Mongo = lstDbInfo.FirstOrDefault(p => p.DbType == DatabaseType.Mongo);
+        //    if(Mongo!=null)
+        //    {
+        //        ThisApp.MongoDbInfo = Mongo;
+        //    }
+        //    DatabaseInfo Neo = lstDbInfo.FirstOrDefault(p => p.DbType == DatabaseType.Neo);
+        //    if (Neo != null)
+        //    {
+        //        ThisApp.NeoDbInfo = Neo;
+        //    }
+        //}
+        //public List<Table> GetTable(DatabaseType dbType)
+        //{
+        //    if(dbType== DatabaseType.SQL)
+        //    {
+        //        string getSqlTableQuery = string.Format(@"use {0}
+        //                        select t.name as RealName,p.Column_Name as PrimaryKeyCol,dt.Data_Type as KeyType,TableType =1 from 
+        //                        (SELECT p.*, row_number() over (partition by Table_Name order by Column_Name desc) as seqnum
+        //                        FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE p) p
+        //                        right join sys.Tables t on p.Table_Name = t.Name and p.seqnum=1
+        //                        left join (SELECT distinct(COLUMN_NAME) as colName, DATA_TYPE,Table_Name 
+        //                        FROM INFORMATION_SCHEMA.COLUMNS) dt on p.COLUMN_NAME = dt.colName and dt.Table_Name = t.Name
+        //                        where t.Name<>'sysdiagrams'", ThisApp.SqlDbInfo.DatabaseName);
+        //        lstSqlTable = ThisApp.SqlCon.Query<Table>(getSqlTableQuery).ToList();
+        //        return lstSqlTable;
+        //    }
+        //    if(dbType == DatabaseType.Mongo)
+        //    {
+        //        lstMongoCollection = GetCollections();
+        //        return lstMongoCollection;
+        //    }
+        //    if(dbType == DatabaseType.Neo)
+        //    {
+        //        List<Table> lstNode = GetNeoNodes();
+        //        List<Table> lstRelationShip = GetNeoRelationships();
+        //        if (lstNode == null) return null;
+        //        lstNeoNode = lstNode.Concat<Table>(lstRelationShip).ToList();
+        //        return lstNeoNode;
+        //    }
+        //    return null;
+        //}
         private List<Table> GetCollections()
         {
             List<Table> collections = new List<Table>();

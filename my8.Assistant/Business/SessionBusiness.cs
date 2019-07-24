@@ -10,9 +10,9 @@ namespace my8.Assistant.Business
 {
     public class SessionBusiness
     {
-        private static async Task<List<ApplicationSession>> GetAll()
+        private static List<ApplicationSession> GetAll()
         {
-            string info = await Utility.ReadAppDataFile(Utility.AppSessionFile);
+            string info = Utility.ReadAppDataFile(Utility.AppSessionFile);
             if (string.IsNullOrEmpty(info))
             {
                 return null;
@@ -27,9 +27,9 @@ namespace my8.Assistant.Business
                 return null;
             }
         }
-        public async Task<List<ApplicationSession>> GetProjectSessions(int projectId)
+        public List<ApplicationSession> GetProjectSessions(int projectId)
         {
-            string info = await Utility.ReadAppDataFile(Utility.AppSessionFile);
+            string info = Utility.ReadAppDataFile(Utility.AppSessionFile);
             if (string.IsNullOrEmpty(info))
             {
                 return null;
@@ -45,12 +45,12 @@ namespace my8.Assistant.Business
                 return null;
             }
         }
-        public async Task CreateSession(ApplicationSession session)
+        public void CreateSession(ApplicationSession session)
         {
             session.ProjectId = ThisApp.Project.Id;
-            List<ApplicationSession> lstSession = await GetAll();
+            List<ApplicationSession> lstSession = GetAll();
             if (lstSession == null) lstSession = new List<ApplicationSession>();
-            ApplicationSession exist = lstSession.FirstOrDefault(p => p.ProjectId == session.ProjectId && p.DbType == session.DbType);
+            ApplicationSession exist = lstSession.FirstOrDefault(p => p.ProjectId == session.ProjectId);
             if (exist != null)
             {
                 lstSession.Remove(exist);
@@ -61,11 +61,11 @@ namespace my8.Assistant.Business
             {
                 lstSession.Add(session);
             }
-            await Utility.WriteToFileInAppData(Utility.AppSessionFile, Utility.ConvertListObjectToJson(lstSession));
+            Utility.WriteToFileInAppData(Utility.AppSessionFile, Utility.ConvertListObjectToJson(lstSession));
         }
-        public async Task<ApplicationSession> GetSessionByDbType(DatabaseType dbType, int projectId)
+        public ApplicationSession GetSessionByDbType(int projectId)
         {
-            ApplicationSession session = (await GetProjectSessions(projectId)).FirstOrDefault(p => p.ProjectId ==projectId);
+            ApplicationSession session = GetProjectSessions(projectId).FirstOrDefault();
             return session;
         }
     }

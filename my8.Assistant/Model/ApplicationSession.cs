@@ -15,7 +15,6 @@ namespace my8.Assistant.Model
         }
         public int ProjectId { get; set; }
         public string ProjectName { get; set; }
-        public DatabaseType DbType { get; set; }
         public bool CreateInterface { get; set; }
         public bool CreateRepository { get; set; }
         public bool CreateReactModel { get; set; }

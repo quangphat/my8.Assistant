@@ -10,11 +10,11 @@ namespace my8.Assistant.Business
 {
     public class DatabaseBusiness
     {
-        public async Task<List<DatabaseInfo>> GetAll()
+        public List<DatabaseInfo> GetAll()
         {
             string info = "";
 
-            info = await Utility.ReadAppDataFile(Utility.connectionfile);
+            info = Utility.ReadAppDataFile(Utility.connectionfile);
             if (string.IsNullOrEmpty(info))
             {
                 return null;
@@ -29,34 +29,34 @@ namespace my8.Assistant.Business
                 return null;
             }
         }
-        public async Task<List<DatabaseInfo>> GetByProjectId(int projectId)
+        public List<DatabaseInfo> GetByProjectId(int projectId)
         {
             if (projectId <= 0)
                 return null;
-            return (await GetAll()).Where(p => p.ProjectId == projectId).ToList();
+            return GetAll().Where(p => p.ProjectId == projectId).ToList();
         }
-        public async Task<bool> RemoveDbInfo(DatabaseInfo dbInfo)
+        public bool RemoveDbInfo(DatabaseInfo dbInfo)
         {
-            List<DatabaseInfo> lstDbInfo = await GetAll();
+            List<DatabaseInfo> lstDbInfo = GetAll();
             if (lstDbInfo == null) return false;
             lstDbInfo.Remove(dbInfo);
-            await WriteListDbInfo(lstDbInfo);
+            WriteListDbInfo(lstDbInfo);
             return true;
         }
-        private async Task<bool> WriteListDbInfo(List<DatabaseInfo> dbInfos)
+        private bool WriteListDbInfo(List<DatabaseInfo> dbInfos)
         {
             if (dbInfos == null)
                 return false;
             string info = Utility.ConvertListObjectToJson(dbInfos);
-            await Utility.WriteToFileInAppData(Utility.connectionfile, info);
+            Utility.WriteToFileInAppData(Utility.connectionfile, info);
             return true;
         }
-        public async Task<bool> CreateDbInfo(DatabaseInfo dbInfo)
+        public bool CreateDbInfo(DatabaseInfo dbInfo)
         {
             if (dbInfo == null) return false;
             dbInfo.ProjectId = ThisApp.Project.Id;
             string info = Utility.ConvertObjectToJson(dbInfo);
-            List<DatabaseInfo> lstDbInfo = await GetAll();
+            List<DatabaseInfo> lstDbInfo = GetAll();
             if (lstDbInfo == null)
                 lstDbInfo = new List<DatabaseInfo>();
             DatabaseInfo exists = lstDbInfo.Where(p => p.Id == dbInfo.Id).FirstOrDefault();
@@ -69,21 +69,21 @@ namespace my8.Assistant.Business
             {
                 exists = dbInfo.DeepClone();
             }
-            await WriteListDbInfo(lstDbInfo);
+            WriteListDbInfo(lstDbInfo);
             return true;
         }
-        public async Task<bool> BindDbInfoToProject()
-        {
-            List<DatabaseInfo> lstDbinfo = await GetByProjectId(ThisApp.Project.Id);
-            DatabaseInfo sql = lstDbinfo.FirstOrDefault(p => p.DbType == DatabaseType.SQL);
-            ThisApp.SqlDbInfo = sql;
-            DatabaseInfo mongo = lstDbinfo.FirstOrDefault(p => p.DbType == DatabaseType.Mongo);
-            ThisApp.MongoDbInfo = mongo;
-            DatabaseInfo neo = lstDbinfo.FirstOrDefault(p => p.DbType == DatabaseType.Neo);
-            ThisApp.NeoDbInfo = neo;
-            if (neo == null || sql == null || mongo == null)
-                return false;
-            return true;
-        }
+        //public bool BindDbInfoToProject()
+        //{
+        //    List<DatabaseInfo> lstDbinfo = GetByProjectId(ThisApp.Project.Id);
+        //    DatabaseInfo sql = lstDbinfo.FirstOrDefault(p => p.DbType == DatabaseType.SQL);
+        //    ThisApp.SqlDbInfo = sql;
+        //    DatabaseInfo mongo = lstDbinfo.FirstOrDefault(p => p.DbType == DatabaseType.Mongo);
+        //    ThisApp.MongoDbInfo = mongo;
+        //    DatabaseInfo neo = lstDbinfo.FirstOrDefault(p => p.DbType == DatabaseType.Neo);
+        //    ThisApp.NeoDbInfo = neo;
+        //    if (neo == null || sql == null || mongo == null)
+        //        return false;
+        //    return true;
+        //}
     }
 }

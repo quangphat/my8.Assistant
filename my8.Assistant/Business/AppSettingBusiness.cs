@@ -10,9 +10,9 @@ namespace my8.Assistant.Business
 {
     public class AppSettingBusiness
     {
-        public async Task<List<ApplicationSetting>> GetAll()
+        public List<ApplicationSetting> GetAll()
         {
-            string info = await Utility.ReadAppDataFile(Utility.AppSettingFile);
+            string info = Utility.ReadAppDataFile(Utility.AppSettingFile);
             if (string.IsNullOrEmpty(info))
             {
                 return null;
@@ -27,17 +27,17 @@ namespace my8.Assistant.Business
                 return null;
             }
         }
-        public async Task<ApplicationSetting> GetCurrentSetting(int projectId)
+        public ApplicationSetting GetCurrentSetting(int projectId)
         {
-            List<ApplicationSetting> lstExists = await GetAll();
+            List<ApplicationSetting> lstExists = GetAll();
             if (lstExists == null) return null;
             ApplicationSetting current = lstExists.FirstOrDefault(p => p.ProjectId == projectId);
             return current;
         }
-        public async Task WriteAppSetting(ApplicationSetting appSetting)
+        public void WriteAppSetting(ApplicationSetting appSetting)
         {
             appSetting.ProjectId = ThisApp.Project.Id;
-            List<ApplicationSetting> lstSetting = await GetAll();
+            List<ApplicationSetting> lstSetting = GetAll();
             if (lstSetting == null) lstSetting = new List<ApplicationSetting>();
             ApplicationSetting exist = lstSetting.FirstOrDefault(p => p.ProjectId == appSetting.ProjectId);
             if (exist != null)
@@ -50,7 +50,7 @@ namespace my8.Assistant.Business
             {
                 lstSetting.Add(appSetting);
             }
-            await Utility.WriteToFileInAppData(Utility.AppSettingFile, Utility.ConvertListObjectToJson(lstSetting));
+            Utility.WriteToFileInAppData(Utility.AppSettingFile, Utility.ConvertListObjectToJson(lstSetting));
         }
     }
 }

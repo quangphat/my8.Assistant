@@ -84,36 +84,29 @@ namespace my8.Assistant
 
         #region File
         
-        public static async Task<string> ReadAppDataFile(string fileName)
+        public static string ReadAppDataFile(string fileName)
         {
             string path = appDataDir + "\\" + fileName;
             if (!File.Exists(path))
                 return string.Empty;
             string s = string.Empty;
-            await Task.Run(() =>
+            using (StreamReader sr = new StreamReader(path))
             {
-                using (StreamReader sr = new StreamReader(path))
-                {
-                    s = sr.ReadToEnd();
-                }
-            });
-            
+                s = sr.ReadToEnd();
+            }
             return s;
         }
-        public static async Task<bool> WriteToFileInAppData(string fileName, string value)
+        public static bool WriteToFileInAppData(string fileName, string value)
         {
             string path = appDataDir + "\\" + fileName;
             if (!Directory.Exists(appDataDir))
             {
                 Directory.CreateDirectory(appDataDir);
             }
-            await Task.Run(()=> {
-                using (StreamWriter sw = new StreamWriter(path, false))
-                {
-                    sw.Write(value);
-                }
-            });
-            
+            using (StreamWriter sw = new StreamWriter(path, false))
+            {
+                sw.Write(value);
+            }
             return true;
         }
         public static bool WriteToFile(string filePath, string value)
@@ -158,9 +151,9 @@ namespace my8.Assistant
         }
 
         
-        public static async Task<string> ReadProjectsFile()
+        public static string ReadProjectsFile()
         {
-            return await ReadAppDataFile(ProjectsFile);
+            return ReadAppDataFile(ProjectsFile);
         }
         #endregion
 

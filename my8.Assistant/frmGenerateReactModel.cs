@@ -30,7 +30,11 @@ namespace my8.Assistant
             if (m_Generator != null)
             {
                 List<Column> lstColumn = GetColumns();
-                string generated = m_Generator.CreateReactJsModel(lstColumn, className,this._syntaxType);
+                var table = new Model.Table
+                {
+                    RealName = this.className
+                };
+                string generated = m_Generator.CreateReactJsModel(table, lstColumn, className,this._syntaxType);
                 txtReactModel.Text = generated;
             }
         }

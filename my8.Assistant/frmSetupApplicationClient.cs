@@ -31,28 +31,28 @@ namespace my8.Assistant
 
         public delegate void delgUpdateSession();
         public delgUpdateSession updateSession;
-        private async void btnSave_Click(object sender, EventArgs e)
+        private void btnSave_Click(object sender, EventArgs e)
         {
             AppSetting = new ApplicationSetting();
             this.ToEntity(AppSetting);
             AppSetting.ProjectName = ThisApp.Project.Name;
-            await _bizAppSetting.WriteAppSetting(AppSetting);
+            _bizAppSetting.WriteAppSetting(AppSetting);
             Session = new ApplicationSession();
-            if(rdSql.Checked)
-            {
-                Session.DbType = DatabaseType.SQL;
-            }
-            if (rdMongo.Checked)
-            {
-                Session.DbType = DatabaseType.Mongo;
-            }
-            if (rdNeo.Checked)
-            {
-                Session.DbType = DatabaseType.Neo;
-            }
+            //if(rdSql.Checked)
+            //{
+            //    Session.DbType = DatabaseType.SQL;
+            //}
+            //if (rdMongo.Checked)
+            //{
+            //    Session.DbType = DatabaseType.Mongo;
+            //}
+            //if (rdNeo.Checked)
+            //{
+            //    Session.DbType = DatabaseType.Neo;
+            //}
             groupBox2.ToEntity(Session);
             Session.ProjectName = ThisApp.Project.Name;
-            await _bizSession.CreateSession(Session);
+            _bizSession.CreateSession(Session);
             ThisApp.currentSession = Session;
             ThisApp.AppSetting = AppSetting;
             lblNotify.SetText("Thành công", AutoControl.LabelNotify.EnumStatus.Success);
@@ -73,20 +73,19 @@ namespace my8.Assistant
                 }
             }
         }
-        DatabaseType m_dbType;
-        private async void frmSetupApplication_Load(object sender, EventArgs e)
+        private void frmSetupApplication_Load(object sender, EventArgs e)
         {
             HiddenControl(this);
             if (ThisApp.AppSetting == null) return;
             this.ToForm(AppSetting);
             
-            if (rdSql.Checked)
-                m_dbType = DatabaseType.SQL;
-            if (rdMongo.Checked)
-                m_dbType = DatabaseType.Mongo;
-            if (rdNeo.Checked)
-                m_dbType = DatabaseType.Neo;
-            ThisApp.currentSession = await _bizSession.GetSessionByDbType(m_dbType, ThisApp.Project.Id);
+            //if (rdSql.Checked)
+            //    m_dbType = DatabaseType.SQL;
+            //if (rdMongo.Checked)
+            //    m_dbType = DatabaseType.Mongo;
+            //if (rdNeo.Checked)
+            //    m_dbType = DatabaseType.Neo;
+            ThisApp.currentSession = _bizSession.GetSessionByDbType( ThisApp.Project.Id);
             groupBox2.ToForm(ThisApp.currentSession);
         }
 
@@ -202,24 +201,24 @@ namespace my8.Assistant
             autoTextBox14.Text = Utility.GetFilePath();
         }
 
-        private async void rdSql_Click(object sender, EventArgs e)
+        private void rdSql_Click(object sender, EventArgs e)
         {
-            m_dbType = DatabaseType.SQL;
-            ThisApp.currentSession = await _bizSession.GetSessionByDbType(m_dbType, ThisApp.Project.Id);
+            //m_dbType = DatabaseType.SQL;
+            ThisApp.currentSession = _bizSession.GetSessionByDbType( ThisApp.Project.Id);
             groupBox2.ToForm(ThisApp.currentSession);
         }
 
-        private async void rdMongo_Click(object sender, EventArgs e)
+        private void rdMongo_Click(object sender, EventArgs e)
         {
-            m_dbType = DatabaseType.Mongo;
-            ThisApp.currentSession = await _bizSession.GetSessionByDbType(m_dbType, ThisApp.Project.Id);
+            //m_dbType = DatabaseType.Mongo;
+            ThisApp.currentSession = _bizSession.GetSessionByDbType(ThisApp.Project.Id);
             groupBox2.ToForm(ThisApp.currentSession);
         }
 
-        private async void rdNeo_Click(object sender, EventArgs e)
+        private void rdNeo_Click(object sender, EventArgs e)
         {
-            m_dbType = DatabaseType.Neo;
-            ThisApp.currentSession = await _bizSession.GetSessionByDbType(m_dbType, ThisApp.Project.Id);
+            //m_dbType = DatabaseType.Neo;
+            ThisApp.currentSession = _bizSession.GetSessionByDbType( ThisApp.Project.Id);
             groupBox2.ToForm(ThisApp.currentSession);
         }
 
