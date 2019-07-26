@@ -254,7 +254,7 @@ namespace my8.Assistant
             frmSelectProject.ShowDialog();
             this.ToForm(ThisApp.currentSession);
             this.Text = ThisApp.Project.Name;
-            
+            this.txtConsole.Focus();
             m_Generator = new Generator();
         }
         private void InitCbbTable()
@@ -408,6 +408,11 @@ namespace my8.Assistant
                 if (consoleObj.ObjectType == ObjectType.react_repository)
                 {
                     m_Generator.CreateReactJsRepositoryFile(table);
+                    return;
+                }
+                if (consoleObj.ObjectType == ObjectType.react_interface)
+                {
+                    m_Generator.CreateReactInterfaceFile(table);
                     return;
                 }
                 if (consoleObj.ObjectType == ObjectType.react_component)

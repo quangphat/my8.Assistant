@@ -226,5 +226,10 @@ namespace my8.Assistant
         {
             autoTextBox13.Text = Utility.GetFolderPath();
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            autoTextBox10.Text = Utility.GetFilePath();
+        }
     }
 }

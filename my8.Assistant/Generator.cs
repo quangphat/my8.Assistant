@@ -134,6 +134,17 @@ namespace my8.Assistant
             m_strResult.Append(table.PrimaryKeyCol);
             return m_strResult.ToString();
         }
+        public bool CreateReactInterfaceFile(Table table, bool createFile = true)
+        {
+            m_templateContent = string.Empty;
+            if (createFile)
+            {
+                string filepath = string.Empty;
+                filepath = $"{ThisApp.AppSetting.ReactJsModelFolder}\\I{table.CustomName}.tsx";
+                Utility.WriteToFile(m_templateContent, filepath, FileType.Repository);
+            }
+            return true;
+        }
         #region BuildRepository
         public void CreateReactJsRepositoryFile(Table table, bool createFile = true)
         {
@@ -774,10 +785,10 @@ namespace my8.Assistant
             //}
             if (objectType == ObjectType.rp_di)
             {
-                if (!m_templateContent.Contains($"MGI{table.CustomName}Repository"))
+                if (!m_templateContent.Contains($"I{table.CustomName}Repository"))
                 {
                     m_strBuilder = new StringBuilder();
-                    line = $"services.AddSingleton<MGI{table.CustomName}Repository, MG{table.CustomName}Repository>();";
+                    line = $"services.AddSingleton<I{table.CustomName}Repository, {table.CustomName}Repository>();";
                     m_strBuilder.Append(line);
                     m_strBuilder.Append(Environment.NewLine);
                     m_strBuilder.Append("\t\t\t");

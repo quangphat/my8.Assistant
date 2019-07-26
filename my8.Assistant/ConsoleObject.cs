@@ -19,7 +19,8 @@ namespace my8.Assistant
         rp_di = 9,
         react_repository = 10,
         react_component = 11,
-        mapper = 12
+        mapper = 12,
+        react_interface = 13,
     }
     public enum CommandType
     {
