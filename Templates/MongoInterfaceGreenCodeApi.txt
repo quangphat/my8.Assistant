@@ -7,9 +7,6 @@ namespace my8GreenCodeApi.Interface
     public interface I{ModelName}Repository
     {
         Task<string> Create({ModelName} {modelname});
-        Task<{ModelName}> Get(string id);
-        Task<bool> Update({ModelName} {modelname});
-        Task<bool> Delete(string id);
-        Task<List<{ModelName}>> Search(string searchStr);
+        
     }
 }

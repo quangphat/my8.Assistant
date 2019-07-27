@@ -9,7 +9,7 @@ using my8ProgramingBlogClient.Infrastructures;
 
 namespace my8ProgramingBlogClient.Controllers
 {
-    [Route("{ModelName}")]
+    [Route("{ModelName}s")]
     public class {ModelName}Controller : BaseController
     {
         public {ModelName}Controller(HttpClient httpClient, IOptions<ClientConfig> clientConfig, CurrentProcess currentProcess)

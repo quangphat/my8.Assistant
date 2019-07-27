@@ -32,39 +32,6 @@ namespace my8GreenCodeApi.Repository
             }
         }
 
-        public async Task<{ModelName}> Get(string id)
-        {
-            filter = Builders<{ModelName}>.Filter.Eq(p => p.Id, id);
-            return await collection.Find(filter).FirstOrDefaultAsync();
-        }
-        public async Task<bool> Update({ModelName} {modelname})
-        {
-            var filter = Builders<{ModelName}>.Filter.Eq(p => p.Id, {modelname}.Id);
-            var update = Builders<{ModelName}>.Update
-                            .Set(s => s.Id, {modelname}.Id);
-            try
-            {
-                await collection.UpdateOneAsync(filter, update);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-        public async Task<bool> Delete(string id)
-        {
-            try
-            {
-                filter = Builders<{ModelName}>.Filter.Eq(p => p.Id, id);
-                await collection.DeleteOneAsync(filter);
-                return true;
-            }
-            catch { return false; }
-        }
-        public async Task<List<{ModelName}>> Search(string searchStr)
-        {
-            return null;
-        }
+       
     }
 }
