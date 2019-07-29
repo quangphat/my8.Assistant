@@ -9,7 +9,6 @@ using my8GreenCodeApi.Models;
 using my8GreenCodeApi.Infrastructure;
 namespace my8GreenCodeApi.Controllers
 {
-    [Produces("application/json")]
 	[Route("{ModelName}s")]
     public class {ModelName}Controller : BaseController
     {
@@ -19,25 +18,11 @@ namespace my8GreenCodeApi.Controllers
             _biz{ModelName} = {modelname}Business;
         }
 		[HttpPost]
-        [Route("create")]
         public async Task<IActionResult> Create([FromBody] {ModelName} model)
         {
             {ModelName} {modelname}= await _biz{ModelName}.Create(model);
             return ToResponse({modelname}.Id);
         }
-        [HttpPut]
-        [Route("update")]
-        public async Task<IActionResult> Update([FromBody] {ModelName} model)
-        {
-            bool result = await _biz{ModelName}.Update(model);
-            return ToResponse(result);
-        }
-        [HttpDelete]
-        [Route("{id}")]
-        public async Task<IActionResult> Delete(string id)
-        {
-            bool rst = await _biz{ModelName}.Delete(id);
-            return ToResponse(rst);
-        }
+        
     }
 }

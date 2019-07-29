@@ -41,22 +41,28 @@ namespace my8.Assistant
                 return null;
             string[] objectTypes = null;
             string[] objectNames = null;
-            if (commands[1]!=null)
+            if (commands[1] != null)
             {
-                objectTypes = commands[1].Split(new Char[] { ','});
+                objectTypes = commands[1].Split(new Char[] { ',' });
             }
             if (commands[2] != null)
             {
-                objectNames = commands[2].Split(new Char[] { ',' });
+                var objNamesArr = commands[2];
+                if (commands.Length > 3)
+                {
+                    objNamesArr = string.Join(",", commands, 2, commands.Length - 2);
+                }
+                objectNames = objNamesArr.Split(new Char[] { ',' });
+                objectNames = objectNames.Where(p => !string.IsNullOrWhiteSpace(p)).ToArray();
             }
             List<ConsoleObject> objects = new List<ConsoleObject>();
-            if(objectTypes!=null && objectNames!=null)
+            if (objectTypes != null && objectNames != null)
             {
-                for(int i=0;i<objectTypes.Length;i++)
+                for (int i = 0; i < objectTypes.Length; i++)
                 {
-                    for(int j=0;j<objectNames.Length;j++)
+                    for (int j = 0; j < objectNames.Length; j++)
                     {
-                        string[] command = new string[] {commands[0],objectTypes[i],objectNames[j] };
+                        string[] command = new string[] { commands[0], objectTypes[i], objectNames[j] };
                         objects.Add(
                             GetConsoleObjectOne(command)
                         );
@@ -68,7 +74,7 @@ namespace my8.Assistant
 
         public static ConsoleObject GetConsoleObjectOne(string[] commands)
         {
-            if (commands == null || commands.Length<3)
+            if (commands == null || commands.Length < 3)
                 return null;
             var consoleObj = new ConsoleObject();
             if (!string.IsNullOrWhiteSpace(commands[0]))
