@@ -11,6 +11,7 @@ namespace my8GreenCodeApi.Models
         [BsonRepresentation(BsonType.ObjectId)]
 		public string Id { get; set; }
 	[ModelClass]
+	public string ProjectId {get;set;}
 	public DateTime CreatedTime { get; set; }
         public DateTime ModifiedTime { get; set; }
     }
