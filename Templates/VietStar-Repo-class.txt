@@ -14,8 +14,10 @@ namespace VietStar.Repository
 {
     public class {ModelName}Repository : RepositoryBase, I{ModelName}Repository
     {
-        public {ModelName}Repository(IConfiguration configuration) : base(configuration)
+	protected readonly ILogRepository _rpLog;
+        public {ModelName}Repository(IConfiguration configuration, ILogRepository logRepository) : base(configuration)
         {
+		_rpLog = logRepository;
         }
     }
 }
