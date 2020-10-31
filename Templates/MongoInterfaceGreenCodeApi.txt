@@ -1,4 +1,4 @@
-using my8GreenCodeApi.Models;
+using GreenCodeModels;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -6,7 +6,7 @@ namespace my8GreenCodeApi.Interface
 {
     public interface I{ModelName}Repository
     {
-        Task<string> Create({ModelName} {modelname});
+        Task<string> CreateAsync({ModelName} model);
         
     }
 }
