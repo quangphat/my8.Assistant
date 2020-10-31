@@ -1,4 +1,4 @@
-using my8GreenCodeApi.Models;
+using GreenCodeModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +9,6 @@ namespace my8GreenCodeApi.IBusiness
 {
     public interface I{ModelName}Business
     {
-        Task<{ModelName}> Create({ModelName} {modelname});
+        Task<{ModelName}> CreateAsync({ModelName} {modelname});
     }
 }

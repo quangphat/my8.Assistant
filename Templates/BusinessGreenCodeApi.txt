@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using my8GreenCodeApi.Interface;
-using my8GreenCodeApi.Models;
 using AutoMapper;
-using my8GreenCodeApi.Infrastructure;
+using GreenCode.Business.Classes;
+using GreenCodeModels.Infrastructures;
+using GreenCodeModels;
+
 namespace my8GreenCodeApi.Business
 {
     public class {ModelName}Business :BaseBusiness, I{ModelName}Business
@@ -16,7 +18,7 @@ namespace my8GreenCodeApi.Business
         {
             _rp{ModelName} = {modelname}Repository;
         }
-        public async Task<{ModelName}> Create({ModelName} {modelname})
+        public async Task<{ModelName}> CreateAsync({ModelName} {modelname})
         {
             await _rp{ModelName}.Create({modelname});
             return {modelname};
