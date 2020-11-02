@@ -12,26 +12,15 @@ using System.Threading.Tasks;
 
 namespace my8GreenCodeApi.Repository
 {
-    public class {ModelName}Repository:MongoRepositoryBase<{ModelName}>,I{ModelName}Repository
+    public class {ModelName}Repository:MongoRepositoryBase<{ModelName}>, I{ModelName}Repository
     {
-		IMongoCollection<{ModelName}> collection;
+		//IMongoCollection<{ModelName}> collection;
 		FilterDefinition<{ModelName}> filter = FilterDefinition<{ModelName}>.Empty;
         public {ModelName}Repository(IOptions<MongoConnection> setting, CurrentProcess currentProcess) : base(setting, currentProcess) 
         {
-            collection = _db.GetCollection<{ModelName}>("{ModelName}");
+            //collection = _db.GetCollection<{ModelName}>("{ModelName}");
         }
-        public async Task<string> Create({ModelName} {modelname})
-        {
-            try
-            {
-                await collection.InsertOneAsync({modelname});
-                return {modelname}.Id;
-            }
-            catch
-            {
-                return string.Empty;
-            }
-        }
+        
 
        
     }
