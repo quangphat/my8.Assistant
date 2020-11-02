@@ -20,7 +20,7 @@ namespace my8GreenCodeApi.Business
         }
         public async Task<{ModelName}> CreateAsync({ModelName} {modelname})
         {
-            await _rp{ModelName}.Create({modelname});
+            await _rp{ModelName}.CreateAsync({modelname});
             return {modelname};
         }
 
