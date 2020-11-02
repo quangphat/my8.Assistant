@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GreenCodeModels;
+using GreenCodeModels.Infrastructures;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using my8GreenCodeApi.IBusiness;
-using my8GreenCodeApi.Models;
-using my8GreenCodeApi.Infrastructure;
 namespace my8GreenCodeApi.Controllers
 {
 	[Route("{ModelName}s")]
@@ -20,8 +20,8 @@ namespace my8GreenCodeApi.Controllers
 		[HttpPost]
         public async Task<IActionResult> Create([FromBody] {ModelName} model)
         {
-            {ModelName} {modelname}= await _biz{ModelName}.Create(model);
-            return ToResponse({modelname}.Id);
+            var result = await _biz{ModelName}.CreateAsync(model);
+            return ToResponse(result.Id);
         }
         
     }
