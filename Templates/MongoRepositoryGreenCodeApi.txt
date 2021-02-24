@@ -16,7 +16,10 @@ namespace my8GreenCodeApi.Repository
     {
 		//IMongoCollection<{ModelName}> collection;
 		FilterDefinition<{ModelName}> filter = FilterDefinition<{ModelName}>.Empty;
-        public {ModelName}Repository(IOptions<MongoConnection> setting, CurrentProcess currentProcess) : base(setting, currentProcess) 
+        public {ModelName}Repository(IOptions<MongoConnection> setting,
+            CurrentProcess currentProcess,
+            IMongoClient mongoClient,
+            IClientSessionHandle clientSessionHandle) : base(setting, mongoClient, clientSessionHandle, currentProcess)
         {
             //collection = _db.GetCollection<{ModelName}>("{ModelName}");
         }

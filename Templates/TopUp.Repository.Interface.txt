@@ -1,0 +1,15 @@
+using Cnv.Core.Topup.Shared.repositories.models;
+using Cnv.Core.Topup.Shared.Repositories.Models;
+using MongoDB.Bson;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Cnv.Core.Topup.Shared.repositories.Interfaces
+{
+    public interface I{ModelName}Repository : IBaseRepository<{ModelName}Entity, ObjectId>
+    {
+
+    }
+}

@@ -1,0 +1,15 @@
+using Cnv.Core.Libs.Db.MongoDb;
+using MongoDB.Bson.Serialization.Attributes;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Cnv.Core.Topup.Shared.repositories.models
+{
+    [Entity(name: "{ModelName}")]
+    [BsonIgnoreExtraElements]
+    public  class {ModelName}Entity: BaseMongoObjectEntity
+    {
+
+    }
+}

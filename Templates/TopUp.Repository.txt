@@ -1,0 +1,17 @@
+using System;
+using System.Threading.Tasks;
+using Cnv.Core.Libs.Db.MongoDb;
+using Cnv.Core.Topup.Shared.repositories.Interfaces;
+using Cnv.Core.Topup.Shared.repositories.models;
+using Cnv.Core.Topup.Shared.Repositories.Models;
+using MongoDB.Bson;
+using MongoDB.Driver;
+
+namespace Cnv.Core.Topup.Shared.Repositories
+{
+    public class {ModelName}Repository : BaseRepository<{ModelName}Entity, ObjectId>, I{ModelName}Repository
+    {
+        public {ModelName}Repository(IMongoDatabase db) : base(db) { }
+        
+    }
+}

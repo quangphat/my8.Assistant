@@ -1,0 +1,37 @@
+using Cnv.Core.Libs.Client;
+using Cnv.Core.Libs.Utils.Request;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Cnv.Core.Topup.Infrastructures;
+using System.Net;
+using Cnv.Core.Topup.businesses.Interfaces;
+using Cnv.Core.Topup.Shared.Infrastructures;
+using Microsoft.Extensions.Options;
+
+namespace Cnv.Core.Topup.controllers
+{
+    [Route("{modelname}")]
+    public class {ModelName}Controller : BaseController
+    {
+        private readonly IHostEnvironment _env;
+        private readonly HttpClient _httpClient;
+
+        public {ModelName}Controller(IHostEnvironment hostEnvironment,
+            HttpClient httpClient,
+            ILogger<{ModelName}Controller> log,
+            RequestProcess requestProcess) : base(log, requestProcess)
+        {
+            _env = hostEnvironment;
+            _httpClient = httpClient;
+        }
+
+        
+    }
+}

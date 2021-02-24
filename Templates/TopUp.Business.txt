@@ -1,0 +1,28 @@
+using System.Threading.Tasks;
+using Cnv.Core.Libs.Service.Businesses;
+using Cnv.Core.Libs.Utils.Request;
+using Cnv.Core.Topup.businesses.Interfaces;
+using Cnv.Core.Topup.infrastructures;
+using Cnv.Core.Topup.Shared.Infrastructures;
+using Cnv.Core.Topup.Shared.repositories.Interfaces;
+using Cnv.Core.Topup.Shared.Repositories;
+using Microsoft.Extensions.Logging;
+using MongoDB.Libmongocrypt;
+
+namespace Cnv.Core.Topup.Businesses
+{
+    public class {ModelName}Business : BaseBusiness, I{ModelName}Business
+    {
+        private readonly I{ModelName}Repository _rp{ModelName};
+
+        public {ModelName}Business(
+            I{ModelName}Repository rp{ModelName},
+            ILogger<{ModelName}Business> log,
+            RequestProcess requestProcess) : base(log, requestProcess)
+        {
+            this._rp{ModelName} = rp{ModelName};
+        }
+        
+        
+    }
+}
