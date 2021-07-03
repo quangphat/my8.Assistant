@@ -57,6 +57,9 @@ namespace my8.Assistant.Model
         public string MapperFile { get; set; }
         public string ReactJsComponentFolder { get; set; }
         public string ReactJsComponentTemplate { get; set; }
+        public string ILanguageFilePath { get; set; }
+        public string MessageVNFilePath { get;set;}
+        public string MessageENFilePath { get; set; }
         public string getSubFolferName(int index)
         {
             if (string.IsNullOrWhiteSpace(SubFolderName))

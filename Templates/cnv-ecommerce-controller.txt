@@ -1,0 +1,59 @@
+
+using Cnv.Core.ECommerce.Business.Interfaces;
+using Cnv.Core.ECommerce.ShareModels;
+using Cnv.Core.Libs.Client;
+using Cnv.Core.Libs.Client.Models.Json;
+using Cnv.Core.Libs.Utils.Request;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System.Threading.Tasks;
+
+namespace Cnv.Core.Ecommerce.Controllers
+{
+    [Route("{modelname}")]
+    public class {ModelName}Controller : ECommerceBaseController
+    {
+        private readonly I{ModelName}Business _biz{ModelName};
+
+        public {ModelName}Controller(
+            I{ModelName}Business biz{ModelName},
+            ILogger<{ModelName}Controller> log,
+            RequestProcess requestProcess) : base(log, requestProcess)
+        {
+            this._biz{ModelName} = biz{ModelName};
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetPaging([FromQuery] RequestPagingJsonModel model)
+        {
+            
+            return ToResponse();
+        }
+
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<IActionResult> Get(long id)
+        {
+            return ToResponse();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create()
+        {
+            return ToResponse();
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Update()
+        {
+            return ToResponse();
+        }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public async Task<IActionResult> Delete(long id)
+        {
+            return ToResponse();
+        }
+    }
+}

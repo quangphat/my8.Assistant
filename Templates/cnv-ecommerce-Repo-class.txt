@@ -1,0 +1,18 @@
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Cnv.Core.Ecommerce.Shared.Entities;
+using Cnv.Core.Ecommerce.Shared.Repositories.Interfaces;
+using Cnv.Core.Libs.Db.MongoDb;
+using Cnv.Core.Libs.Db.Utils;
+using MongoDB.Bson;
+using MongoDB.Driver;
+
+namespace Cnv.Core.Ecommerce.Shared.Repositories
+{
+    public class {ModelName}Repository : BaseRepository<{ModelName}Entity, long>, I{ModelName}Repository
+    {
+        public {ModelName}Repository(IMongoDatabase db, SequenceRepository sequenceRepository) : base(db,sequenceRepository) { }
+
+        
+    }
+}

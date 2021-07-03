@@ -1,0 +1,13 @@
+using Cnv.Core.Ecommerce.Shared.Repositories.Models.Fields;
+using Cnv.Core.Libs.Db.MongoDb;
+using MongoDB.Bson.Serialization.Attributes;
+
+namespace Cnv.Core.Ecommerce.Shared.Entities
+{
+    [Entity(name: "{ModelName}")]
+    [BsonIgnoreExtraElements]
+    public class {ModelName}Entity 
+    {
+
+    }
+}

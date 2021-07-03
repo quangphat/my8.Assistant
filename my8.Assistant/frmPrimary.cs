@@ -361,11 +361,30 @@ namespace my8.Assistant
             string content = txtConsole.Text;
             if (string.IsNullOrWhiteSpace(content))
                 return;
+            if(content.StartsWith("open"))
+            {
+                OpenForm(content);
+                return;
+            }
             //string[] arr = StringExtension.GetConsole(content);
             var consoleObj = StringExtension.GetConsoleObjectMultiple(content);
             excuteConsoleMultiple(consoleObj);
             lblNotify.SetText("Thành công", LabelNotify.EnumStatus.Success);
         }
+
+        private void OpenForm(string content)
+        {
+            var commands = StringExtension.GetConsole(content);
+            if (commands.Length < 2)
+                return;
+
+            if(commands[1] == "lang")
+            {
+                frmGenerateLanguage frmLang = new frmGenerateLanguage();
+                frmLang.ShowDialog();
+            }
+        }
+
         private void excuteConsoleMultiple(List<ConsoleObject> objects)
         {
             if (objects == null)

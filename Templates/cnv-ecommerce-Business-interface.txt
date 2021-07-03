@@ -1,0 +1,14 @@
+using Cnv.Core.ECommerce.ShareModels;
+using Cnv.Core.Libs.Client.Models;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Cnv.Core.ECommerce.Business.Interfaces
+{
+    public interface I{ModelName}Business
+    {
+        
+    }
+}

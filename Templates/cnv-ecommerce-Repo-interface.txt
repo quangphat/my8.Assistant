@@ -1,0 +1,15 @@
+
+using Cnv.Core.Ecommerce.Shared.Entities;
+using Cnv.Core.Libs.Db.MongoDb;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Cnv.Core.Ecommerce.Shared.Repositories.Interfaces
+{
+    public interface I{ModelName}Repository : IBaseRepository<{ModelName}Entity, long>
+    {
+
+    }
+}

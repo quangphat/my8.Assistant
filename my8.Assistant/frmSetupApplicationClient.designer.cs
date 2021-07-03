@@ -83,13 +83,22 @@
             this.button5 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.autoTextBox10 = new AutoControl.AutoTextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.autoTextBox1 = new AutoControl.AutoTextBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.autoTextBox3 = new AutoControl.AutoTextBox();
+            this.button3 = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.autoTextBox4 = new AutoControl.AutoTextBox();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnSave
             // 
             this.btnSave.Location = new System.Drawing.Point(1147, 715);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(4);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(100, 28);
             this.btnSave.TabIndex = 23;
@@ -100,7 +109,7 @@
             // btnCancel
             // 
             this.btnCancel.Location = new System.Drawing.Point(1255, 715);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(100, 28);
             this.btnCancel.TabIndex = 24;
@@ -121,7 +130,7 @@
             // btnModelPFolder
             // 
             this.btnModelPFolder.Location = new System.Drawing.Point(592, 42);
-            this.btnModelPFolder.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnModelPFolder.Margin = new System.Windows.Forms.Padding(4);
             this.btnModelPFolder.Name = "btnModelPFolder";
             this.btnModelPFolder.Size = new System.Drawing.Size(40, 28);
             this.btnModelPFolder.TabIndex = 35;
@@ -154,9 +163,9 @@
             this.groupBox2.Controls.Add(this.autoMetroCheckBox2);
             this.groupBox2.Controls.Add(this.autoMetroCheckBox1);
             this.groupBox2.Location = new System.Drawing.Point(3, 521);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox2.Size = new System.Drawing.Size(1353, 187);
             this.groupBox2.TabIndex = 57;
             this.groupBox2.TabStop = false;
@@ -168,7 +177,7 @@
             this.autoMetroCheckBox20.BindingFor = "ApplicationSession";
             this.autoMetroCheckBox20.BindingName = "CreateReactComponent";
             this.autoMetroCheckBox20.Location = new System.Drawing.Point(185, 142);
-            this.autoMetroCheckBox20.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.autoMetroCheckBox20.Margin = new System.Windows.Forms.Padding(4);
             this.autoMetroCheckBox20.Name = "autoMetroCheckBox20";
             this.autoMetroCheckBox20.Size = new System.Drawing.Size(152, 17);
             this.autoMetroCheckBox20.TabIndex = 166;
@@ -181,7 +190,7 @@
             this.autoMetroCheckBox18.BindingFor = "ApplicationSession";
             this.autoMetroCheckBox18.BindingName = "CreateMapper";
             this.autoMetroCheckBox18.Location = new System.Drawing.Point(9, 142);
-            this.autoMetroCheckBox18.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.autoMetroCheckBox18.Margin = new System.Windows.Forms.Padding(4);
             this.autoMetroCheckBox18.Name = "autoMetroCheckBox18";
             this.autoMetroCheckBox18.Size = new System.Drawing.Size(96, 17);
             this.autoMetroCheckBox18.TabIndex = 162;
@@ -194,7 +203,7 @@
             this.autoMetroCheckBox17.BindingFor = "ApplicationSession";
             this.autoMetroCheckBox17.BindingName = "OverWriteBusiness";
             this.autoMetroCheckBox17.Location = new System.Drawing.Point(1069, 101);
-            this.autoMetroCheckBox17.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.autoMetroCheckBox17.Margin = new System.Windows.Forms.Padding(4);
             this.autoMetroCheckBox17.Name = "autoMetroCheckBox17";
             this.autoMetroCheckBox17.Size = new System.Drawing.Size(115, 17);
             this.autoMetroCheckBox17.TabIndex = 161;
@@ -207,7 +216,7 @@
             this.autoMetroCheckBox16.BindingFor = "ApplicationSession";
             this.autoMetroCheckBox16.BindingName = "CreateBusiness";
             this.autoMetroCheckBox16.Location = new System.Drawing.Point(1069, 62);
-            this.autoMetroCheckBox16.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.autoMetroCheckBox16.Margin = new System.Windows.Forms.Padding(4);
             this.autoMetroCheckBox16.Name = "autoMetroCheckBox16";
             this.autoMetroCheckBox16.Size = new System.Drawing.Size(115, 17);
             this.autoMetroCheckBox16.TabIndex = 160;
@@ -219,7 +228,7 @@
             this.rdNeo.AutoSize = true;
             this.rdNeo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.rdNeo.Location = new System.Drawing.Point(1256, 23);
-            this.rdNeo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rdNeo.Margin = new System.Windows.Forms.Padding(4);
             this.rdNeo.Name = "rdNeo";
             this.rdNeo.Size = new System.Drawing.Size(49, 17);
             this.rdNeo.TabIndex = 159;
@@ -233,7 +242,7 @@
             this.autoMetroCheckBox4.BindingFor = "ApplicationSession";
             this.autoMetroCheckBox4.BindingName = "OverWriteDependencyInjection";
             this.autoMetroCheckBox4.Location = new System.Drawing.Point(557, 101);
-            this.autoMetroCheckBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.autoMetroCheckBox4.Margin = new System.Windows.Forms.Padding(4);
             this.autoMetroCheckBox4.Name = "autoMetroCheckBox4";
             this.autoMetroCheckBox4.Size = new System.Drawing.Size(78, 17);
             this.autoMetroCheckBox4.TabIndex = 36;
@@ -246,7 +255,7 @@
             this.rdSql.Checked = true;
             this.rdSql.Cursor = System.Windows.Forms.Cursors.Hand;
             this.rdSql.Location = new System.Drawing.Point(1051, 22);
-            this.rdSql.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rdSql.Margin = new System.Windows.Forms.Padding(4);
             this.rdSql.Name = "rdSql";
             this.rdSql.Size = new System.Drawing.Size(42, 17);
             this.rdSql.TabIndex = 158;
@@ -261,7 +270,7 @@
             this.autoMetroCheckBox15.BindingFor = "ApplicationSession";
             this.autoMetroCheckBox15.BindingName = "CreateDependencyInjection";
             this.autoMetroCheckBox15.Location = new System.Drawing.Point(351, 101);
-            this.autoMetroCheckBox15.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.autoMetroCheckBox15.Margin = new System.Windows.Forms.Padding(4);
             this.autoMetroCheckBox15.Name = "autoMetroCheckBox15";
             this.autoMetroCheckBox15.Size = new System.Drawing.Size(142, 17);
             this.autoMetroCheckBox15.TabIndex = 35;
@@ -273,7 +282,7 @@
             this.rdMongo.AutoSize = true;
             this.rdMongo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.rdMongo.Location = new System.Drawing.Point(1139, 23);
-            this.rdMongo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rdMongo.Margin = new System.Windows.Forms.Padding(4);
             this.rdMongo.Name = "rdMongo";
             this.rdMongo.Size = new System.Drawing.Size(67, 17);
             this.rdMongo.TabIndex = 157;
@@ -287,7 +296,7 @@
             this.autoMetroCheckBox13.BindingFor = "ApplicationSession";
             this.autoMetroCheckBox13.BindingName = "CreateUnitTest";
             this.autoMetroCheckBox13.Location = new System.Drawing.Point(557, 62);
-            this.autoMetroCheckBox13.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.autoMetroCheckBox13.Margin = new System.Windows.Forms.Padding(4);
             this.autoMetroCheckBox13.Name = "autoMetroCheckBox13";
             this.autoMetroCheckBox13.Size = new System.Drawing.Size(100, 17);
             this.autoMetroCheckBox13.TabIndex = 34;
@@ -300,7 +309,7 @@
             this.autoMetroCheckBox14.BindingFor = "ApplicationSession";
             this.autoMetroCheckBox14.BindingName = "OverWriteUnitTest";
             this.autoMetroCheckBox14.Location = new System.Drawing.Point(801, 62);
-            this.autoMetroCheckBox14.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.autoMetroCheckBox14.Margin = new System.Windows.Forms.Padding(4);
             this.autoMetroCheckBox14.Name = "autoMetroCheckBox14";
             this.autoMetroCheckBox14.Size = new System.Drawing.Size(137, 17);
             this.autoMetroCheckBox14.TabIndex = 33;
@@ -313,7 +322,7 @@
             this.autoMetroCheckBox11.BindingFor = "ApplicationSession";
             this.autoMetroCheckBox11.BindingName = "OverWriteReactModel";
             this.autoMetroCheckBox11.Location = new System.Drawing.Point(185, 101);
-            this.autoMetroCheckBox11.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.autoMetroCheckBox11.Margin = new System.Windows.Forms.Padding(4);
             this.autoMetroCheckBox11.Name = "autoMetroCheckBox11";
             this.autoMetroCheckBox11.Size = new System.Drawing.Size(135, 17);
             this.autoMetroCheckBox11.TabIndex = 31;
@@ -326,7 +335,7 @@
             this.autoMetroCheckBox12.BindingFor = "ApplicationSession";
             this.autoMetroCheckBox12.BindingName = "OverWriteController";
             this.autoMetroCheckBox12.Location = new System.Drawing.Point(185, 62);
-            this.autoMetroCheckBox12.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.autoMetroCheckBox12.Margin = new System.Windows.Forms.Padding(4);
             this.autoMetroCheckBox12.Name = "autoMetroCheckBox12";
             this.autoMetroCheckBox12.Size = new System.Drawing.Size(122, 17);
             this.autoMetroCheckBox12.TabIndex = 30;
@@ -339,7 +348,7 @@
             this.autoMetroCheckBox10.BindingFor = "ApplicationSession";
             this.autoMetroCheckBox10.BindingName = "CreateController";
             this.autoMetroCheckBox10.Location = new System.Drawing.Point(9, 62);
-            this.autoMetroCheckBox10.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.autoMetroCheckBox10.Margin = new System.Windows.Forms.Padding(4);
             this.autoMetroCheckBox10.Name = "autoMetroCheckBox10";
             this.autoMetroCheckBox10.Size = new System.Drawing.Size(106, 17);
             this.autoMetroCheckBox10.TabIndex = 28;
@@ -352,7 +361,7 @@
             this.autoMetroCheckBox9.BindingFor = "ApplicationSession";
             this.autoMetroCheckBox9.BindingName = "AutoCopy";
             this.autoMetroCheckBox9.Location = new System.Drawing.Point(801, 23);
-            this.autoMetroCheckBox9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.autoMetroCheckBox9.Margin = new System.Windows.Forms.Padding(4);
             this.autoMetroCheckBox9.Name = "autoMetroCheckBox9";
             this.autoMetroCheckBox9.Size = new System.Drawing.Size(106, 17);
             this.autoMetroCheckBox9.TabIndex = 27;
@@ -365,7 +374,7 @@
             this.autoMetroCheckBox8.BindingFor = "ApplicationSession";
             this.autoMetroCheckBox8.BindingName = "OverwriteInterfaceRepository";
             this.autoMetroCheckBox8.Location = new System.Drawing.Point(801, 101);
-            this.autoMetroCheckBox8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.autoMetroCheckBox8.Margin = new System.Windows.Forms.Padding(4);
             this.autoMetroCheckBox8.Name = "autoMetroCheckBox8";
             this.autoMetroCheckBox8.Size = new System.Drawing.Size(204, 17);
             this.autoMetroCheckBox8.TabIndex = 26;
@@ -378,7 +387,7 @@
             this.autoMetroCheckBox7.BindingFor = "ApplicationSession";
             this.autoMetroCheckBox7.BindingName = "OverwriteRepository";
             this.autoMetroCheckBox7.Location = new System.Drawing.Point(557, 22);
-            this.autoMetroCheckBox7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.autoMetroCheckBox7.Margin = new System.Windows.Forms.Padding(4);
             this.autoMetroCheckBox7.Name = "autoMetroCheckBox7";
             this.autoMetroCheckBox7.Size = new System.Drawing.Size(150, 17);
             this.autoMetroCheckBox7.TabIndex = 25;
@@ -391,7 +400,7 @@
             this.autoMetroCheckBox6.BindingFor = "ApplicationSession";
             this.autoMetroCheckBox6.BindingName = "OverwriteClass";
             this.autoMetroCheckBox6.Location = new System.Drawing.Point(351, 62);
-            this.autoMetroCheckBox6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.autoMetroCheckBox6.Margin = new System.Windows.Forms.Padding(4);
             this.autoMetroCheckBox6.Name = "autoMetroCheckBox6";
             this.autoMetroCheckBox6.Size = new System.Drawing.Size(115, 17);
             this.autoMetroCheckBox6.TabIndex = 24;
@@ -404,7 +413,7 @@
             this.autoMetroCheckBox5.BindingFor = "ApplicationSession";
             this.autoMetroCheckBox5.BindingName = "CreateClass";
             this.autoMetroCheckBox5.Location = new System.Drawing.Point(351, 23);
-            this.autoMetroCheckBox5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.autoMetroCheckBox5.Margin = new System.Windows.Forms.Padding(4);
             this.autoMetroCheckBox5.Name = "autoMetroCheckBox5";
             this.autoMetroCheckBox5.Size = new System.Drawing.Size(78, 17);
             this.autoMetroCheckBox5.TabIndex = 4;
@@ -417,7 +426,7 @@
             this.autoMetroCheckBox3.BindingFor = "ApplicationSession";
             this.autoMetroCheckBox3.BindingName = "CreateReactModel";
             this.autoMetroCheckBox3.Location = new System.Drawing.Point(9, 101);
-            this.autoMetroCheckBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.autoMetroCheckBox3.Margin = new System.Windows.Forms.Padding(4);
             this.autoMetroCheckBox3.Name = "autoMetroCheckBox3";
             this.autoMetroCheckBox3.Size = new System.Drawing.Size(123, 17);
             this.autoMetroCheckBox3.TabIndex = 2;
@@ -430,7 +439,7 @@
             this.autoMetroCheckBox2.BindingFor = "ApplicationSession";
             this.autoMetroCheckBox2.BindingName = "CreateRepository";
             this.autoMetroCheckBox2.Location = new System.Drawing.Point(185, 22);
-            this.autoMetroCheckBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.autoMetroCheckBox2.Margin = new System.Windows.Forms.Padding(4);
             this.autoMetroCheckBox2.Name = "autoMetroCheckBox2";
             this.autoMetroCheckBox2.Size = new System.Drawing.Size(110, 17);
             this.autoMetroCheckBox2.TabIndex = 1;
@@ -443,7 +452,7 @@
             this.autoMetroCheckBox1.BindingFor = "ApplicationSession";
             this.autoMetroCheckBox1.BindingName = "CreateInterface";
             this.autoMetroCheckBox1.Location = new System.Drawing.Point(9, 22);
-            this.autoMetroCheckBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.autoMetroCheckBox1.Margin = new System.Windows.Forms.Padding(4);
             this.autoMetroCheckBox1.Name = "autoMetroCheckBox1";
             this.autoMetroCheckBox1.Size = new System.Drawing.Size(100, 17);
             this.autoMetroCheckBox1.TabIndex = 0;
@@ -468,7 +477,7 @@
             this.cbGenSqlScript.BindingFor = "ApplicationSetting";
             this.cbGenSqlScript.BindingName = "GenSqlScript";
             this.cbGenSqlScript.Location = new System.Drawing.Point(260, 480);
-            this.cbGenSqlScript.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbGenSqlScript.Margin = new System.Windows.Forms.Padding(4);
             this.cbGenSqlScript.Name = "cbGenSqlScript";
             this.cbGenSqlScript.Size = new System.Drawing.Size(192, 17);
             this.cbGenSqlScript.TabIndex = 56;
@@ -482,7 +491,7 @@
             this.cbDapperMapping.BindingFor = "ApplicationSetting";
             this.cbDapperMapping.BindingName = "DapperMapping";
             this.cbDapperMapping.Location = new System.Drawing.Point(25, 480);
-            this.cbDapperMapping.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbDapperMapping.Margin = new System.Windows.Forms.Padding(4);
             this.cbDapperMapping.Name = "cbDapperMapping";
             this.cbDapperMapping.Size = new System.Drawing.Size(146, 17);
             this.cbDapperMapping.TabIndex = 36;
@@ -495,7 +504,7 @@
             this.txtModelFolder.BindingFor = "ApplicationSetting";
             this.txtModelFolder.BindingName = "ModelFolder";
             this.txtModelFolder.Location = new System.Drawing.Point(197, 43);
-            this.txtModelFolder.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtModelFolder.Margin = new System.Windows.Forms.Padding(4);
             this.txtModelFolder.Name = "txtModelFolder";
             this.txtModelFolder.Size = new System.Drawing.Size(387, 22);
             this.txtModelFolder.TabIndex = 33;
@@ -506,7 +515,7 @@
             this.cbAutoCreateFile.BindingFor = "ApplicationSetting";
             this.cbAutoCreateFile.BindingName = "AutoCreateFile";
             this.cbAutoCreateFile.Location = new System.Drawing.Point(260, 439);
-            this.cbAutoCreateFile.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbAutoCreateFile.Margin = new System.Windows.Forms.Padding(4);
             this.cbAutoCreateFile.Name = "cbAutoCreateFile";
             this.cbAutoCreateFile.Size = new System.Drawing.Size(114, 17);
             this.cbAutoCreateFile.TabIndex = 26;
@@ -519,7 +528,7 @@
             this.cbUseInterface.BindingFor = "ApplicationSetting";
             this.cbUseInterface.BindingName = "UseInterface";
             this.cbUseInterface.Location = new System.Drawing.Point(25, 439);
-            this.cbUseInterface.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbUseInterface.Margin = new System.Windows.Forms.Padding(4);
             this.cbUseInterface.Name = "cbUseInterface";
             this.cbUseInterface.Size = new System.Drawing.Size(173, 17);
             this.cbUseInterface.TabIndex = 15;
@@ -544,7 +553,7 @@
             // btnControllerFolder
             // 
             this.btnControllerFolder.Location = new System.Drawing.Point(592, 78);
-            this.btnControllerFolder.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnControllerFolder.Margin = new System.Windows.Forms.Padding(4);
             this.btnControllerFolder.Name = "btnControllerFolder";
             this.btnControllerFolder.Size = new System.Drawing.Size(40, 28);
             this.btnControllerFolder.TabIndex = 104;
@@ -569,7 +578,7 @@
             this.txtControllerFolder.BindingFor = "ApplicationSetting";
             this.txtControllerFolder.BindingName = "ControllerFolder";
             this.txtControllerFolder.Location = new System.Drawing.Point(196, 79);
-            this.txtControllerFolder.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtControllerFolder.Margin = new System.Windows.Forms.Padding(4);
             this.txtControllerFolder.Name = "txtControllerFolder";
             this.txtControllerFolder.Size = new System.Drawing.Size(387, 22);
             this.txtControllerFolder.TabIndex = 102;
@@ -591,7 +600,7 @@
             this.autoTextBox2.BindingFor = "ApplicationSetting";
             this.autoTextBox2.BindingName = "ReactJsComponentFolder";
             this.autoTextBox2.Location = new System.Drawing.Point(195, 178);
-            this.autoTextBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.autoTextBox2.Margin = new System.Windows.Forms.Padding(4);
             this.autoTextBox2.Name = "autoTextBox2";
             this.autoTextBox2.Size = new System.Drawing.Size(387, 22);
             this.autoTextBox2.TabIndex = 111;
@@ -600,7 +609,7 @@
             // btnUnitTestFolder
             // 
             this.btnUnitTestFolder.Location = new System.Drawing.Point(591, 176);
-            this.btnUnitTestFolder.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnUnitTestFolder.Margin = new System.Windows.Forms.Padding(4);
             this.btnUnitTestFolder.Name = "btnUnitTestFolder";
             this.btnUnitTestFolder.Size = new System.Drawing.Size(40, 28);
             this.btnUnitTestFolder.TabIndex = 113;
@@ -612,7 +621,7 @@
             // btnReactModelFolder
             // 
             this.btnReactModelFolder.Location = new System.Drawing.Point(591, 143);
-            this.btnReactModelFolder.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnReactModelFolder.Margin = new System.Windows.Forms.Padding(4);
             this.btnReactModelFolder.Name = "btnReactModelFolder";
             this.btnReactModelFolder.Size = new System.Drawing.Size(40, 28);
             this.btnReactModelFolder.TabIndex = 116;
@@ -637,7 +646,7 @@
             this.txtReactFile.BindingFor = "ApplicationSetting";
             this.txtReactFile.BindingName = "ReactJsModelFolder";
             this.txtReactFile.Location = new System.Drawing.Point(195, 145);
-            this.txtReactFile.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtReactFile.Margin = new System.Windows.Forms.Padding(4);
             this.txtReactFile.Name = "txtReactFile";
             this.txtReactFile.Size = new System.Drawing.Size(387, 22);
             this.txtReactFile.TabIndex = 114;
@@ -646,7 +655,7 @@
             // btnUnitTestTemplate
             // 
             this.btnUnitTestTemplate.Location = new System.Drawing.Point(591, 207);
-            this.btnUnitTestTemplate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnUnitTestTemplate.Margin = new System.Windows.Forms.Padding(4);
             this.btnUnitTestTemplate.Name = "btnUnitTestTemplate";
             this.btnUnitTestTemplate.Size = new System.Drawing.Size(40, 28);
             this.btnUnitTestTemplate.TabIndex = 122;
@@ -671,7 +680,7 @@
             this.autoTextBox5.BindingFor = "ApplicationSetting";
             this.autoTextBox5.BindingName = "ReactJsComponentTemplate";
             this.autoTextBox5.Location = new System.Drawing.Point(195, 209);
-            this.autoTextBox5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.autoTextBox5.Margin = new System.Windows.Forms.Padding(4);
             this.autoTextBox5.Name = "autoTextBox5";
             this.autoTextBox5.Size = new System.Drawing.Size(387, 22);
             this.autoTextBox5.TabIndex = 120;
@@ -680,7 +689,7 @@
             // button8
             // 
             this.button8.Location = new System.Drawing.Point(592, 110);
-            this.button8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button8.Margin = new System.Windows.Forms.Padding(4);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(40, 28);
             this.button8.TabIndex = 156;
@@ -705,7 +714,7 @@
             this.autoTextBox14.BindingFor = "ApplicationSetting";
             this.autoTextBox14.BindingName = "ControllerTemplate";
             this.autoTextBox14.Location = new System.Drawing.Point(196, 111);
-            this.autoTextBox14.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.autoTextBox14.Margin = new System.Windows.Forms.Padding(4);
             this.autoTextBox14.Name = "autoTextBox14";
             this.autoTextBox14.Size = new System.Drawing.Size(387, 22);
             this.autoTextBox14.TabIndex = 154;
@@ -714,7 +723,7 @@
             // button7
             // 
             this.button7.Location = new System.Drawing.Point(589, 240);
-            this.button7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button7.Margin = new System.Windows.Forms.Padding(4);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(40, 28);
             this.button7.TabIndex = 159;
@@ -737,14 +746,14 @@
             this.autoTextBox13.BindingFor = "ApplicationSetting";
             this.autoTextBox13.BindingName = "RepositoryFolder";
             this.autoTextBox13.Location = new System.Drawing.Point(195, 241);
-            this.autoTextBox13.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.autoTextBox13.Margin = new System.Windows.Forms.Padding(4);
             this.autoTextBox13.Name = "autoTextBox13";
             this.autoTextBox13.Size = new System.Drawing.Size(387, 22);
             this.autoTextBox13.TabIndex = 157;
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(592, 280);
+            this.button5.Location = new System.Drawing.Point(589, 280);
             this.button5.Margin = new System.Windows.Forms.Padding(4);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(40, 28);
@@ -776,11 +785,122 @@
             this.autoTextBox10.TabIndex = 160;
             this.autoTextBox10.Tag = "";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(1219, 41);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(40, 28);
+            this.button1.TabIndex = 165;
+            this.button1.Tag = "";
+            this.button1.Text = "...";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(652, 47);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(75, 17);
+            this.label3.TabIndex = 164;
+            this.label3.Tag = "";
+            this.label3.Text = "ILanguage";
+            // 
+            // autoTextBox1
+            // 
+            this.autoTextBox1.BindingFor = "ApplicationSetting";
+            this.autoTextBox1.BindingName = "ILanguageFilePath";
+            this.autoTextBox1.Location = new System.Drawing.Point(822, 44);
+            this.autoTextBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.autoTextBox1.Name = "autoTextBox1";
+            this.autoTextBox1.Size = new System.Drawing.Size(387, 22);
+            this.autoTextBox1.TabIndex = 163;
+            this.autoTextBox1.Tag = "";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(1219, 71);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(40, 28);
+            this.button2.TabIndex = 168;
+            this.button2.Tag = "";
+            this.button2.Text = "...";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(652, 77);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(89, 17);
+            this.label5.TabIndex = 167;
+            this.label5.Tag = "";
+            this.label5.Text = "LangVN.json";
+            // 
+            // autoTextBox3
+            // 
+            this.autoTextBox3.BindingFor = "ApplicationSetting";
+            this.autoTextBox3.BindingName = "MessageVNFilePath";
+            this.autoTextBox3.Location = new System.Drawing.Point(822, 74);
+            this.autoTextBox3.Margin = new System.Windows.Forms.Padding(4);
+            this.autoTextBox3.Name = "autoTextBox3";
+            this.autoTextBox3.Size = new System.Drawing.Size(387, 22);
+            this.autoTextBox3.TabIndex = 166;
+            this.autoTextBox3.Tag = "";
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(1219, 101);
+            this.button3.Margin = new System.Windows.Forms.Padding(4);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(40, 28);
+            this.button3.TabIndex = 171;
+            this.button3.Tag = "";
+            this.button3.Text = "...";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(652, 107);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(89, 17);
+            this.label9.TabIndex = 170;
+            this.label9.Tag = "";
+            this.label9.Text = "LangEN.json";
+            // 
+            // autoTextBox4
+            // 
+            this.autoTextBox4.BindingFor = "ApplicationSetting";
+            this.autoTextBox4.BindingName = "MessageENFilePath";
+            this.autoTextBox4.Location = new System.Drawing.Point(822, 104);
+            this.autoTextBox4.Margin = new System.Windows.Forms.Padding(4);
+            this.autoTextBox4.Name = "autoTextBox4";
+            this.autoTextBox4.Size = new System.Drawing.Size(387, 22);
+            this.autoTextBox4.TabIndex = 169;
+            this.autoTextBox4.Tag = "";
+            // 
             // frmSetupAppClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1360, 748);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.autoTextBox4);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.autoTextBox3);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.autoTextBox1);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.autoTextBox10);
@@ -815,7 +935,7 @@
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.cbUseInterface);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmSetupAppClient";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Tag = "";
@@ -884,5 +1004,14 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Label label4;
         private AutoControl.AutoTextBox autoTextBox10;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label3;
+        private AutoControl.AutoTextBox autoTextBox1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label5;
+        private AutoControl.AutoTextBox autoTextBox3;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Label label9;
+        private AutoControl.AutoTextBox autoTextBox4;
     }
 }

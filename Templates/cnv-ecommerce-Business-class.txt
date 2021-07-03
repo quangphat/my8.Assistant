@@ -1,0 +1,35 @@
+using AutoMapper;
+using Cnv.Core.Ecommerce.Shared.Entities;
+using Cnv.Core.Ecommerce.Shared.Repositories.Interfaces;
+using Cnv.Core.ECommerce.Business.Interfaces;
+using Cnv.Core.ECommerce.ShareModels;
+using Cnv.Core.Libs.Client.Models;
+using Cnv.Core.Libs.Service.Businesses;
+using Cnv.Core.Libs.Utils.Request;
+using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Cnv.Core.ECommerce.Business.Classes
+{
+    public class {ModelName}Business : BaseBusiness,I{ModelName}Business
+    {
+        private readonly I{ModelName}Repository _rp{ModelName};
+        private readonly IMapper _mapper;
+
+        public {ModelName}Business(
+            I{ModelName}Repository rp{ModelName},
+            ILogger<{ModelName}Business> log,
+            IMapper mapper,
+            RequestProcess requestProcess) : base(log, requestProcess)
+        {
+            this._rp{ModelName} = rp{ModelName};
+            _mapper = mapper;
+        }
+
+       
+
+    }
+}
