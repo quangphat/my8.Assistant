@@ -60,6 +60,7 @@ namespace my8.Assistant.Model
         public string ILanguageFilePath { get; set; }
         public string MessageVNFilePath { get;set;}
         public string MessageENFilePath { get; set; }
+        public string MessageCodeApiFilePath { get; set; }
         public string getSubFolferName(int index)
         {
             if (string.IsNullOrWhiteSpace(SubFolderName))

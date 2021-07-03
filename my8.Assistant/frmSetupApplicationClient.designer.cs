@@ -92,6 +92,9 @@
             this.button3 = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.autoTextBox4 = new AutoControl.AutoTextBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.autoTextBox6 = new AutoControl.AutoTextBox();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -787,7 +790,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(1219, 41);
+            this.button1.Location = new System.Drawing.Point(1217, 39);
             this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(40, 28);
@@ -821,7 +824,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(1219, 71);
+            this.button2.Location = new System.Drawing.Point(1217, 76);
             this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(40, 28);
@@ -834,7 +837,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(652, 77);
+            this.label5.Location = new System.Drawing.Point(650, 82);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(89, 17);
@@ -846,7 +849,7 @@
             // 
             this.autoTextBox3.BindingFor = "ApplicationSetting";
             this.autoTextBox3.BindingName = "MessageVNFilePath";
-            this.autoTextBox3.Location = new System.Drawing.Point(822, 74);
+            this.autoTextBox3.Location = new System.Drawing.Point(820, 79);
             this.autoTextBox3.Margin = new System.Windows.Forms.Padding(4);
             this.autoTextBox3.Name = "autoTextBox3";
             this.autoTextBox3.Size = new System.Drawing.Size(387, 22);
@@ -855,7 +858,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(1219, 101);
+            this.button3.Location = new System.Drawing.Point(1217, 110);
             this.button3.Margin = new System.Windows.Forms.Padding(4);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(40, 28);
@@ -868,7 +871,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(652, 107);
+            this.label9.Location = new System.Drawing.Point(650, 116);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(89, 17);
@@ -880,18 +883,55 @@
             // 
             this.autoTextBox4.BindingFor = "ApplicationSetting";
             this.autoTextBox4.BindingName = "MessageENFilePath";
-            this.autoTextBox4.Location = new System.Drawing.Point(822, 104);
+            this.autoTextBox4.Location = new System.Drawing.Point(820, 113);
             this.autoTextBox4.Margin = new System.Windows.Forms.Padding(4);
             this.autoTextBox4.Name = "autoTextBox4";
             this.autoTextBox4.Size = new System.Drawing.Size(387, 22);
             this.autoTextBox4.TabIndex = 169;
             this.autoTextBox4.Tag = "";
             // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(1217, 146);
+            this.button4.Margin = new System.Windows.Forms.Padding(4);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(40, 28);
+            this.button4.TabIndex = 174;
+            this.button4.Tag = "";
+            this.button4.Text = "...";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(650, 152);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(118, 17);
+            this.label10.TabIndex = 173;
+            this.label10.Tag = "";
+            this.label10.Text = "MessageCodeApi";
+            // 
+            // autoTextBox6
+            // 
+            this.autoTextBox6.BindingFor = "ApplicationSetting";
+            this.autoTextBox6.BindingName = "MessageCodeApiFilePath";
+            this.autoTextBox6.Location = new System.Drawing.Point(820, 149);
+            this.autoTextBox6.Margin = new System.Windows.Forms.Padding(4);
+            this.autoTextBox6.Name = "autoTextBox6";
+            this.autoTextBox6.Size = new System.Drawing.Size(387, 22);
+            this.autoTextBox6.TabIndex = 172;
+            this.autoTextBox6.Tag = "";
+            // 
             // frmSetupAppClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1360, 748);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.autoTextBox6);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.autoTextBox4);
@@ -1013,5 +1053,8 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label9;
         private AutoControl.AutoTextBox autoTextBox4;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Label label10;
+        private AutoControl.AutoTextBox autoTextBox6;
     }
 }

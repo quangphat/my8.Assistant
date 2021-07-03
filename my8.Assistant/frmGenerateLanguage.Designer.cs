@@ -34,6 +34,7 @@
             this.txtVN = new AutoControl.AutoTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtEng = new AutoControl.AutoTextBox();
+            this.cbWriteToApi = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label3
@@ -104,11 +105,22 @@
             this.txtEng.Tag = "";
             this.txtEng.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtEng_KeyUp);
             // 
+            // cbWriteToApi
+            // 
+            this.cbWriteToApi.AutoSize = true;
+            this.cbWriteToApi.Location = new System.Drawing.Point(432, 180);
+            this.cbWriteToApi.Name = "cbWriteToApi";
+            this.cbWriteToApi.Size = new System.Drawing.Size(247, 21);
+            this.cbWriteToApi.TabIndex = 171;
+            this.cbWriteToApi.Text = "Ghi vào file message code của api";
+            this.cbWriteToApi.UseVisualStyleBackColor = true;
+            // 
             // frmGenerateLanguage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1277, 180);
+            this.ClientSize = new System.Drawing.Size(1277, 309);
+            this.Controls.Add(this.cbWriteToApi);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtEng);
             this.Controls.Add(this.label1);
@@ -132,5 +144,6 @@
         private AutoControl.AutoTextBox txtVN;
         private System.Windows.Forms.Label label2;
         private AutoControl.AutoTextBox txtEng;
+        private System.Windows.Forms.CheckBox cbWriteToApi;
     }
 }

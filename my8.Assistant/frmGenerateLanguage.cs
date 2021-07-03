@@ -23,7 +23,7 @@ namespace my8.Assistant
             if (e.KeyCode != Keys.Return)
                 return;
 
-            generateLangFile();
+            GenerateLangFile();
         }
 
         private void txtEng_KeyUp(object sender, KeyEventArgs e)
@@ -31,24 +31,29 @@ namespace my8.Assistant
             if (e.KeyCode != Keys.Return)
                 return;
 
-            generateLangFile();
+            GenerateLangFile();
         }
 
-        private void generateLangFile()
+        private void GenerateLangFile()
         {
             AppendILanguageFile();
+            AppendApiMessageCodeFile();
             AppendLangFile($"{txtVN.Text.Trim()}", ThisApp.AppSetting.MessageVNFilePath);
             AppendLangFile($"{txtEng.Text.Trim()}", ThisApp.AppSetting.MessageENFilePath);
+            txtEng.Text = string.Empty;
+            txtVN.Text = string.Empty;
         }
+
+
 
         private void AppendILanguageFile()
         {
             if (string.IsNullOrWhiteSpace(txtKey.Text))
                 return;
             var content = Utility.ReadFile(ThisApp.AppSetting.ILanguageFilePath);
-            if (content.Contains(txtKey.Text.Trim()))
-                return;
-            
+            //if (content.Contains($"{txtKey.Text}_") || content.Contains($"_{txtKey.Text}_") || content.Contains($"_{txtKey.Text}"))
+            //    return;
+
             var strBuilder = new StringBuilder();
             strBuilder.Append(Environment.NewLine);
             strBuilder.Append("\t");
@@ -56,6 +61,27 @@ namespace my8.Assistant
             content = content.Replace("//append_line_here", $"{txtKey.Text}:string,{strBuilder.ToString()}");
             //content = content + strBuilder.ToString();
             Utility.WriteToFile(ThisApp.AppSetting.ILanguageFilePath, content);
+        }
+
+        private void AppendApiMessageCodeFile()
+        {
+            if (string.IsNullOrWhiteSpace(txtKey.Text))
+                return;
+
+            if (!cbWriteToApi.Checked)
+                return;
+
+            var content = Utility.ReadFile(ThisApp.AppSetting.MessageCodeApiFilePath);
+            //if (content.Contains($"{txtKey.Text}_") || content.Contains($"_{txtKey.Text}_") || content.Contains($"_{txtKey.Text}"))
+            //    return;
+
+            var strBuilder = new StringBuilder();
+            strBuilder.Append(Environment.NewLine);
+            strBuilder.Append("\t");
+            strBuilder.Append("\t//append_line_here");
+            content = content.Replace("//append_line_here", $"public const string {txtKey.Text} = \"{txtKey.Text}\";{strBuilder.ToString()}");
+            //content = content + strBuilder.ToString();
+            Utility.WriteToFile(ThisApp.AppSetting.MessageCodeApiFilePath, content);
         }
 
         private void AppendLangFile(string message, string filepath)
@@ -71,8 +97,8 @@ namespace my8.Assistant
             var keyToReplace = $"\"append_line_here\":\"\"";
             var content = Utility.ReadFile(filepath);
             
-            if (content.Contains(txtKey.Text))
-                return;
+            //if (content.Contains($"{txtKey.Text}_") || content.Contains($"_{txtKey.Text}_") || content.Contains($"_{txtKey.Text}"))
+            //    return;
 
             var strBuilder = new StringBuilder();
             strBuilder.Append(Environment.NewLine);
