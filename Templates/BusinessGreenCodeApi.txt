@@ -8,6 +8,8 @@ using AutoMapper;
 using GreenCode.Business.Classes;
 using GreenCodeModels.Infrastructures;
 using GreenCodeModels;
+using my8ShareObject.Infrastructures;
+using GreenCode.Repository.Models;
 
 namespace my8GreenCodeApi.Business
 {

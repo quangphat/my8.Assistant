@@ -23,7 +23,7 @@ namespace my8.Assistant
             if (e.KeyCode != Keys.Return)
                 return;
 
-            GenerateLangFile();
+            //GenerateLangFile();
         }
 
         private void txtEng_KeyUp(object sender, KeyEventArgs e)
@@ -31,7 +31,7 @@ namespace my8.Assistant
             if (e.KeyCode != Keys.Return)
                 return;
 
-            GenerateLangFile();
+            //GenerateLangFile();
         }
 
         private void GenerateLangFile()
@@ -48,6 +48,9 @@ namespace my8.Assistant
 
         private void AppendILanguageFile()
         {
+            if (string.IsNullOrWhiteSpace(ThisApp.AppSetting.ILanguageFilePath))
+                return;
+
             if (string.IsNullOrWhiteSpace(txtKey.Text))
                 return;
             var content = Utility.ReadFile(ThisApp.AppSetting.ILanguageFilePath);
@@ -65,6 +68,8 @@ namespace my8.Assistant
 
         private void AppendApiMessageCodeFile()
         {
+            if (string.IsNullOrWhiteSpace(ThisApp.AppSetting.MessageCodeApiFilePath))
+                return;
             if (string.IsNullOrWhiteSpace(txtKey.Text))
                 return;
 
@@ -79,7 +84,7 @@ namespace my8.Assistant
             strBuilder.Append(Environment.NewLine);
             strBuilder.Append("\t");
             strBuilder.Append("\t//append_line_here");
-            content = content.Replace("//append_line_here", $"public const string {txtKey.Text} = \"{txtKey.Text}\";{strBuilder.ToString()}");
+            content = content.Replace("//append_line_here", $"public const string {txtKey.Text} = \"{txtVN.Text}\";{strBuilder.ToString()}");
             //content = content + strBuilder.ToString();
             Utility.WriteToFile(ThisApp.AppSetting.MessageCodeApiFilePath, content);
         }
@@ -107,6 +112,11 @@ namespace my8.Assistant
             content = content.Replace(keyToReplace, $"{message},{strBuilder.ToString()}");
             //content = content + strBuilder.ToString();
             Utility.WriteToFile(filepath, content);
+        }
+
+        private void btnCreate_Click(object sender, EventArgs e)
+        {
+            GenerateLangFile();
         }
     }
 }

@@ -1,10 +1,10 @@
+using GreenCode.Repository.Models;
 using GreenCode.Repository.Repositories;
-using GreenCodeModels;
-using GreenCodeModels.Infrastructures;
 using Microsoft.Extensions.Options;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using my8GreenCodeApi.Interface;
+using my8ShareObject.Infrastructures;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +12,9 @@ using System.Threading.Tasks;
 
 namespace my8GreenCodeApi.Repository
 {
-    public class {ModelName}Repository:MongoRepositoryBase<{ModelName}>, I{ModelName}Repository
+    public class {ModelName}Repository:MongoRepositoryBase<{ModelName},ObjectId>, I{ModelName}Repository
     {
-		//IMongoCollection<{ModelName}> collection;
-		FilterDefinition<{ModelName}> filter = FilterDefinition<{ModelName}>.Empty;
+
         public {ModelName}Repository(IOptions<MongoConnection> setting,
             CurrentProcess currentProcess,
             IMongoClient mongoClient,

@@ -35,6 +35,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtEng = new AutoControl.AutoTextBox();
             this.cbWriteToApi = new System.Windows.Forms.CheckBox();
+            this.btnCreate = new ModernUI.Controls.BootstrapButton();
             this.SuspendLayout();
             // 
             // label3
@@ -115,11 +116,31 @@
             this.cbWriteToApi.Text = "Ghi vào file message code của api";
             this.cbWriteToApi.UseVisualStyleBackColor = true;
             // 
+            // btnCreate
+            // 
+            this.btnCreate.AutoSize = true;
+            this.btnCreate.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnCreate.BootstrapStyle = ModernUI.ModernUIManager.BootstrapStyle.Info;
+            this.btnCreate.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCreate.Depth = 0;
+            this.btnCreate.Icon = null;
+            this.btnCreate.Location = new System.Drawing.Point(432, 225);
+            this.btnCreate.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCreate.MouseState = ModernUI.MouseState.HOVER;
+            this.btnCreate.Name = "btnCreate";
+            this.btnCreate.Size = new System.Drawing.Size(56, 36);
+            this.btnCreate.TabIndex = 172;
+            this.btnCreate.Text = "Run";
+            this.btnCreate.UseVisualStyleBackColor = true;
+            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
+            // 
             // frmGenerateLanguage
             // 
+            this.AcceptButton = this.btnCreate;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1277, 309);
+            this.Controls.Add(this.btnCreate);
             this.Controls.Add(this.cbWriteToApi);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtEng);
@@ -145,5 +166,6 @@
         private System.Windows.Forms.Label label2;
         private AutoControl.AutoTextBox txtEng;
         private System.Windows.Forms.CheckBox cbWriteToApi;
+        private ModernUI.Controls.BootstrapButton btnCreate;
     }
 }

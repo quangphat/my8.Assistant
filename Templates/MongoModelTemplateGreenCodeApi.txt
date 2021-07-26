@@ -2,17 +2,10 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using System;
 
-namespace my8GreenCodeApi.Models
+namespace GreenCode.Repository.Models
 {
-    public class {ModelName}
+    public class {ModelName}: BaseMongoObjectIdEntity
     {
-        public {ModelName}() { }
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-		public string Id { get; set; }
-	[ModelClass]
-	public string ProjectId {get;set;}
-	public DateTime CreatedTime { get; set; }
-        public DateTime ModifiedTime { get; set; }
+        
     }
 }
