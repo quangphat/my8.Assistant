@@ -36,7 +36,6 @@ namespace my8.Assistant.Business
         }
         public void WriteAppSetting(ApplicationSetting appSetting)
         {
-            appSetting.ProjectId = ThisApp.Project.Id;
             List<ApplicationSetting> lstSetting = GetAll();
             if (lstSetting == null) lstSetting = new List<ApplicationSetting>();
             ApplicationSetting exist = lstSetting.FirstOrDefault(p => p.ProjectId == appSetting.ProjectId);

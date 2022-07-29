@@ -32,6 +32,8 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnCreate = new System.Windows.Forms.Button();
             this.cbbProjectList = new ModernUI.Controls.MetroComboBox();
+            this.btnClone = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnConnect
@@ -56,7 +58,7 @@
             // 
             // btnCreate
             // 
-            this.btnCreate.Location = new System.Drawing.Point(220, 150);
+            this.btnCreate.Location = new System.Drawing.Point(188, 47);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(75, 23);
             this.btnCreate.TabIndex = 29;
@@ -75,11 +77,33 @@
             this.cbbProjectList.TabIndex = 30;
             this.cbbProjectList.UseSelectable = true;
             // 
+            // btnClone
+            // 
+            this.btnClone.Location = new System.Drawing.Point(43, 47);
+            this.btnClone.Name = "btnClone";
+            this.btnClone.Size = new System.Drawing.Size(75, 23);
+            this.btnClone.TabIndex = 31;
+            this.btnClone.Text = "Clone";
+            this.btnClone.UseVisualStyleBackColor = true;
+            this.btnClone.Click += new System.EventHandler(this.btnClone_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(238, 150);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnDelete.TabIndex = 32;
+            this.btnDelete.Text = "Remove";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
             // frmSelectProject
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(296, 174);
+            this.ClientSize = new System.Drawing.Size(314, 174);
+            this.Controls.Add(this.btnDelete);
+            this.Controls.Add(this.btnClone);
             this.Controls.Add(this.cbbProjectList);
             this.Controls.Add(this.btnCreate);
             this.Controls.Add(this.btnCancel);
@@ -100,5 +124,7 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnCreate;
         private ModernUI.Controls.MetroComboBox cbbProjectList;
+        private System.Windows.Forms.Button btnClone;
+        private System.Windows.Forms.Button btnDelete;
     }
 }

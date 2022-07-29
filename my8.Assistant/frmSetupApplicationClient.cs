@@ -36,6 +36,7 @@ namespace my8.Assistant
             AppSetting = new ApplicationSetting();
             this.ToEntity(AppSetting);
             AppSetting.ProjectName = ThisApp.Project.Name;
+            AppSetting.ProjectId = ThisApp.Project.Id;
             _bizAppSetting.WriteAppSetting(AppSetting);
             Session = new ApplicationSession();
             //if(rdSql.Checked)

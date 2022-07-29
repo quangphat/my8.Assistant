@@ -23,12 +23,28 @@ namespace my8.Assistant.Business
             try
             {
                 List<Project> lstProjects = JsonConvert.DeserializeObject<List<Project>>(projects);
-                return lstProjects;
+                return lstProjects.Where(p=>p.IsDeleted!=true).ToList();
             }
             catch
             {
                 return null;
             }
+        }
+        public bool DeleteProject(int projectId, bool physicalDelete = false)
+        {
+            List<Project> lstProject = GetAll();
+            Project project = lstProject.Where(p => p.Id == projectId).FirstOrDefault();
+            if (project == null) return false;
+            if (physicalDelete)
+            {
+                lstProject = lstProject.Where(p => p.Id != projectId).ToList();
+                Utility.WriteToFileInAppData(Utility.ProjectsFile, Utility.ConvertListObjectToJson(lstProject));
+                return true;
+            }
+
+            project.IsDeleted = true;
+            Utility.WriteToFileInAppData(Utility.ProjectsFile, Utility.ConvertListObjectToJson(lstProject));
+            return true;
         }
         public Project GetProjectById(int projectId)
         {

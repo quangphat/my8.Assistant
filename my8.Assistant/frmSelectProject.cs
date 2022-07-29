@@ -79,5 +79,38 @@ namespace my8.Assistant
             cbbProjectList.ValueMember = "Id";
             cbbProjectList.DisplayMember = "Name";
         }
+
+        private void btnClone_Click(object sender, EventArgs e)
+        {
+            var project = cbbProjectList.SelectedItem as Project;
+            frmCreateProject frmCreate = new frmCreateProject(project);
+            frmCreate.ShowDialog();
+
+            List<Project> lstProject = _bizProject.GetAll();
+            if (lstProject == null) return;
+
+            cbbProjectList.DataSource = lstProject;
+            cbbProjectList.ValueMember = "Id";
+            cbbProjectList.DisplayMember = "Name";
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            var project = cbbProjectList.SelectedItem as Project;
+            if(project!= null)
+            {
+                var result = _bizProject.DeleteProject(project.Id);
+                if (!result)
+                {
+                    MessageBox.Show("Đã có lỗi xảy ra, Vui lòng kiểm tra và thử lại.");
+                }
+                List<Project> lstProject = _bizProject.GetAll();
+                if (lstProject == null) return;
+
+                cbbProjectList.DataSource = lstProject;
+                cbbProjectList.ValueMember = "Id";
+                cbbProjectList.DisplayMember = "Name";
+            }
+        }
     }
 }
