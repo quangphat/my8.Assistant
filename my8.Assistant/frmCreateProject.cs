@@ -70,7 +70,9 @@ namespace my8.Assistant
         private void CreateProject()
         {
             _project.Id = 0;
+            var type = _project.Type;
             this.ToEntity(_project);
+            _project.Type = type;
             _bizProject.CreateProject(_project);
             if (_project.CloneId.HasValue && _project.CloneId.Value > 0)
             {

@@ -20,6 +20,8 @@ namespace my8.Assistant.Model
     {
         public int ProjectId { get; set; }
         public string ProjectName { get; set; }
+        public string ProjectFolder { get; set; }
+        public string TemplateFolder { get; set; }
         public string ModelFolder { get; set; }
         public string RepositoryFolder { get; set; }
         public string InterfaceFolder { get; set; }

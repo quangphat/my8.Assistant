@@ -43,6 +43,15 @@ namespace my8.Assistant
             }
         }
         #endregion
+
+        public static string GetFullPathForConfigPath(string absolutePath, TypeOfPath type = TypeOfPath.Project)
+        {
+            if (string.IsNullOrWhiteSpace(absolutePath)) return string.Empty;
+
+            if(!absolutePath.StartsWith("\\"))
+                absolutePath = "\\" + absolutePath;
+            return type == TypeOfPath.Project ? $"{ThisApp.AppSetting.ProjectFolder}{absolutePath}": $"{ThisApp.AppSetting.TemplateFolder}{absolutePath}";
+        }
         public static string GetFolderPath()
         {
             string folderPath = string.Empty;
@@ -66,6 +75,14 @@ namespace my8.Assistant
                 }
             }
             return filePath;
+        }
+
+        public static string GetFolderPathFromUrl(string fileURL)
+        {
+            if (string.IsNullOrWhiteSpace(fileURL))
+                return null;
+
+            return Path.GetDirectoryName(fileURL);
         }
 
         #region DbInfo
