@@ -76,7 +76,7 @@ namespace my8.Assistant
             if (!cbWriteToApi.Checked)
                 return;
 
-            var content = Utility.ReadFile(Utility.GetFullPathForConfigPath(ThisApp.AppSetting.MessageCodeApiFilePath));
+            var content = Utility.ReadFile(ThisApp.AppSetting.MessageCodeApiFilePath);
             //if (content.Contains($"{txtKey.Text}_") || content.Contains($"_{txtKey.Text}_") || content.Contains($"_{txtKey.Text}"))
             //    return;
 
@@ -86,7 +86,7 @@ namespace my8.Assistant
             strBuilder.Append("\t//append_line_here");
             content = content.Replace("//append_line_here", $"public const string {txtKey.Text} = \"{txtVN.Text}\";{strBuilder.ToString()}");
             //content = content + strBuilder.ToString();
-            Utility.WriteToFile(Utility.GetFullPathForConfigPath(ThisApp.AppSetting.MessageCodeApiFilePath), content);
+            Utility.WriteToFile(ThisApp.AppSetting.MessageCodeApiFilePath, content);
         }
 
         private void AppendLangFile(string message, string filepath)
