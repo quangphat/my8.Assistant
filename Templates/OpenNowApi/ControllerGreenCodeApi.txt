@@ -1,19 +1,16 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using GreenCodeModels;
-using GreenCodeModels.Infrastructures;
-using Microsoft.AspNetCore.Http;
+using GreenCode.Repository.Models;
 using Microsoft.AspNetCore.Mvc;
 using my8GreenCodeApi.IBusiness;
+using OpenNow.ShareObject.Infrastructures;
+
 namespace my8GreenCodeApi.Controllers
 {
 	[Route("{ModelName}s")]
     public class {ModelName}Controller : BaseController
     {
         I{ModelName}Business _biz{ModelName};
-        public {ModelName}Controller(CurrentProcess process,I{ModelName}Business {modelname}Business) : base(process)
+        public {ModelName}Controller(CurrentProcess process, I{ModelName}Business {modelname}Business) : base(process)
         {
             _biz{ModelName} = {modelname}Business;
         }

@@ -1,0 +1,15 @@
+namespace PG.BDS.UMS.Repositories.Sql
+{
+    using System.Threading.Tasks;
+    using Microsoft.EntityFrameworkCore;
+    using PG.BDS.UMS.Infrastructure.Database;
+    using PG.BDS.UMS.Models.DomainModels;
+
+    public class {ModelName}Repository : BaseRepository<UmsDbContext, {ModelName}, long>, I{ModelName}Repository
+    {
+        public {ModelName}Repository(UmsDbContext context)
+            : base(context, (u, id) => u.Id == id)
+        {
+        }
+    }
+}

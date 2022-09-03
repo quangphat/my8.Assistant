@@ -1,0 +1,9 @@
+namespace PG.BDS.UMS.Models.DomainModels
+{
+    using System;
+
+    public class {ModelName} : IEntity<int>
+    {
+
+    }
+}

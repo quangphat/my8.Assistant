@@ -1,0 +1,11 @@
+namespace PG.BDS.UMS.Repositories.Sql
+{
+    using System.Threading.Tasks;
+    using PG.BDS.UMS.Models;
+    using PG.BDS.UMS.Models.DomainModels;
+
+    public interface I{ModelName}Repository : IBaseRepository<{ModelName}, long>
+    {
+
+    }
+}

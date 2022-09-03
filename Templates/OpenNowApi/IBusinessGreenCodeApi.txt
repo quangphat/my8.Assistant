@@ -1,15 +1,10 @@
 using GreenCode.Repository.Models;
-using GreenCodeModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-
 
 namespace my8GreenCodeApi.IBusiness
 {
     public interface I{ModelName}Business
     {
-        Task<{ModelName}> CreateAsync({ModelName} {modelname});
+        
     }
 }

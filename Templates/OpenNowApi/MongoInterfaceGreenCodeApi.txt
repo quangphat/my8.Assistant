@@ -1,12 +1,10 @@
 using GreenCode.Repository.Interfaces;
 using GreenCode.Repository.Models;
 using MongoDB.Bson;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace my8GreenCodeApi.Interface
 {
-    public interface I{ModelName}Repository: IBaseRepository<{ModelName},ObjectId>
+    public interface I{ModelName}Repository: IBaseRepository<{ModelName}, ObjectId>
     {
         
     }
