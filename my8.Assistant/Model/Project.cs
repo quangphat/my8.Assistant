@@ -20,6 +20,8 @@ namespace my8.Assistant.Model
         public string Name { get; set; }
         public bool IsLastSelect {get;set;}
         public string Type { get; set; }
+        public int? CloneId { get; set; }
         public bool IsConnectDatabase { get; set; }
+        public bool? IsDeleted { get; set; }
     }
 }

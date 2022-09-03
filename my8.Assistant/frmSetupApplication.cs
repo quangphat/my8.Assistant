@@ -36,6 +36,7 @@ namespace my8.Assistant
             AppSetting = new ApplicationSetting();
             this.ToEntity(AppSetting);
             AppSetting.ProjectName = ThisApp.Project.Name;
+            AppSetting.ProjectId = ThisApp.Project.Id;
             _bizAppSetting.WriteAppSetting(AppSetting);
             Session = new ApplicationSession();
             //if(rdSql.Checked)
@@ -308,6 +309,16 @@ namespace my8.Assistant
         private void button13_Click(object sender, EventArgs e)
         {
             autoTextBox19.Text = Utility.GetFilePath();
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            autoTextBox20.Text = Utility.GetFolderPath();
+        }
+
+        private void button15_Click(object sender, EventArgs e)
+        {
+            txtProjectFolder.Text = Utility.GetFolderPath();
         }
     }
 }

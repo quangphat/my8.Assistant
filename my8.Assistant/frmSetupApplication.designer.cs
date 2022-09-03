@@ -141,12 +141,19 @@
             this.button13 = new System.Windows.Forms.Button();
             this.label36 = new System.Windows.Forms.Label();
             this.autoTextBox19 = new AutoControl.AutoTextBox();
+            this.label37 = new System.Windows.Forms.Label();
+            this.autoTextBox20 = new AutoControl.AutoTextBox();
+            this.labelNotify1 = new AutoControl.LabelNotify();
+            this.button14 = new System.Windows.Forms.Button();
+            this.button15 = new System.Windows.Forms.Button();
+            this.label38 = new System.Windows.Forms.Label();
+            this.txtProjectFolder = new AutoControl.AutoTextBox();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(860, 581);
+            this.btnSave.Location = new System.Drawing.Point(860, 615);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 23;
@@ -156,7 +163,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(941, 581);
+            this.btnCancel.Location = new System.Drawing.Point(941, 615);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 24;
@@ -167,7 +174,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(19, 139);
+            this.label12.Location = new System.Drawing.Point(16, 218);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(78, 13);
             this.label12.TabIndex = 29;
@@ -199,7 +206,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(16, 38);
+            this.label13.Location = new System.Drawing.Point(13, 117);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(81, 13);
             this.label13.TabIndex = 34;
@@ -207,7 +214,7 @@
             // 
             // btnModelPFolder
             // 
-            this.btnModelPFolder.Location = new System.Drawing.Point(444, 34);
+            this.btnModelPFolder.Location = new System.Drawing.Point(441, 113);
             this.btnModelPFolder.Name = "btnModelPFolder";
             this.btnModelPFolder.Size = new System.Drawing.Size(30, 23);
             this.btnModelPFolder.TabIndex = 35;
@@ -301,7 +308,7 @@
             this.groupBox2.Controls.Add(this.autoMetroCheckBox3);
             this.groupBox2.Controls.Add(this.autoMetroCheckBox2);
             this.groupBox2.Controls.Add(this.autoMetroCheckBox1);
-            this.groupBox2.Location = new System.Drawing.Point(2, 423);
+            this.groupBox2.Location = new System.Drawing.Point(2, 458);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(1015, 152);
             this.groupBox2.TabIndex = 57;
@@ -315,7 +322,7 @@
             this.autoMetroCheckBox18.BindingName = "CreateMapper";
             this.autoMetroCheckBox18.Location = new System.Drawing.Point(7, 115);
             this.autoMetroCheckBox18.Name = "autoMetroCheckBox18";
-            this.autoMetroCheckBox18.Size = new System.Drawing.Size(87, 15);
+            this.autoMetroCheckBox18.Size = new System.Drawing.Size(86, 15);
             this.autoMetroCheckBox18.TabIndex = 162;
             this.autoMetroCheckBox18.Text = "Tạo mapper";
             this.autoMetroCheckBox18.UseSelectable = true;
@@ -389,7 +396,7 @@
             this.autoMetroCheckBox15.BindingName = "CreateDependencyInjection";
             this.autoMetroCheckBox15.Location = new System.Drawing.Point(263, 82);
             this.autoMetroCheckBox15.Name = "autoMetroCheckBox15";
-            this.autoMetroCheckBox15.Size = new System.Drawing.Size(130, 15);
+            this.autoMetroCheckBox15.Size = new System.Drawing.Size(129, 15);
             this.autoMetroCheckBox15.TabIndex = 35;
             this.autoMetroCheckBox15.Text = "Thêm DI vào startup";
             this.autoMetroCheckBox15.UseSelectable = true;
@@ -413,7 +420,7 @@
             this.autoMetroCheckBox13.BindingName = "CreateUnitTest";
             this.autoMetroCheckBox13.Location = new System.Drawing.Point(418, 50);
             this.autoMetroCheckBox13.Name = "autoMetroCheckBox13";
-            this.autoMetroCheckBox13.Size = new System.Drawing.Size(92, 15);
+            this.autoMetroCheckBox13.Size = new System.Drawing.Size(90, 15);
             this.autoMetroCheckBox13.TabIndex = 34;
             this.autoMetroCheckBox13.Text = "Tạo Unit Test";
             this.autoMetroCheckBox13.UseSelectable = true;
@@ -461,7 +468,7 @@
             this.autoMetroCheckBox10.BindingName = "CreateController";
             this.autoMetroCheckBox10.Location = new System.Drawing.Point(7, 50);
             this.autoMetroCheckBox10.Name = "autoMetroCheckBox10";
-            this.autoMetroCheckBox10.Size = new System.Drawing.Size(97, 15);
+            this.autoMetroCheckBox10.Size = new System.Drawing.Size(96, 15);
             this.autoMetroCheckBox10.TabIndex = 28;
             this.autoMetroCheckBox10.Text = "Tạo controller";
             this.autoMetroCheckBox10.UseSelectable = true;
@@ -473,7 +480,7 @@
             this.autoMetroCheckBox9.BindingName = "AutoCopy";
             this.autoMetroCheckBox9.Location = new System.Drawing.Point(601, 19);
             this.autoMetroCheckBox9.Name = "autoMetroCheckBox9";
-            this.autoMetroCheckBox9.Size = new System.Drawing.Size(97, 15);
+            this.autoMetroCheckBox9.Size = new System.Drawing.Size(96, 15);
             this.autoMetroCheckBox9.TabIndex = 27;
             this.autoMetroCheckBox9.Text = "Tự động copy";
             this.autoMetroCheckBox9.UseSelectable = true;
@@ -521,7 +528,7 @@
             this.autoMetroCheckBox5.BindingName = "CreateClass";
             this.autoMetroCheckBox5.Location = new System.Drawing.Point(263, 19);
             this.autoMetroCheckBox5.Name = "autoMetroCheckBox5";
-            this.autoMetroCheckBox5.Size = new System.Drawing.Size(71, 15);
+            this.autoMetroCheckBox5.Size = new System.Drawing.Size(70, 15);
             this.autoMetroCheckBox5.TabIndex = 4;
             this.autoMetroCheckBox5.Text = "Tạo class";
             this.autoMetroCheckBox5.UseSelectable = true;
@@ -533,7 +540,7 @@
             this.autoMetroCheckBox3.BindingName = "CreateReactModel";
             this.autoMetroCheckBox3.Location = new System.Drawing.Point(7, 82);
             this.autoMetroCheckBox3.Name = "autoMetroCheckBox3";
-            this.autoMetroCheckBox3.Size = new System.Drawing.Size(112, 15);
+            this.autoMetroCheckBox3.Size = new System.Drawing.Size(111, 15);
             this.autoMetroCheckBox3.TabIndex = 2;
             this.autoMetroCheckBox3.Text = "Tạo React model";
             this.autoMetroCheckBox3.UseSelectable = true;
@@ -545,7 +552,7 @@
             this.autoMetroCheckBox2.BindingName = "CreateRepository";
             this.autoMetroCheckBox2.Location = new System.Drawing.Point(139, 18);
             this.autoMetroCheckBox2.Name = "autoMetroCheckBox2";
-            this.autoMetroCheckBox2.Size = new System.Drawing.Size(99, 15);
+            this.autoMetroCheckBox2.Size = new System.Drawing.Size(98, 15);
             this.autoMetroCheckBox2.TabIndex = 1;
             this.autoMetroCheckBox2.Text = "Tạo repository";
             this.autoMetroCheckBox2.UseSelectable = true;
@@ -557,7 +564,7 @@
             this.autoMetroCheckBox1.BindingName = "CreateInterface";
             this.autoMetroCheckBox1.Location = new System.Drawing.Point(7, 18);
             this.autoMetroCheckBox1.Name = "autoMetroCheckBox1";
-            this.autoMetroCheckBox1.Size = new System.Drawing.Size(92, 15);
+            this.autoMetroCheckBox1.Size = new System.Drawing.Size(91, 15);
             this.autoMetroCheckBox1.TabIndex = 0;
             this.autoMetroCheckBox1.Text = "Tạo interface";
             this.autoMetroCheckBox1.UseSelectable = true;
@@ -567,7 +574,7 @@
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label21.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label21.Location = new System.Drawing.Point(445, 135);
+            this.label21.Location = new System.Drawing.Point(442, 214);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(17, 24);
             this.label21.TabIndex = 88;
@@ -650,9 +657,9 @@
             this.cbGenSqlScript.AutoSize = true;
             this.cbGenSqlScript.BindingFor = "ApplicationSetting";
             this.cbGenSqlScript.BindingName = "GenSqlScript";
-            this.cbGenSqlScript.Location = new System.Drawing.Point(195, 390);
+            this.cbGenSqlScript.Location = new System.Drawing.Point(186, 435);
             this.cbGenSqlScript.Name = "cbGenSqlScript";
-            this.cbGenSqlScript.Size = new System.Drawing.Size(172, 15);
+            this.cbGenSqlScript.Size = new System.Drawing.Size(171, 15);
             this.cbGenSqlScript.TabIndex = 56;
             this.cbGenSqlScript.Tag = "";
             this.cbGenSqlScript.Text = "Tạo sql script cho repository";
@@ -693,9 +700,9 @@
             this.cbDapperMapping.AutoSize = true;
             this.cbDapperMapping.BindingFor = "ApplicationSetting";
             this.cbDapperMapping.BindingName = "DapperMapping";
-            this.cbDapperMapping.Location = new System.Drawing.Point(19, 390);
+            this.cbDapperMapping.Location = new System.Drawing.Point(10, 435);
             this.cbDapperMapping.Name = "cbDapperMapping";
-            this.cbDapperMapping.Size = new System.Drawing.Size(131, 15);
+            this.cbDapperMapping.Size = new System.Drawing.Size(130, 15);
             this.cbDapperMapping.TabIndex = 36;
             this.cbDapperMapping.Tag = "";
             this.cbDapperMapping.Text = "Tạo dapperMapping";
@@ -705,7 +712,7 @@
             // 
             this.txtModelFolder.BindingFor = "ApplicationSetting";
             this.txtModelFolder.BindingName = "ModelFolder";
-            this.txtModelFolder.Location = new System.Drawing.Point(148, 35);
+            this.txtModelFolder.Location = new System.Drawing.Point(145, 114);
             this.txtModelFolder.Name = "txtModelFolder";
             this.txtModelFolder.Size = new System.Drawing.Size(291, 20);
             this.txtModelFolder.TabIndex = 33;
@@ -714,7 +721,7 @@
             // 
             this.autoTextBox1.BindingFor = "ApplicationSetting";
             this.autoTextBox1.BindingName = "PrimaryColumnRule";
-            this.autoTextBox1.Location = new System.Drawing.Point(148, 136);
+            this.autoTextBox1.Location = new System.Drawing.Point(145, 215);
             this.autoTextBox1.Name = "autoTextBox1";
             this.autoTextBox1.Size = new System.Drawing.Size(291, 20);
             this.autoTextBox1.TabIndex = 28;
@@ -725,7 +732,7 @@
             this.cbAutoCreateFile.AutoSize = true;
             this.cbAutoCreateFile.BindingFor = "ApplicationSetting";
             this.cbAutoCreateFile.BindingName = "AutoCreateFile";
-            this.cbAutoCreateFile.Location = new System.Drawing.Point(195, 357);
+            this.cbAutoCreateFile.Location = new System.Drawing.Point(186, 402);
             this.cbAutoCreateFile.Name = "cbAutoCreateFile";
             this.cbAutoCreateFile.Size = new System.Drawing.Size(105, 15);
             this.cbAutoCreateFile.TabIndex = 26;
@@ -737,7 +744,7 @@
             this.cbUseInterface.AutoSize = true;
             this.cbUseInterface.BindingFor = "ApplicationSetting";
             this.cbUseInterface.BindingName = "UseInterface";
-            this.cbUseInterface.Location = new System.Drawing.Point(19, 357);
+            this.cbUseInterface.Location = new System.Drawing.Point(10, 402);
             this.cbUseInterface.Name = "cbUseInterface";
             this.cbUseInterface.Size = new System.Drawing.Size(157, 15);
             this.cbUseInterface.TabIndex = 15;
@@ -760,7 +767,7 @@
             // 
             // btnControllerFolder
             // 
-            this.btnControllerFolder.Location = new System.Drawing.Point(445, 161);
+            this.btnControllerFolder.Location = new System.Drawing.Point(442, 240);
             this.btnControllerFolder.Name = "btnControllerFolder";
             this.btnControllerFolder.Size = new System.Drawing.Size(30, 23);
             this.btnControllerFolder.TabIndex = 104;
@@ -772,7 +779,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(19, 164);
+            this.label7.Location = new System.Drawing.Point(16, 243);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(83, 13);
             this.label7.TabIndex = 103;
@@ -783,7 +790,7 @@
             // 
             this.txtControllerFolder.BindingFor = "ApplicationSetting";
             this.txtControllerFolder.BindingName = "ControllerFolder";
-            this.txtControllerFolder.Location = new System.Drawing.Point(148, 162);
+            this.txtControllerFolder.Location = new System.Drawing.Point(145, 241);
             this.txtControllerFolder.Name = "txtControllerFolder";
             this.txtControllerFolder.Size = new System.Drawing.Size(291, 20);
             this.txtControllerFolder.TabIndex = 102;
@@ -792,7 +799,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(19, 246);
+            this.label1.Location = new System.Drawing.Point(16, 325);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(82, 13);
             this.label1.TabIndex = 112;
@@ -803,7 +810,7 @@
             // 
             this.autoTextBox2.BindingFor = "ApplicationSetting";
             this.autoTextBox2.BindingName = "UnitTestFolder";
-            this.autoTextBox2.Location = new System.Drawing.Point(147, 243);
+            this.autoTextBox2.Location = new System.Drawing.Point(144, 322);
             this.autoTextBox2.Name = "autoTextBox2";
             this.autoTextBox2.Size = new System.Drawing.Size(291, 20);
             this.autoTextBox2.TabIndex = 111;
@@ -811,7 +818,7 @@
             // 
             // btnUnitTestFolder
             // 
-            this.btnUnitTestFolder.Location = new System.Drawing.Point(444, 241);
+            this.btnUnitTestFolder.Location = new System.Drawing.Point(441, 320);
             this.btnUnitTestFolder.Name = "btnUnitTestFolder";
             this.btnUnitTestFolder.Size = new System.Drawing.Size(30, 23);
             this.btnUnitTestFolder.TabIndex = 113;
@@ -822,7 +829,7 @@
             // 
             // btnReactModelFolder
             // 
-            this.btnReactModelFolder.Location = new System.Drawing.Point(444, 214);
+            this.btnReactModelFolder.Location = new System.Drawing.Point(441, 293);
             this.btnReactModelFolder.Name = "btnReactModelFolder";
             this.btnReactModelFolder.Size = new System.Drawing.Size(30, 23);
             this.btnReactModelFolder.TabIndex = 116;
@@ -834,7 +841,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(18, 219);
+            this.label2.Location = new System.Drawing.Point(15, 298);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(112, 13);
             this.label2.TabIndex = 115;
@@ -845,7 +852,7 @@
             // 
             this.txtReactFile.BindingFor = "ApplicationSetting";
             this.txtReactFile.BindingName = "ReactJsModelFolder";
-            this.txtReactFile.Location = new System.Drawing.Point(147, 216);
+            this.txtReactFile.Location = new System.Drawing.Point(144, 295);
             this.txtReactFile.Name = "txtReactFile";
             this.txtReactFile.Size = new System.Drawing.Size(291, 20);
             this.txtReactFile.TabIndex = 114;
@@ -853,7 +860,7 @@
             // 
             // btnUnitTestTemplate
             // 
-            this.btnUnitTestTemplate.Location = new System.Drawing.Point(444, 266);
+            this.btnUnitTestTemplate.Location = new System.Drawing.Point(441, 345);
             this.btnUnitTestTemplate.Name = "btnUnitTestTemplate";
             this.btnUnitTestTemplate.Size = new System.Drawing.Size(30, 23);
             this.btnUnitTestTemplate.TabIndex = 122;
@@ -865,7 +872,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(20, 271);
+            this.label8.Location = new System.Drawing.Point(17, 350);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(93, 13);
             this.label8.TabIndex = 121;
@@ -876,7 +883,7 @@
             // 
             this.autoTextBox5.BindingFor = "ApplicationSetting";
             this.autoTextBox5.BindingName = "UnitTestFileTemplate";
-            this.autoTextBox5.Location = new System.Drawing.Point(147, 268);
+            this.autoTextBox5.Location = new System.Drawing.Point(144, 347);
             this.autoTextBox5.Name = "autoTextBox5";
             this.autoTextBox5.Size = new System.Drawing.Size(291, 20);
             this.autoTextBox5.TabIndex = 120;
@@ -1128,7 +1135,7 @@
             // label34
             // 
             this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(18, 113);
+            this.label34.Location = new System.Drawing.Point(15, 192);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(81, 13);
             this.label34.TabIndex = 147;
@@ -1139,7 +1146,7 @@
             // 
             this.autoTextBox12.BindingFor = "ApplicationSetting";
             this.autoTextBox12.BindingName = "SubFolderName";
-            this.autoTextBox12.Location = new System.Drawing.Point(148, 110);
+            this.autoTextBox12.Location = new System.Drawing.Point(145, 189);
             this.autoTextBox12.Name = "autoTextBox12";
             this.autoTextBox12.Size = new System.Drawing.Size(291, 20);
             this.autoTextBox12.TabIndex = 146;
@@ -1147,7 +1154,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(444, 59);
+            this.button2.Location = new System.Drawing.Point(441, 138);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(30, 23);
             this.button2.TabIndex = 150;
@@ -1158,7 +1165,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(16, 63);
+            this.label5.Location = new System.Drawing.Point(13, 142);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(94, 13);
             this.label5.TabIndex = 149;
@@ -1168,14 +1175,14 @@
             // 
             this.autoTextBox4.BindingFor = "ApplicationSetting";
             this.autoTextBox4.BindingName = "InterfaceFolder";
-            this.autoTextBox4.Location = new System.Drawing.Point(148, 60);
+            this.autoTextBox4.Location = new System.Drawing.Point(145, 139);
             this.autoTextBox4.Name = "autoTextBox4";
             this.autoTextBox4.Size = new System.Drawing.Size(291, 20);
             this.autoTextBox4.TabIndex = 148;
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(444, 84);
+            this.button7.Location = new System.Drawing.Point(441, 163);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(30, 23);
             this.button7.TabIndex = 153;
@@ -1186,7 +1193,7 @@
             // label35
             // 
             this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(16, 88);
+            this.label35.Location = new System.Drawing.Point(13, 167);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(102, 13);
             this.label35.TabIndex = 152;
@@ -1196,14 +1203,14 @@
             // 
             this.autoTextBox13.BindingFor = "ApplicationSetting";
             this.autoTextBox13.BindingName = "RepositoryFolder";
-            this.autoTextBox13.Location = new System.Drawing.Point(148, 85);
+            this.autoTextBox13.Location = new System.Drawing.Point(145, 164);
             this.autoTextBox13.Name = "autoTextBox13";
             this.autoTextBox13.Size = new System.Drawing.Size(291, 20);
             this.autoTextBox13.TabIndex = 151;
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(445, 187);
+            this.button8.Location = new System.Drawing.Point(442, 266);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(30, 23);
             this.button8.TabIndex = 156;
@@ -1215,7 +1222,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(19, 190);
+            this.label6.Location = new System.Drawing.Point(16, 269);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(94, 13);
             this.label6.TabIndex = 155;
@@ -1226,7 +1233,7 @@
             // 
             this.autoTextBox14.BindingFor = "ApplicationSetting";
             this.autoTextBox14.BindingName = "ControllerTemplate";
-            this.autoTextBox14.Location = new System.Drawing.Point(148, 188);
+            this.autoTextBox14.Location = new System.Drawing.Point(145, 267);
             this.autoTextBox14.Name = "autoTextBox14";
             this.autoTextBox14.Size = new System.Drawing.Size(291, 20);
             this.autoTextBox14.TabIndex = 154;
@@ -1358,7 +1365,7 @@
             // 
             // button13
             // 
-            this.button13.Location = new System.Drawing.Point(444, 292);
+            this.button13.Location = new System.Drawing.Point(441, 371);
             this.button13.Name = "button13";
             this.button13.Size = new System.Drawing.Size(30, 23);
             this.button13.TabIndex = 171;
@@ -1370,7 +1377,7 @@
             // label36
             // 
             this.label36.AutoSize = true;
-            this.label36.Location = new System.Drawing.Point(20, 297);
+            this.label36.Location = new System.Drawing.Point(17, 376);
             this.label36.Name = "label36";
             this.label36.Size = new System.Drawing.Size(76, 13);
             this.label36.TabIndex = 170;
@@ -1381,17 +1388,92 @@
             // 
             this.autoTextBox19.BindingFor = "ApplicationSetting";
             this.autoTextBox19.BindingName = "MapperFile";
-            this.autoTextBox19.Location = new System.Drawing.Point(147, 294);
+            this.autoTextBox19.Location = new System.Drawing.Point(144, 373);
             this.autoTextBox19.Name = "autoTextBox19";
             this.autoTextBox19.Size = new System.Drawing.Size(291, 20);
             this.autoTextBox19.TabIndex = 169;
             this.autoTextBox19.Tag = "";
             // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(13, 92);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(83, 13);
+            this.label37.TabIndex = 173;
+            this.label37.Text = "Template Folder";
+            // 
+            // autoTextBox20
+            // 
+            this.autoTextBox20.BindingFor = "ApplicationSetting";
+            this.autoTextBox20.BindingName = "TemplateFolder";
+            this.autoTextBox20.Location = new System.Drawing.Point(145, 89);
+            this.autoTextBox20.Name = "autoTextBox20";
+            this.autoTextBox20.Size = new System.Drawing.Size(291, 20);
+            this.autoTextBox20.TabIndex = 172;
+            // 
+            // labelNotify1
+            // 
+            this.labelNotify1.AutoSize = true;
+            this.labelNotify1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNotify1.Location = new System.Drawing.Point(17, 38);
+            this.labelNotify1.Name = "labelNotify1";
+            this.labelNotify1.Size = new System.Drawing.Size(505, 13);
+            this.labelNotify1.Status = AutoControl.LabelNotify.EnumStatus.Other;
+            this.labelNotify1.TabIndex = 175;
+            this.labelNotify1.Text = "Các đường dẫn là đường dẫn tương đối(ngoại trừ template folder và project base fo" +
+    "lder)";
+            // 
+            // button14
+            // 
+            this.button14.Location = new System.Drawing.Point(442, 89);
+            this.button14.Name = "button14";
+            this.button14.Size = new System.Drawing.Size(30, 23);
+            this.button14.TabIndex = 176;
+            this.button14.Text = "...";
+            this.button14.UseVisualStyleBackColor = true;
+            this.button14.Click += new System.EventHandler(this.button14_Click);
+            // 
+            // button15
+            // 
+            this.button15.Location = new System.Drawing.Point(442, 62);
+            this.button15.Name = "button15";
+            this.button15.Size = new System.Drawing.Size(30, 23);
+            this.button15.TabIndex = 179;
+            this.button15.Text = "...";
+            this.button15.UseVisualStyleBackColor = true;
+            this.button15.Click += new System.EventHandler(this.button15_Click);
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Location = new System.Drawing.Point(13, 66);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(72, 13);
+            this.label38.TabIndex = 178;
+            this.label38.Text = "Project Folder";
+            // 
+            // txtProjectFolder
+            // 
+            this.txtProjectFolder.BindingFor = "ApplicationSetting";
+            this.txtProjectFolder.BindingName = "ProjectFolder";
+            this.txtProjectFolder.Location = new System.Drawing.Point(145, 63);
+            this.txtProjectFolder.Name = "txtProjectFolder";
+            this.txtProjectFolder.Size = new System.Drawing.Size(291, 20);
+            this.txtProjectFolder.TabIndex = 177;
+            // 
             // frmSetupApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1020, 608);
+            this.ClientSize = new System.Drawing.Size(1020, 643);
+            this.Controls.Add(this.button15);
+            this.Controls.Add(this.label38);
+            this.Controls.Add(this.txtProjectFolder);
+            this.Controls.Add(this.button14);
+            this.Controls.Add(this.labelNotify1);
+            this.Controls.Add(this.label37);
+            this.Controls.Add(this.autoTextBox20);
             this.Controls.Add(this.button13);
             this.Controls.Add(this.label36);
             this.Controls.Add(this.autoTextBox19);
@@ -1611,5 +1693,12 @@
         private System.Windows.Forms.Label label36;
         private AutoControl.AutoTextBox autoTextBox19;
         private AutoControl.AutoMetroCheckBox autoMetroCheckBox18;
+        private System.Windows.Forms.Label label37;
+        private AutoControl.AutoTextBox autoTextBox20;
+        private AutoControl.LabelNotify labelNotify1;
+        private System.Windows.Forms.Button button14;
+        private System.Windows.Forms.Button button15;
+        private System.Windows.Forms.Label label38;
+        private AutoControl.AutoTextBox txtProjectFolder;
     }
 }

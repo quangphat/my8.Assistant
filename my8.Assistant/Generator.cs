@@ -140,7 +140,7 @@ namespace my8.Assistant
             if (createFile)
             {
                 string filepath = string.Empty;
-                filepath = $"{ThisApp.AppSetting.ReactJsModelFolder}\\I{table.CustomName}.tsx";
+                filepath = $"{Utility.GetFullPathForConfigPath(ThisApp.AppSetting.ReactJsModelFolder)}\\I{table.CustomName}.tsx";
                 Utility.WriteToFile(m_templateContent, filepath, FileType.Repository);
             }
             return true;
@@ -152,7 +152,7 @@ namespace my8.Assistant
             if (createFile)
             {
                 string filepath = string.Empty;
-                filepath = $"{ThisApp.AppSetting.RepositoryFolder}\\{table.CustomName}Repository.tsx";
+                filepath = Utility.GetFullPathForConfigPath($"{ThisApp.AppSetting.RepositoryFolder}\\{table.CustomName}Repository.tsx");
                 m_templateContent = "import * as Models from '../Models'";
                 m_templateContent += Environment.NewLine;
                 m_templateContent += "import { Fetch } from './Fetch'";
@@ -203,8 +203,8 @@ namespace my8.Assistant
             //    filepath = buildFilePath(table, ThisApp.AppSetting.RepositoryFolder, "Repository.cs", 0);
             //    m_templateFilePath = ThisApp.AppSetting.SqlRepositoryTemplate;
             //}
-            filepath = buildFilePath(table, ThisApp.AppSetting.RepositoryFolder, "Repository.cs", 1);
-            m_templateFilePath = ThisApp.AppSetting.MongoRepositoryTemplate;
+            filepath = buildFilePath(table, Utility.GetFullPathForConfigPath(ThisApp.AppSetting.RepositoryFolder), "Repository.cs", 1);
+            m_templateFilePath = Utility.GetFullPathForConfigPath(ThisApp.AppSetting.MongoRepositoryTemplate, TypeOfPath.Template);
             m_templateContent = string.Empty;
             m_templateContent = Utility.ReadFile(m_templateFilePath);
             m_templateContent = m_templateContent.Replace(TheText.ModelName, table.CustomName);
@@ -322,8 +322,8 @@ namespace my8.Assistant
             //    temp = Utility.ReadFile(ThisApp.AppSetting.NeoInterfaceTemplate);
             //    filepath = buildFilePath(table,ThisApp.AppSetting.InterfaceFolder, "Repository.cs", 2, true);
             //}
-            temp = Utility.ReadFile(ThisApp.AppSetting.MongoInterfaceTemplate);
-            filepath = buildFilePath(table, ThisApp.AppSetting.InterfaceFolder, "Repository.cs", 1, true);
+            temp = Utility.ReadFile(Utility.GetFullPathForConfigPath(ThisApp.AppSetting.MongoInterfaceTemplate, TypeOfPath.Template));
+            filepath = buildFilePath(table, Utility.GetFullPathForConfigPath(ThisApp.AppSetting.InterfaceFolder), "Repository.cs", 1, true);
             if (string.IsNullOrWhiteSpace(temp)) return string.Empty;
             m_templateContent = temp.Replace(TheText.ModelName, table.CustomName);
             m_templateContent = m_templateContent.Replace(TheText.modelnameLowerCase, table.CustomName.ToLower());
@@ -507,8 +507,8 @@ namespace my8.Assistant
             //    m_templateFilePath = ThisApp.AppSetting.NeoModelTemplateFile;
             //    filepath = ThisApp.AppSetting.ModelFolder + "\\" + ThisApp.AppSetting.getSubFolferName()[2] + "\\" + table.CustomName + ".cs";
             //}
-            m_templateFilePath = ThisApp.AppSetting.MongoModelTemplateFile;
-            filepath = ThisApp.AppSetting.ModelFolder + "\\" + table.CustomName + ".cs";
+            m_templateFilePath = Utility.GetFullPathForConfigPath(ThisApp.AppSetting.MongoModelTemplateFile, TypeOfPath.Template);
+            filepath = Utility.GetFullPathForConfigPath(Utility.GetFullPathForConfigPath(ThisApp.AppSetting.ModelFolder) + "\\" + table.CustomName + ".cs");
             m_templateContent = Utility.ReadFile(m_templateFilePath);
             string Entityclass = BuildEntitiesClass(table);
             m_templateContent = m_templateContent.Replace(TheText.ModelName, table.CustomName);
@@ -533,10 +533,10 @@ namespace my8.Assistant
         #region Controller
         public string CreateController(Table table, bool createFile = true)
         {
-            string filepath = ThisApp.AppSetting.ControllerFolder + "\\" + table.CustomName + "Controller.cs";
+            string filepath = Utility.GetFullPathForConfigPath(ThisApp.AppSetting.ControllerFolder) + "\\" + table.CustomName + "Controller.cs";
             m_strBuilder = new StringBuilder();
             m_templateContent = string.Empty;
-            m_templateContent = Utility.ReadFile(ThisApp.AppSetting.ControllerTemplate);
+            m_templateContent = Utility.ReadFile(Utility.GetFullPathForConfigPath(ThisApp.AppSetting.ControllerTemplate, TypeOfPath.Template));
             if (string.IsNullOrWhiteSpace(m_templateContent))
                 return string.Empty;
             m_templateContent = m_templateContent.Replace(TheText.ModelName, table.CustomName);
@@ -563,7 +563,7 @@ namespace my8.Assistant
         #region ReactJs
         public string CreateReactJsModel(Table table, List<Column> columns, string modelName, ModelSyntaxType synTaxType = ModelSyntaxType.Original)
         {
-            string filepath = ThisApp.AppSetting.ReactJsModelFolder;
+            string filepath = Utility.GetFullPathForConfigPath(ThisApp.AppSetting.ReactJsModelFolder);
             m_strBuilder = new StringBuilder();
             //m_templateContent = Utility.ReadFile(filepath);
             //if (string.IsNullOrWhiteSpace(m_templateContent))
@@ -655,9 +655,9 @@ namespace my8.Assistant
         #region UnitTest
         public string CreateUnitTestClass(Table table)
         {
-            string filepath = $"{ThisApp.AppSetting.UnitTestFolder}\\Test{table.CustomName}.cs";
+            string filepath = $"{Utility.GetFullPathForConfigPath(ThisApp.AppSetting.UnitTestFolder)}\\Test{table.CustomName}.cs";
             m_strBuilder = new StringBuilder();
-            m_templateContent = Utility.ReadFile(ThisApp.AppSetting.UnitTestFileTemplate);
+            m_templateContent = Utility.ReadFile(Utility.GetFullPathForConfigPath(Utility.GetFullPathForConfigPath(ThisApp.AppSetting.UnitTestFileTemplate, TypeOfPath.Template)));
             if (string.IsNullOrWhiteSpace(m_templateContent))
                 return string.Empty;
             m_templateContent = m_templateContent.Replace(TheText.ModelName, table.CustomName);
@@ -681,9 +681,9 @@ namespace my8.Assistant
         #region Business
         public string CreateBusinessClass(Table table, bool createFile = true)
         {
-            string filepath = $"{ThisApp.AppSetting.BusinessFolder}\\{table.CustomName}Business.cs";
+            string filepath = $"{Utility.GetFullPathForConfigPath(ThisApp.AppSetting.BusinessFolder)}\\{table.CustomName}Business.cs";
             m_strBuilder = new StringBuilder();
-            m_templateContent = Utility.ReadFile(ThisApp.AppSetting.BusinessTemplate);
+            m_templateContent = Utility.ReadFile(Utility.GetFullPathForConfigPath(ThisApp.AppSetting.BusinessTemplate, TypeOfPath.Template));
             if (string.IsNullOrWhiteSpace(m_templateContent))
                 return string.Empty;
             m_templateContent = m_templateContent.Replace(TheText.ModelName, table.CustomName);
@@ -706,9 +706,9 @@ namespace my8.Assistant
         }
         public string CreateBusinessInterface(Table table, bool createFile = true)
         {
-            string filepath = $"{ThisApp.AppSetting.IBusinessFolder}\\I{table.CustomName}Business.cs";
+            string filepath = $"{Utility.GetFullPathForConfigPath(ThisApp.AppSetting.IBusinessFolder)}\\I{table.CustomName}Business.cs";
             m_strBuilder = new StringBuilder();
-            m_templateContent = Utility.ReadFile(ThisApp.AppSetting.IBusinessTemplate);
+            m_templateContent = Utility.ReadFile(Utility.GetFullPathForConfigPath(ThisApp.AppSetting.IBusinessTemplate, TypeOfPath.Template));
             if (string.IsNullOrWhiteSpace(m_templateContent))
                 return string.Empty;
             m_templateContent = m_templateContent.Replace(TheText.ModelName, table.CustomName);
@@ -733,9 +733,9 @@ namespace my8.Assistant
         #region Dependency Injection
         public string CreateDependencyInjection(Table table, ObjectType objectType, bool createFile = true)
         {
-            string filepath = $"{ThisApp.AppSetting.StartUpFile}";
+            string filepath = $"{Utility.GetFullPathForConfigPath(ThisApp.AppSetting.StartUpFile)}";
             m_strBuilder = new StringBuilder();
-            m_templateContent = Utility.ReadFile(ThisApp.AppSetting.StartUpFile);
+            m_templateContent = Utility.ReadFile(Utility.GetFullPathForConfigPath(ThisApp.AppSetting.StartUpFile));
             if (string.IsNullOrWhiteSpace(m_templateContent))
                 return string.Empty;
             //if (m_templateContent.Contains($"I{table.CustomName}Repository"))
@@ -879,9 +879,9 @@ namespace my8.Assistant
         #region Mapper
         public string CreateMapper(Table table, bool createFile = true)
         {
-            string filepath = $"{ThisApp.AppSetting.MapperFile}";
+            string filepath = $"{Utility.GetFullPathForConfigPath(ThisApp.AppSetting.MapperFile)}";
             m_strBuilder = new StringBuilder();
-            m_templateContent = Utility.ReadFile(ThisApp.AppSetting.MapperFile);
+            m_templateContent = Utility.ReadFile(Utility.GetFullPathForConfigPath(ThisApp.AppSetting.MapperFile));
             if (string.IsNullOrWhiteSpace(m_templateContent))
                 return string.Empty;
             string[] exists = new string[] { $"mapper.CreateMap<Model.{TheText.ModelName}, ModelN.{TheText.ModelName}>()", $"mapper.CreateMap<Model.{TheText.ModelName}, ModelM.{TheText.ModelName}>(;", $"mapper.CreateMap<Model.{TheText.ModelName}, ModelS.{TheText.ModelName}>()" };
@@ -922,14 +922,13 @@ namespace my8.Assistant
         #endregion
         public string CreateReactComponent(Table table, bool createFile = true)
         {
-            string filepath = ThisApp.AppSetting.ReactJsComponentTemplate;
             m_strBuilder = new StringBuilder();
-            m_templateContent = Utility.ReadFile(ThisApp.AppSetting.ReactJsComponentTemplate);
+            m_templateContent = Utility.ReadFile(Utility.GetFullPathForConfigPath(ThisApp.AppSetting.ReactJsComponentTemplate, TypeOfPath.Template));
             if (string.IsNullOrWhiteSpace(m_templateContent))
                 return string.Empty;
             m_templateContent = m_templateContent.Replace(TheText.ModelName, table.CustomName);
             m_templateContent = m_templateContent.Replace(TheText.modelnameLowerCase, table.CustomName.ToLower());
-            string componentFolderPath = $"{ThisApp.AppSetting.ReactJsComponentFolder}\\{table.CustomName}";
+            string componentFolderPath = $"{Utility.GetFullPathForConfigPath(ThisApp.AppSetting.ReactJsComponentFolder)}\\{table.CustomName}";
             if (createFile)
             {
                 if (!Directory.Exists(componentFolderPath))

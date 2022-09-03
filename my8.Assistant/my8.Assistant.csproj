@@ -8,9 +8,10 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>my8.Assistant</RootNamespace>
     <AssemblyName>my8.Assistant</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -36,10 +37,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AutoControl">
-      <HintPath>..\dll\AutoControl.dll</HintPath>
+      <HintPath>..\libs\AutoControl.dll</HintPath>
     </Reference>
-    <Reference Include="Dapper">
-      <HintPath>..\dll\Dapper.dll</HintPath>
+    <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.2.0.123\lib\net461\Dapper.dll</HintPath>
     </Reference>
     <Reference Include="DnsClient, Version=1.0.7.0, Culture=neutral, PublicKeyToken=4574bb5573c51424, processorArchitecture=MSIL">
       <HintPath>..\packages\DnsClient.1.0.7\lib\net45\DnsClient.dll</HintPath>
@@ -48,7 +49,7 @@
       <HintPath>..\dll\FlatMessageBox.dll</HintPath>
     </Reference>
     <Reference Include="Material">
-      <HintPath>..\dll\Material.dll</HintPath>
+      <HintPath>..\libs\Material.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SqlServer.ConnectionInfo, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -75,13 +76,13 @@
       <HintPath>D:\Development\Utility\Utility\Generate Sql\The Generator\bin\Debug\Microsoft.SqlServer.SqlEnum.dll</HintPath>
     </Reference>
     <Reference Include="ModernUI">
-      <HintPath>..\dll\ModernUI.dll</HintPath>
+      <HintPath>..\libs\ModernUI.dll</HintPath>
     </Reference>
     <Reference Include="ModernUI.Design">
-      <HintPath>..\dll\ModernUI.Design.dll</HintPath>
+      <HintPath>..\libs\ModernUI.Design.dll</HintPath>
     </Reference>
     <Reference Include="ModernUI.Fonts">
-      <HintPath>..\dll\ModernUI.Fonts.dll</HintPath>
+      <HintPath>..\libs\ModernUI.Fonts.dll</HintPath>
     </Reference>
     <Reference Include="MongoDB.Bson, Version=2.5.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MongoDB.Bson.2.5.0\lib\net45\MongoDB.Bson.dll</HintPath>
@@ -140,6 +141,7 @@
     <Compile Include="ConsoleDefinition.cs" />
     <Compile Include="ConsoleObject.cs" />
     <Compile Include="DeepClone.cs" />
+    <Compile Include="Enums.cs" />
     <Compile Include="frmCreateProject.cs">
       <SubType>Form</SubType>
     </Compile>

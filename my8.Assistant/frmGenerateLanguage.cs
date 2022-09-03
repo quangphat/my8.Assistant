@@ -38,8 +38,8 @@ namespace my8.Assistant
         {
             AppendILanguageFile();
             AppendApiMessageCodeFile();
-            AppendLangFile($"{txtVN.Text.Trim()}", ThisApp.AppSetting.MessageVNFilePath);
-            AppendLangFile($"{txtEng.Text.Trim()}", ThisApp.AppSetting.MessageENFilePath);
+            AppendLangFile($"{txtVN.Text.Trim()}", Utility.GetFullPathForConfigPath(ThisApp.AppSetting.MessageVNFilePath));
+            AppendLangFile($"{txtEng.Text.Trim()}", Utility.GetFullPathForConfigPath(ThisApp.AppSetting.MessageENFilePath));
             txtEng.Text = string.Empty;
             txtVN.Text = string.Empty;
         }
@@ -53,7 +53,7 @@ namespace my8.Assistant
 
             if (string.IsNullOrWhiteSpace(txtKey.Text))
                 return;
-            var content = Utility.ReadFile(ThisApp.AppSetting.ILanguageFilePath);
+            var content = Utility.ReadFile(Utility.GetFullPathForConfigPath(ThisApp.AppSetting.ILanguageFilePath));
             //if (content.Contains($"{txtKey.Text}_") || content.Contains($"_{txtKey.Text}_") || content.Contains($"_{txtKey.Text}"))
             //    return;
 
@@ -63,7 +63,7 @@ namespace my8.Assistant
             strBuilder.Append("//append_line_here");
             content = content.Replace("//append_line_here", $"{txtKey.Text}:string,{strBuilder.ToString()}");
             //content = content + strBuilder.ToString();
-            Utility.WriteToFile(ThisApp.AppSetting.ILanguageFilePath, content);
+            Utility.WriteToFile(Utility.GetFullPathForConfigPath(ThisApp.AppSetting.ILanguageFilePath), content);
         }
 
         private void AppendApiMessageCodeFile()
@@ -76,7 +76,7 @@ namespace my8.Assistant
             if (!cbWriteToApi.Checked)
                 return;
 
-            var content = Utility.ReadFile(ThisApp.AppSetting.MessageCodeApiFilePath);
+            var content = Utility.ReadFile(Utility.GetFullPathForConfigPath(ThisApp.AppSetting.MessageCodeApiFilePath));
             //if (content.Contains($"{txtKey.Text}_") || content.Contains($"_{txtKey.Text}_") || content.Contains($"_{txtKey.Text}"))
             //    return;
 
@@ -86,7 +86,7 @@ namespace my8.Assistant
             strBuilder.Append("\t//append_line_here");
             content = content.Replace("//append_line_here", $"public const string {txtKey.Text} = \"{txtVN.Text}\";{strBuilder.ToString()}");
             //content = content + strBuilder.ToString();
-            Utility.WriteToFile(ThisApp.AppSetting.MessageCodeApiFilePath, content);
+            Utility.WriteToFile(Utility.GetFullPathForConfigPath(ThisApp.AppSetting.MessageCodeApiFilePath), content);
         }
 
         private void AppendLangFile(string message, string filepath)
