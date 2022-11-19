@@ -1,0 +1,27 @@
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using OpenNow.ShareObject.Infrastructures;
+using System.Threading.Tasks;
+using Trieudon.Ecommerce.Business.Interfaces;
+
+namespace Trieudon.Ecommerce.Api.Controllers
+{
+    [Route("[controller]s")]
+    public class {ModelName}Controller : ECommerceBaseController
+    {
+        private readonly I{ModelName}Business _biz{ModelName};
+        private readonly ILogger<{ModelName}Controller> _logger;
+        public {ModelName}Controller(CurrentProcess process, I{ModelName}Business {modelname}Business, ILogger<{ModelName}Controller> log) : base(process)
+        {
+            _biz{ModelName} = {modelname}Business;
+            _logger = log;
+        }
+		[HttpPost]
+        public async Task<IActionResult> Create([FromBody] {ModelName} model)
+        {
+            var result = await _biz{ModelName}.CreateAsync(model);
+            return ToResponse(result.Id);
+        }
+        
+    }
+}

@@ -1,0 +1,14 @@
+namespace PG.BDS.UMS.Repositories.Sql
+{
+    using Dapper;
+	using PG.BDS.NotificationApi.Models.DomainModels;
+	using System;
+	using System.Data;
+	using System.Data.SqlClient;
+	using System.Threading.Tasks;
+
+    public interface I{ModelName}Repository
+    {
+
+    }
+}

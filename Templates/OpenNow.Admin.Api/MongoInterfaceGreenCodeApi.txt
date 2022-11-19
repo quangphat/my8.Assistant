@@ -1,0 +1,11 @@
+using GreenCode.Repository.Interfaces;
+using GreenCode.Repository.Models;
+using MongoDB.Bson;
+
+namespace AdminRepository.Interfaces
+{
+    public interface I{ModelName}Repository: IBaseRepository<{ModelName}, ObjectId>
+    {
+        
+    }
+}

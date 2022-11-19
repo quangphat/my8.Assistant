@@ -1,0 +1,25 @@
+using GreenCode.Repository.Models;
+using Microsoft.Extensions.Options;
+using MongoDB.Bson;
+using MongoDB.Driver;
+using my8GreenCodeApi.Interface;
+using OpenNow.ShareObject.Infrastructures;
+using OpenNowCore;
+
+namespace AdminRepository.Classes
+{
+    public class {ModelName}Repository: MongoRepositoryBaseCore<{ModelName},ObjectId>, I{ModelName}Repository
+    {
+
+        public {ModelName}Repository(IOptions<MongoConnection> setting,
+            CurrentProcess currentProcess,
+            IMongoClient mongoClient,
+            IClientSessionHandle clientSessionHandle) : base(setting, mongoClient, clientSessionHandle, currentProcess)
+        {
+            //collection = _db.GetCollection<{ModelName}>("{ModelName}");
+        }
+        
+
+       
+    }
+}

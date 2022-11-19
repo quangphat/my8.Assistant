@@ -1,0 +1,12 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Trieudon.Ecommerce.Business.Interfaces
+{
+    public interface I{ModelName}Business
+    {
+        
+    }
+}

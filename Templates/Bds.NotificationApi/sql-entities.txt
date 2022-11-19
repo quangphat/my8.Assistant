@@ -1,0 +1,8 @@
+namespace PG.BDS.NotificationApi.Models.DomainModels
+{
+
+    public class {ModelName}
+    {
+
+    }
+}

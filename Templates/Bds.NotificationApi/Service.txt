@@ -1,0 +1,28 @@
+namespace PG.BDS.UMS.Services
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Net;
+    using System.Net.Http;
+    using System.Threading.Tasks;
+    using AutoMapper;
+    using HttpHelpers;
+    using PG.BDS.UMS.Helpers;
+    using PG.BDS.UMS.Models;
+    using PG.BDS.UMS.Models.DomainModels;
+    using PG.BDS.UMS.Models.DTOs;
+    using PG.BDS.UMS.Models.Request;
+    using PG.BDS.UMS.Models.Response;
+    using PG.BDS.UMS.Repositories.Sql;
+
+    public class {ModelName}Service : I{ModelName}Service
+    {
+        private readonly IMapper _mapper;
+
+        public {ModelName}Service(IMapper mapper)
+        {
+            _mapper = mapper;
+        }
+    }
+}

@@ -1,0 +1,19 @@
+namespace PG.BDS.UMS.Repositories.Sql
+{
+    using Dapper;
+	using PG.BDS.NotificationApi.Models.DomainModels;
+	using System;
+	using System.Data;
+	using System.Data.SqlClient;
+	using System.Threading.Tasks;
+
+    public class {ModelName}Repository : I{ModelName}Repository
+    {
+        private readonly SqlConnection _dbConnection;
+
+        public {ModelName}Repository(SqlConnection dbConnection)
+        {
+            _dbConnection = dbConnection;
+        }
+    }
+}

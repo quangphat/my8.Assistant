@@ -1,0 +1,28 @@
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Trieudon.Ecommerce.Shared.Entities;
+using Trieudon.Ecommerce.Shared.Repositories.Interfaces;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
+using MongoDB.Bson;
+using MongoDB.Driver;
+using OpenNow.ShareObject.Common;
+using OpenNow.ShareObject.Infrastructures;
+using OpenNowCore;
+
+namespace Trieudon.Ecommerce.Shared.Repositories
+{
+    public class {ModelName}Repository: MongoRepositoryBaseCore<{ModelName},ObjectId>, I{ModelName}Repository
+    {
+
+        public {ModelName}Repository(IOptions<MongoConnection> setting,
+            CurrentProcess currentProcess,
+            IMongoClient mongoClient,
+            ISequenceRepository sequenceRepository,
+            IClientSessionHandle clientSessionHandle) : base(setting, mongoClient, clientSessionHandle, currentProcess, sequenceRepository: sequenceRepository) { }
+        
+
+       
+    }
+}

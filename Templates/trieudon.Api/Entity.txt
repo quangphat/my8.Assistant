@@ -1,0 +1,14 @@
+using MongoDB.Bson.Serialization.Attributes;
+using OpenNow.ShareObject.Mongo;
+using OpenNowCore;
+using System;
+
+namespace Trieudon.Ecommerce.Shared.Entities
+{
+    [Entity(name: "{ModelName}")]
+    [BsonIgnoreExtraElements]
+    public class {ModelName}: BaseMongoLongIdEntity
+    {
+        
+    }
+}

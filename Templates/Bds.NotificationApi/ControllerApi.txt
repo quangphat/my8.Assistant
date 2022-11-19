@@ -1,0 +1,25 @@
+namespace PG.BDS.UMS.Controllers
+{
+    using System.Threading.Tasks;
+    using AutoMapper;
+    using Microsoft.AspNetCore.Mvc;
+    using PG.BDS.UMS.Models.Constants;
+    using PG.BDS.UMS.Models.DTOs;
+    using PG.BDS.UMS.Models.Response;
+    using PG.BDS.UMS.Services;
+
+    [Route("api/v{version:apiVersion}/[controller]")]
+    [ApiController]
+    [ApiVersion(ApiVersions.V1)]
+    public class {ModelName}Controller : BaseController
+    {
+        private readonly IMapper _mapper;
+        private readonly I{ModelName}Service _userService;
+
+        public {ModelName}Controller(IMapper mapper, I{ModelName}Service {modelname}Service, ProcessingResponse processingResponse):base(processingResponse)
+        {
+            _mapper = mapper;
+            _{modelname}Service = {modelname}Service;
+        }
+    }
+}

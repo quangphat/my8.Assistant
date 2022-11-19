@@ -1,0 +1,40 @@
+using AutoMapper;
+using Cnv.Core.Ecommerce.Business;
+using Cnv.Core.Ecommerce.Business.Classes;
+using Cnv.Core.Ecommerce.Business.Infrastructures;
+using Trieudon.Ecommerce.Shared.Entities;
+using Trieudon.Ecommerce.Shared.Repositories.Interfaces;
+using Trieudon.Ecommerce.Business.Interfaces;
+using Trieudon.ECommerce.ShareModels;
+using Cnv.Core.Libs.Client.Models;
+using Cnv.Core.Libs.Utils.Models.Json;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using OpenNow.ShareObject.Infrastructures;
+using SignalSix.Helpers;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Trieudon.Ecommerce.Helpers;
+using System.Threading.Tasks;
+using static Trieudon.Ecommerce.Shared.infrastructures.Errors;
+
+namespace Trieudon.Ecommerce.Business.Classes
+{
+    public class {ModelName}Business : BaseBusiness, I{ModelName}Business
+    {
+        private readonly IMapper _mapper;
+        private readonly ILogger<{ModelName}Business> _logger;
+
+        public {ModelName}Business(
+            ILogger<{ModelName}Business> log,
+            IMapper mapper,
+            CurrentProcess requestProcess) : base(requestProcess)
+        {
+            _mapper = mapper;
+            _logger= log;
+        }
+
+      
+    }
+}

@@ -1,0 +1,25 @@
+using my8GreenCodeApi.IBusiness;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using my8GreenCodeApi.Interface;
+using AutoMapper;
+using GreenCode.Business.Classes;
+using GreenCodeModels.Infrastructures;
+using GreenCodeModels;
+using my8ShareObject.Infrastructures;
+using GreenCode.Repository.Models;
+
+namespace Admin.Business.Classes
+{
+    public class {ModelName}Business :BaseBusiness, I{ModelName}Business
+    {
+        I{ModelName}Repository _rp{ModelName};
+        public {ModelName}Business(I{ModelName}Repository {modelname}Repository, CurrentProcess process):base(process)
+        {
+            _rp{ModelName} = {modelname}Repository;
+        }
+
+    }
+}

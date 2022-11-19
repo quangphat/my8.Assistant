@@ -1,0 +1,10 @@
+using GreenCode.Repository.Models;
+using System.Threading.Tasks;
+
+namespace Admin.Business.Interfaces
+{
+    public interface I{ModelName}Business
+    {
+        
+    }
+}

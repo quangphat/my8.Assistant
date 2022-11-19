@@ -1,0 +1,11 @@
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+using System;
+
+namespace GreenCode.Repository.Models
+{
+    public class {ModelName}: BaseMongoObjectIdEntity
+    {
+        
+    }
+}

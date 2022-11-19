@@ -1,0 +1,12 @@
+
+using Trieudon.Ecommerce.Shared.Entities;
+using OpenNow.ShareObject.Common;
+using System.Threading.Tasks;
+
+namespace Trieudon.Ecommerce.Shared.Repositories.Interfaces
+{
+    public interface I{ModelName}Repository: IBaseRepository<{ModelName}, ObjectId>
+    {
+        
+    }
+}

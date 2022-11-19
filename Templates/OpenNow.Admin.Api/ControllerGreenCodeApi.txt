@@ -1,0 +1,25 @@
+using System.Threading.Tasks;
+using GreenCode.Repository.Models;
+using Microsoft.AspNetCore.Mvc;
+using my8GreenCodeApi.IBusiness;
+using OpenNow.ShareObject.Infrastructures;
+
+namespace my8GreenCodeApi.Controllers
+{
+	[Route("{ModelName}s")]
+    public class {ModelName}Controller : BaseController
+    {
+        I{ModelName}Business _biz{ModelName};
+        public {ModelName}Controller(CurrentProcess process, I{ModelName}Business {modelname}Business) : base(process)
+        {
+            _biz{ModelName} = {modelname}Business;
+        }
+		[HttpPost]
+        public async Task<IActionResult> Create([FromBody] {ModelName} model)
+        {
+            var result = await _biz{ModelName}.CreateAsync(model);
+            return ToResponse(result.Id);
+        }
+        
+    }
+}

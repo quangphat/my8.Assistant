@@ -1,0 +1,13 @@
+namespace PG.BDS.UMS.Services
+{
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using PG.BDS.UMS.Models;
+    using PG.BDS.UMS.Models.DomainModels;
+    using PG.BDS.UMS.Models.DTOs;
+
+    public interface I{ModelName}Service
+    {
+
+    }
+}
